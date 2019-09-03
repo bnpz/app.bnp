@@ -5,9 +5,6 @@ namespace App\Controller\Customer;
 
 use App\Contract\Service\Customer\CustomerServiceInterface;
 use App\Controller\AbstractController;
-use App\Entity\Customer\Customer;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -19,13 +16,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class CustomerController extends AbstractController
 {
     /**
-     * @Route("/customers", methods={"GET"}, name="customers_index")
+     * @Route("/customers", methods={"GET"})
      * @param CustomerServiceInterface $customerService
      * @return Response
      */
     public function index(CustomerServiceInterface $customerService)
     {
-        return $this->render("customers/index.html.twig", ['customers' => $customerService->findAll()]);
+        return $this->render("frontend/customers/index.html.twig", ['customers' => $customerService->findAll()]);
 
     }
 
@@ -37,7 +34,7 @@ class CustomerController extends AbstractController
      */
     public function show(string $id, CustomerServiceInterface $customerService)
     {
-        return $this->render("customers/show.html.twig", ['customer' => $customerService->findById($id)]);
+        return $this->render("frontend/customers/show.html.twig", ['customer' => $customerService->findById($id)]);
     }
 
 }
