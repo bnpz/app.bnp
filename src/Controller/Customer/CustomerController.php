@@ -6,6 +6,7 @@ namespace App\Controller\Customer;
 use App\Contract\Service\Customer\CustomerServiceInterface;
 use App\Controller\AbstractController;
 use App\Entity\Customer\Customer;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CustomerController extends AbstractController
 {
     /**
-     * @Route("/customers", methods={"GET"})
+     * @Route("/customers", methods={"GET"}, name="customers_index")
      * @param CustomerServiceInterface $customerService
      * @return Response
      */
