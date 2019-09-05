@@ -1,0 +1,16 @@
+---------------
+Before start
+---------------
+git pull
+composer update
+composer dump-autoload
+php bin/console redis:flushdb
+php bin/console cache:clear
+php bin/console doctrine:migrations:diff
+php bin/console doctrine:migrations:migrate
+
+---------------
+After finish
+---------------
+commit changes to dev branch
+git push to dev
