@@ -12,7 +12,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class AdminAuthController extends AbstractController
 {
     /**
-     * @Route("/admin/login")
+     * @Route("/admin/login", name="app_admin_auth_login")
      * @param AuthenticationUtils $authenticationUtils
      * @return Response
      */
