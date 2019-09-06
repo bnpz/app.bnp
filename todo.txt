@@ -14,3 +14,8 @@ After finish
 ---------------
 commit changes to dev branch
 git push to dev
+
+*******************************
+*******************************
+TODO
+- custom AccessDenied page (see: App\Security\AccessDeniedHandler)
