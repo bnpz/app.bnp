@@ -2,26 +2,25 @@
 
 namespace App\Controller\Admin;
 
+
 use App\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class AdminController
+ * Class AccountController
  * @package App\Controller\Admin
- * @IsGranted("ROLE_USER")
+ * @IsGranted("ROLE_ADMIN")
  */
-class AdminController extends AbstractController
+class AccountController extends AbstractController
 {
     /**
-     * @Route("/admin", methods={"GET"})
-     * @return Response
+     * @Route("/admin/account", name="app_admin_account_index")
      */
     public function index()
     {
-        return $this->render('admin/homepage/index.html.twig');
+
+
+        return $this->render('admin/account/index.html.twig');
     }
-
-
 }
