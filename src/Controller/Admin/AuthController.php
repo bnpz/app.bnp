@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class AdminAuthController extends AbstractController
+class AuthController extends AbstractController
 {
     /**
      * @Route("/admin/login", name="app_admin_auth_login")
@@ -27,5 +27,13 @@ class AdminAuthController extends AbstractController
             'last_username' => $lastUsername,
             'error' => $error
         ]);
+    }
+
+    /**
+     * @Route("/admin/logout", name="app_admin_auth_logout")
+     */
+    public function logout()
+    {
+        throw new \Exception('Will be intercepted before getting here');
     }
 }
