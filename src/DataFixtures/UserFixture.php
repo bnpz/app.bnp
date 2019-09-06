@@ -11,8 +11,11 @@ class UserFixture extends BaseFixture
     {
         $this->createMany(3, 'main_users', function ($i){
             $user = new User();
-            $user->setEmail(sprintf('spacebar%d@example.com', $i));
-            $user->setName($this->faker->name);
+
+            $firstName = $this->faker->firstName;
+            $lastName = $this->faker->lastName;
+            $user->setEmail(strtolower($firstName).".".strtolower($lastName)."@faker.com");
+            $user->setName($firstName." ".$lastName);
             $user->setPassword($this->faker->password);
             return $user;
         });
