@@ -45,7 +45,7 @@ class User implements EntityInterface, UserInterface
      * @Assert\NotNull(groups={"create"})
      * @Assert\NotBlank(groups={"create"})
      * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
     private $password;
 
@@ -118,6 +118,10 @@ class User implements EntityInterface, UserInterface
         return (string) $this->password;
     }
 
+    /**
+     * @param string $password
+     * @return User
+     */
     public function setPassword(string $password): self
     {
         $this->password = $password;
