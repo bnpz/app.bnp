@@ -79,11 +79,11 @@ class CreateUser extends Command
 
         # new user
         if(!$user) {
-            $newUser = new User();
+            $newUser = User::init();
 
             $newUser->setName($fullName);
             $newUser->setEmail($email);
-            $newUser->setPassword($this->passwordEncoder->encodePassword($user, $password));
+            $newUser->setPassword($this->passwordEncoder->encodePassword($newUser, $password));
             $roles = [];
             if($role == 1){
                 $roles = ['ROLE_USER'];
@@ -93,6 +93,7 @@ class CreateUser extends Command
             }
             $newUser->setRoles($roles);
 
+            $this->userService->create($newUser);
 
         }
         else{
