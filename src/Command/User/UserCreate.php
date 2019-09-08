@@ -12,10 +12,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class CreateUser extends Command
+class UserCreate extends Command
 {
     # the name of the command
-    protected static $defaultName = "app:create-user";
+    protected static $defaultName = "app:user:create";
     /**
      * @var UserServiceInterface
      */
@@ -93,8 +93,9 @@ class CreateUser extends Command
             }
             $newUser->setRoles($roles);
 
-            $this->userService->create($newUser);
+            $this->userService->save($newUser);
 
+            $output->writeln("User created.");
         }
         else{
             $output->writeln("User with email $email already exists!");

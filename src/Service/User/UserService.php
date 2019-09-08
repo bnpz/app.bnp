@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
 
 /**
@@ -28,16 +29,22 @@ class UserService extends AbstractEntityService implements UserServiceInterface
      * @var Security
      */
     private $security;
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $passwordEncoder;
 
     public function __construct(
         ManagerRegistry $managerRegistry,
         UserRepository $userRepository,
-        Security $security
+        Security $security,
+        UserPasswordEncoderInterface $passwordEncoder
     )
     {
         parent::__construct($managerRegistry);
         $this->repository = $userRepository;
         $this->security = $security;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
@@ -143,5 +150,20 @@ class UserService extends AbstractEntityService implements UserServiceInterface
             'password'
         ]);
         return $managedEntity;
+    }
+
+    /**
+     * @param User $user
+     * @param string $password
+     * @return User
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function saveNewPassword(User $user, string $password)
+    {
+        $newPasword = $this->passwordEncoder->encodePassword($user, $password);
+        $user->setPassword($newPasword);
+        $this->saveEntity($user);
+        return $user;
     }
 }

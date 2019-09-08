@@ -52,4 +52,11 @@ interface UserServiceInterface
      * @return User|null
      */
     public function getCurrentUser(): ?User;
+
+    /**
+     * @param User $user
+     * @param string $password
+     * @return User
+     */
+    public function saveNewPassword(User $user, string $password);
 }
