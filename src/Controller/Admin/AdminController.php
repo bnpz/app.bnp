@@ -30,4 +30,12 @@ class AdminController extends AbstractController
         return $this->render('admin/account.html.twig');
     }
 
+    /**
+     * @Route("/admin/docs")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function docs()
+    {
+        return $this->render("admin/docs.html.twig");
+    }
 }

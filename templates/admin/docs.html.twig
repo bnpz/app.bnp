@@ -1,0 +1,12 @@
+{% extends 'admin/base.html.twig' %}
+{% block title %}Documentation{% endblock %}
+{% block body %}
+    <h2>Documentation</h2>
+    <hr>
+    <i class="fab fa-symfony"></i>
+    <h4>User</h4>
+    <p>Create new user</p>
+    <pre><code>php bin/console app:user:create</code></pre>
+    <p>Change user password</p>
+    <pre><code>php bin/console app:user:password</code></pre>
+{% endblock %}
