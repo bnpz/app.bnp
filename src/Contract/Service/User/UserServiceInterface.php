@@ -14,7 +14,7 @@ interface UserServiceInterface
      * @param User|null $managedEntity
      * @return User
      */
-    public function save(User $transferEntity, ?User $managedEntity);
+    public function save(User $transferEntity, ?User $managedEntity = null);
 
     /**
      * @param User $transferEntity

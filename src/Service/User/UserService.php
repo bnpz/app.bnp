@@ -64,7 +64,7 @@ class UserService extends AbstractEntityService implements UserServiceInterface
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function save(User $transferEntity, ?User $managedEntity)
+    public function save(User $transferEntity, ?User $managedEntity = null)
     {
         if($transferEntity->getId() !== "") {
             $managedEntity = isset($managedEntity) ? $managedEntity : $this->get($transferEntity->getId());
