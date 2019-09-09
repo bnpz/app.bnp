@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class AdminController
  * @package App\Controller\Admin
- * @IsGranted("ROLE_USER")
+ * @IsGranted("ROLE_ADMIN")
  */
 class AdminController extends AbstractController
 {
@@ -32,7 +32,6 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/docs")
-     * @IsGranted("ROLE_ADMIN")
      */
     public function docs()
     {
