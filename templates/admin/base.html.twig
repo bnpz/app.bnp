@@ -16,7 +16,9 @@
         {% endblock %}
     </head>
     <body>
+    {% if is_granted('ROLE_ADMIN') %}
         {{ include('inc/navbar.admin.html.twig') }}
+    {% endif %}
         <div class="container">
             {% block body %}{% endblock %}
         </div>

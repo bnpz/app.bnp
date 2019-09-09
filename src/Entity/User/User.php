@@ -7,8 +7,8 @@ namespace App\Entity\User;
 use App\Entity\Base\EntityInterface;
 use App\Entity\Base\Mixin\UuidAbleEntity;
 use App\Mixin\CanInitialise;
-use Gedmo\Timestampable\Traits\Timestampable;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -19,7 +19,7 @@ class User implements EntityInterface, UserInterface
 {
     use UuidAbleEntity;
     use CanInitialise;
-    use Timestampable;
+    use TimestampableEntity;
 
     /**
      * @var string

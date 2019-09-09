@@ -70,7 +70,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      */
     public function supports(Request $request)
     {
-        return $request->attributes->get('_route') === 'app_admin_auth_login'
+        return $request->attributes->get('_route') === 'app_security_login'
             && $request->isMethod('POST');
     }
 
@@ -128,7 +128,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->router->generate('app_admin_admin_index'));
+        return new RedirectResponse($this->router->generate('homepage'));
     }
 
     /**
@@ -138,6 +138,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      */
     protected function getLoginUrl()
     {
-        return $this->router->generate('app_admin_auth_login');
+        return $this->router->generate('app_security_login');
     }
 }
