@@ -8,8 +8,11 @@
 
         {% block stylesheets %}
             {#Bootstrap css#}
-            <link rel="stylesheet" href="{{ asset('css/bootstrap.admin.min.css') }}">
-
+            <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.admin.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-all.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/custom-admin.css') }}">
+            {# Google font add here and body{font} to custom.css #}
+            {#<link href="https://fonts.googleapis.com/css?family=Hind:300,500,700&amp;subset=latin-ext" rel="stylesheet">#}
         {% endblock %}
     </head>
     <body>
