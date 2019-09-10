@@ -1,0 +1,10 @@
+{% extends "frontend/base.html.twig" %}
+{% block body %}
+    {{ parent() }}
+    <div class="col-md-3">
+        {% block leftColumn %}{% endblock %}
+    </div>
+    <div class="col-md">
+        {% block rightColumn %}{% endblock %}
+    </div>
+{% endblock %}
