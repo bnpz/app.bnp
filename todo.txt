@@ -19,3 +19,5 @@ git push to dev
 *******************************
 TODO
 - custom AccessDenied page (see: App\Security\AccessDeniedHandler)
+- create new password page
+- add links to login page for register and new password
