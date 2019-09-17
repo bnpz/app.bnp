@@ -2,10 +2,19 @@
 {% block body %}
     {{ parent() }}
     <div class="col-md-3">
-        {% block leftColumn %}{% endblock %}
+        <div class="container-fluid">
+            <div class="row">
+                {% block leftColumn %}{% endblock %}
+            </div>
+        </div>
     </div>
     <div class="col-md">
         {{ include('inc/messages.html.twig') }}
-        {% block rightColumn %}{% endblock %}
+        <div class="container-fluid">
+            <div class="row">
+                {% block rightColumn %}{% endblock %}
+            </div>
+        </div>
+
     </div>
 {% endblock %}

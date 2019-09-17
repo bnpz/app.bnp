@@ -7,3 +7,7 @@
 .alert{
     margin-top: 10px !important;
 }
+div.content{
+    padding: 20px;
+    margin-top: 20px;
+}

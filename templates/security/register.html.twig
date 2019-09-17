@@ -1,8 +1,10 @@
 {% extends 'frontend/leftLayout.html.twig' %}
 {% block rightColumn %}
     <div class="col-sm-4">
-        <h1>Register</h1>
-        {{ form_start(registrationForm) }}
+        <div class="content">
+            <h2>Registracija</h2>
+            <hr>
+            {{ form_start(registrationForm) }}
 
             {{ form_row(registrationForm.name,          {'label': 'Ime i prezime'}) }}
             {{ form_row(registrationForm.email,         {'label': 'Email'}) }}
@@ -11,6 +13,14 @@
 
             <button class="btn btn-lg btn-outline-success">Register</button>
 
-        {{ form_end(registrationForm) }}
+            {{ form_end(registrationForm) }}
+        </div>
+
+    </div>
+    <div class="col-sm">
+        <div class="content">
+            <p><a href="{{ url('app_security_login') }}">Login</a></p>
+            <p><a href="#">Zaboravili ste password?</a></p>
+        </div>
     </div>
 {% endblock %}
