@@ -1,14 +1,16 @@
 {% extends 'frontend/leftLayout.html.twig' %}
 {% block rightColumn %}
-    <h1>Register</h1>
-{{ form_start(registrationForm) }}
+    <div class="col-sm-4">
+        <h1>Register</h1>
+        {{ form_start(registrationForm) }}
 
-    {{ form_row(registrationForm.name,          {'label': 'Ime i prezime'}) }}
-    {{ form_row(registrationForm.email,         {'label': 'Email'}) }}
-    {{ form_row(registrationForm.plainPassword, {'label': 'Password'}) }}
-    {{ form_row(registrationForm.agreeTerms,    {'label': 'Potvrdi me'}) }}
+            {{ form_row(registrationForm.name,          {'label': 'Ime i prezime'}) }}
+            {{ form_row(registrationForm.email,         {'label': 'Email'}) }}
+            {{ form_row(registrationForm.plainPassword, {'label': 'Password'}) }}
+            {{ form_row(registrationForm.agreeTerms,    {'label': 'Potvrdi me'}) }}
 
-    <button class="btn btn-lg btn-outline-success">Register</button>
+            <button class="btn btn-lg btn-outline-success">Register</button>
 
-{{ form_end(registrationForm) }}
+        {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}
