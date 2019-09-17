@@ -5,6 +5,7 @@
         {% block leftColumn %}{% endblock %}
     </div>
     <div class="col-md">
+        {{ include('inc/messages.html.twig') }}
         {% block rightColumn %}{% endblock %}
     </div>
 {% endblock %}

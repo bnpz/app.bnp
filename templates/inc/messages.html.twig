@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    <span><i class="far fa-check-circle"></i> </span>{{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger">
+                    <span><i class="far fa-times-circle"></i> </span>{{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-primary">
+                    <span><i class="far fa-arrow-alt-circle-right"></i> </span>{{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
