@@ -51,6 +51,20 @@ class User implements EntityInterface, UserInterface
     private $password;
 
     /**
+     * @Assert\NotNull(groups={"create"})
+     * @Assert\NotBlank(groups={"create"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $phone;
+
+    /**
+     * @Assert\NotNull(groups={"create"})
+     * @Assert\NotBlank(groups={"create"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $address;
+
+    /**
      * @return string
      */
     public function getName(): ?string
@@ -126,6 +140,42 @@ class User implements EntityInterface, UserInterface
     {
         $this->password = $password;
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param mixed $phone
+     * @return User
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     * @return User
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
         return $this;
     }
 
