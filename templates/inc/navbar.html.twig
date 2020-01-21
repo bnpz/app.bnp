@@ -11,8 +11,19 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('homepage') }}">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+
+            {# ARHIVA #}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarArchive" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Arhiva
+                </a>
+                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarArchive">
+                    <a class="dropdown-item" href="{{ url('archive_index') }}">Početna</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ url('archive_stages_index') }}">Scene</a>
+                </div>
+
+
             </li>
 
         </ul>
