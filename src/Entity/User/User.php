@@ -51,16 +51,12 @@ class User implements EntityInterface, UserInterface
     private $password;
 
     /**
-     * @Assert\NotNull(groups={"create"})
-     * @Assert\NotBlank(groups={"create"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $phone;
 
     /**
-     * @Assert\NotNull(groups={"create"})
-     * @Assert\NotBlank(groups={"create"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $address;
 

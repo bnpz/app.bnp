@@ -15,8 +15,8 @@
     {% endblock %}
 </head>
 <body>
-{% if is_granted('ROLE_ADMIN') %}
-    {{ include('inc/navbar.admin.html.twig') }}
+{% if is_granted('ROLE_USER') %}
+    {{ include('inc/navbar.html.twig') }}
 {% endif %}
 <div class="container-fluid">
     <div class="row">
