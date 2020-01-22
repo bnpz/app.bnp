@@ -1,0 +1,12 @@
+nelmio_api_doc:
+  documentation:
+    #host: app.bnp
+    schemes: [http, https]
+    info:
+      title: BNP API Doc
+      version: 1.0.0
+  areas:
+    default:
+      path_patterns: [ ^/api ]
+    archive:
+      path_patterns: [ ^/api/archive ]
