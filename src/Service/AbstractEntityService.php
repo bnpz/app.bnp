@@ -12,6 +12,8 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Exception;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class AbstractEntityService
@@ -37,15 +39,19 @@ abstract class AbstractEntityService implements IDecoratable
      */
     private $managerRegistry;
 
+    private $validator;
+
     /**
      * EntityService constructor.
      * @param ManagerRegistry $managerRegistry
+     * @param ValidatorInterface $validator
      */
-    public function __construct(ManagerRegistry $managerRegistry)
+    public function __construct(ManagerRegistry $managerRegistry, ValidatorInterface $validator)
     {
         $this->managerRegistry  = $managerRegistry;
         $this->repository       = $this->managerRegistry->getRepository($this->getEntityClassName());
         $this->entityManager    = $this->managerRegistry->getManagerForClass($this->getEntityClassName());
+        $this->validator        = $validator;
     }
     /**
      * @return string
@@ -81,11 +87,21 @@ abstract class AbstractEntityService implements IDecoratable
      */
     public function saveEntity($entity)
     {
-        $this->entityManager->persist($entity);
-        $this->entityManager->flush($entity);
-        $this->entityManager->refresh($entity);
 
-        return $entity;
+        $errors = $this->validator->validate($entity);
+
+        if(count($errors) > 0){
+            $errorsString = (string) $errors;
+            throw new Exception($errorsString);
+        }
+        else{
+            $this->entityManager->persist($entity);
+            $this->entityManager->flush($entity);
+            $this->entityManager->refresh($entity);
+
+            return $entity;
+        }
+
     }
 
     /**
