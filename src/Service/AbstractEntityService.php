@@ -61,18 +61,14 @@ abstract class AbstractEntityService implements IDecoratable
     /**
      * @param $id
      * @return AbstractEntity
-     * @throws EntityNotFoundException
+     * @throws Exception
      */
     public function get($id)
     {
-        /**
-         * @var AbstractEntity $entity
-         */
         $entity = $this->repository->find($id);
-        if(!$entity instanceof AbstractEntity){
-
+        if(!$entity){
             $msg = $this->getEntityClassName()." not found for id = ".$id;
-            throw new EntityNotFoundException($msg);
+            throw new Exception($msg, 404);
         }
         else{
             return $entity;
