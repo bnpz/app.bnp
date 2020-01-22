@@ -59,4 +59,10 @@ interface UserServiceInterface
      * @return User
      */
     public function saveNewPassword(User $user, string $password);
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function isAdmin(User $user);
 }

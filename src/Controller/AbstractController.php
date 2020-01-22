@@ -3,7 +3,10 @@
 
 namespace App\Controller;
 
+use Doctrine\Common\Annotations\AnnotationException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Serializer;
 
 abstract class AbstractController extends SymfonyAbstractController
 {
@@ -34,4 +37,13 @@ abstract class AbstractController extends SymfonyAbstractController
     {
         $this->addFlash(self::FLASH_TYPE_NOTICE, $message);
     }
+
+    /**
+     * @return object|Serializer
+     */
+    public function getSerializer()
+    {
+        return $this->get('serializer');
+    }
+
 }

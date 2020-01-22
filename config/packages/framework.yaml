@@ -14,3 +14,7 @@ framework:
     #fragments: true
     php_errors:
         log: true
+
+    # needed for custom EntityNormalizer
+    property_info:
+        enabled: true

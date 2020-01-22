@@ -166,4 +166,18 @@ class UserService extends AbstractEntityService implements UserServiceInterface
         $this->saveEntity($user);
         return $user;
     }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function isAdmin(User $user)
+    {
+        if(in_array("ROLE_ADMIN", $user->getRoles())){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

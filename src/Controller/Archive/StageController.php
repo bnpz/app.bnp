@@ -6,9 +6,7 @@ namespace App\Controller\Archive;
 
 use App\Contract\Service\Archive\StageServiceInterface;
 use App\Controller\AbstractController;
-use App\Entity\Archive\Stage;
 use Exception;
-use phpDocumentor\Reflection\Types\This;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
