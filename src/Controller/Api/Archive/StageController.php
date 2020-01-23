@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Swagger\Annotations as SWG;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 
 /**
  * Class StageController
@@ -55,8 +56,15 @@ class StageController extends AbstractApiController
      * @SWG\Tag(name="Archive/Stage")
      * @SWG\Response(
      *     response=200,
-     *     description="Get all Stages"
+     *     description="Create Stage",
+     *     @SWG\Schema(ref=@Model(type=Stage::class, groups={"id_view","archive_stage_full"}))
      * )
+     * @SWG\Parameter(
+     *     name="body",
+     *     in="body",
+     *     required=true,
+     *     @SWG\Schema(@SWG\Property(property="name", type="string"))
+     *)
      * @param Request $request
      * @param StageServiceInterface $stageService
      * @return JsonResponse
@@ -99,6 +107,48 @@ class StageController extends AbstractApiController
     {
         try{
             return $this->jsonResponse($stageService->findOne($id),["archive_stage_full"]);
+        }
+        catch (Exception $exception){
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+    /**
+     * Update Stage
+     *
+     * @Route("/{id}", methods={"PUT"}, name="api_archive_stages_update")
+     * @SWG\Tag(name="Archive/Stage")
+     * @SWG\Response(
+     *     response=200,
+     *     description="Update Stage",
+     *     @SWG\Schema(ref=@Model(type=Stage::class, groups={"id_view","archive_stage_full"}))
+     * )
+     * @SWG\Parameter(
+     *     name="body",
+     *     in="body",
+     *     required=false,
+     *     @SWG\Schema(@SWG\Property(property="name", type="string"))
+     *)
+     * @param Request $request
+     * @param $id
+     * @param StageServiceInterface $stageService
+     * @return JsonResponse
+     */
+    public function update(Request $request, $id, StageServiceInterface $stageService)
+    {
+        try{
+            $stage = $stageService->findOne($id);
+
+            $this->getSerializer()->deserialize(
+                $request->getContent(),
+                Stage::class,
+                'json',
+                [AbstractNormalizer::OBJECT_TO_POPULATE  => $stage]
+            );
+
+            return $this->jsonResponse(
+                $stageService->save($stage),
+                ['archive_stage_full']
+            );
         }
         catch (Exception $exception){
             return $this->error($exception->getMessage(), $exception->getCode());
