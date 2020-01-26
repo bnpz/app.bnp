@@ -31,7 +31,7 @@ class StageController extends AbstractApiController
      *     description="Get all Stages",
      *     @SWG\Schema(
      *          type="array",
-     *          @SWG\Items(ref=@Model(type=Stage::class, groups={"id_view","archive_stage_full"}))
+     *          @SWG\Items(ref=@Model(type=Stage::class))
      *      )
      * )
      * @param Request $request

@@ -5,8 +5,10 @@ use App\Entity\Base\EntityInterface;
 use App\Entity\Base\Mixin\BaseEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Nelmio\ApiDocBundle\Annotation\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Swagger\Annotations as SWG;
 
 /**
  * Class Season
@@ -24,6 +26,7 @@ class Season implements EntityInterface
      * @Assert\NotNull(groups={"create"})
      * @Assert\NotBlank(groups={"create"})
      * @Groups({"archive_season_listing", "archive_season_full"})
+     * @SWG\Property(property="number", type="integer")
      */
     private $number;
 
@@ -32,6 +35,7 @@ class Season implements EntityInterface
      * @Assert\NotNull(groups={"create"})
      * @Assert\NotBlank(groups={"create"})
      * @Groups({"archive_season_listing", "archive_season_full"})
+     * @SWG\Property(property="label", type="string")
      */
     private $label;
 
