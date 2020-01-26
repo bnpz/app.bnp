@@ -5,10 +5,10 @@ namespace App\Repository\Archive;
 use App\Repository\AbstractEntityRepository;
 
 /**
- * Class PlayRepository
+ * Class SeasonRepository
  * @package App\Repository\Archive
  */
-class PlayRepository extends AbstractEntityRepository
+class SeasonRepository extends AbstractEntityRepository
 {
 
 }

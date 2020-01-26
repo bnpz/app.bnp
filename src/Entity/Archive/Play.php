@@ -21,6 +21,20 @@ class Play extends AbstractEntity
     use TimestampableEntity;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Archive\Season", inversedBy="plays")
+     * @ORM\JoinColumn(name="season_id", referencedColumnName="id", nullable=false)
+     * @Groups({"archive_play_full"})
+     */
+    private $season;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Archive\Stage")
+     * @ORM\JoinColumn(name="stage_id", referencedColumnName="id", nullable=false)
+     * @Groups({"archive_play_full"})
+     */
+    private $stage;
+
+    /**
      * @ORM\Column(name="title", type="string")
      * @Assert\NotNull(groups={"create"})
      * @Assert\NotBlank(groups={"create"})
@@ -32,9 +46,46 @@ class Play extends AbstractEntity
      * @ORM\Column(name="premiere_date", type="date")
      * @Assert\NotNull(groups={"create"})
      * @Assert\NotBlank(groups={"create"})
-     * @Groups({"archive_play_listing", "archive_play_full"})
+     * @Groups({"archive_play_full"})
      */
     private $premiereDate;
+
+    /**
+     * @return mixed
+     */
+    public function getSeason()
+    {
+        return $this->season;
+    }
+
+    /**
+     * @param mixed $season
+     * @return Play
+     */
+    public function setSeason($season)
+    {
+        $this->season = $season;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStage()
+    {
+        return $this->stage;
+    }
+
+    /**
+     * @param mixed $stage
+     * @return Play
+     */
+    public function setStage($stage)
+    {
+        $this->stage = $stage;
+        return $this;
+    }
+
 
     /**
      * @return mixed
