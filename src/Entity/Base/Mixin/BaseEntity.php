@@ -1,19 +1,11 @@
 <?php
+namespace App\Entity\Base\Mixin;
 
-namespace App\Entity;
-
-use App\Mixin\CanInitialise;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-/**
- * Class AbstractEntity
- * @package App\Entity
- */
-abstract class AbstractEntity
+trait BaseEntity
 {
-    use CanInitialise;
-
     /**
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
@@ -29,6 +21,4 @@ abstract class AbstractEntity
     {
         return $this->id;
     }
-
-
 }

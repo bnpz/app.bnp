@@ -3,13 +3,12 @@
 namespace App\Service;
 
 use App\Contract\Service\Base\IDecoratable;
-use App\Entity\AbstractEntity;
+use App\Entity\Base\EntityInterface;
 use App\Mixin\CanTranscribe;
 use App\Mixin\Decoratable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Exception;
@@ -60,7 +59,7 @@ abstract class AbstractEntityService implements IDecoratable
 
     /**
      * @param $id
-     * @return AbstractEntity
+     * @return object|null
      * @throws Exception
      */
     public function get($id)
@@ -76,12 +75,12 @@ abstract class AbstractEntityService implements IDecoratable
     }
 
     /**
-     * @param AbstractEntity $entity
-     * @return AbstractEntity
+     * @param EntityInterface $entity
+     * @return object
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function saveEntity($entity)
+    public function saveEntity(EntityInterface $entity)
     {
 
         $errors = $this->validator->validate($entity);
@@ -101,12 +100,12 @@ abstract class AbstractEntityService implements IDecoratable
     }
 
     /**
-     * @param AbstractEntity $entity
+     * @param EntityInterface $entity
      * @return bool
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function deleteEntity($entity)
+    public function deleteEntity(EntityInterface $entity)
     {
         $this->entityManager->remove($entity);
         $this->entityManager->flush();

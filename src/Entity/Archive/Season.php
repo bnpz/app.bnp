@@ -1,7 +1,8 @@
 <?php
 namespace App\Entity\Archive;
 
-use App\Entity\AbstractEntity;
+use App\Entity\Base\EntityInterface;
+use App\Entity\Base\Mixin\BaseEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -14,8 +15,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="seasons")
  * @ORM\Entity(repositoryClass="App\Repository\Archive\SeasonRepository")
  */
-class Season extends AbstractEntity
+class Season implements EntityInterface
 {
+    use BaseEntity;
+
     /**
      * @ORM\Column(name="number", type="integer")
      * @Assert\NotNull(groups={"create"})

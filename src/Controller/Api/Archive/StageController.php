@@ -63,7 +63,7 @@ class StageController extends AbstractApiController
      *     name="body",
      *     in="body",
      *     required=true,
-     *     @SWG\Schema(@SWG\Property(property="name", type="string"))
+     *     @SWG\Schema(ref=@Model(type=Stage::class, groups={"create"}))
      *)
      * @param Request $request
      * @param StageServiceInterface $stageService
@@ -126,7 +126,7 @@ class StageController extends AbstractApiController
      *     name="body",
      *     in="body",
      *     required=false,
-     *     @SWG\Schema(@SWG\Property(property="name", type="string"))
+     *     @SWG\Schema(ref=@Model(type=Stage::class, groups={"update"}))
      *)
      * @param Request $request
      * @param $id

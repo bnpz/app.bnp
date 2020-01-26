@@ -2,7 +2,8 @@
 
 namespace App\Entity\Archive;
 
-use App\Entity\AbstractEntity;
+use App\Entity\Base\EntityInterface;
+use App\Entity\Base\Mixin\BaseEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -16,8 +17,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="plays")
  * @ORM\Entity(repositoryClass="App\Repository\Archive\PlayRepository")
  */
-class Play extends AbstractEntity
+class Play implements EntityInterface
 {
+    use BaseEntity;
     use TimestampableEntity;
 
     /**

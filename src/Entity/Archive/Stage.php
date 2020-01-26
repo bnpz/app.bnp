@@ -2,10 +2,12 @@
 
 namespace App\Entity\Archive;
 
-use App\Entity\AbstractEntity;
+use App\Entity\Base\EntityInterface;
+use App\Entity\Base\Mixin\BaseEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Swagger\Annotations as SWG;
 
 /**
  * Class Stage
@@ -14,14 +16,16 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="stages")
  * @ORM\Entity(repositoryClass="App\Repository\Archive\StageRepository")
  */
-class Stage extends AbstractEntity
+class Stage implements EntityInterface
 {
+    use BaseEntity;
 
     /**
      * @ORM\Column(name="name", type="string")
      * @Assert\NotNull(groups={"create"})
      * @Assert\NotBlank(groups={"create"})
-     * @Groups({"archive_stage_listing", "archive_stage_full"})
+     * @Groups({"create", "update", "archive_stage_listing", "archive_stage_full"})
+     * @SWG\Property(property="name", type="string")
      */
     private $name;
 
