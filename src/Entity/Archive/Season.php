@@ -25,7 +25,10 @@ class Season implements EntityInterface
      * @ORM\Column(name="number", type="integer")
      * @Assert\NotNull(groups={"create"})
      * @Assert\NotBlank(groups={"create"})
-     * @Groups({"archive_season_listing", "archive_season_full"})
+     * @Groups({
+     *     "archive_season_listing",
+     *     "archive_season_full"
+     * })
      * @SWG\Property(property="number", type="integer")
      */
     private $number;
@@ -34,7 +37,10 @@ class Season implements EntityInterface
      * @ORM\Column(name="label", type="string")
      * @Assert\NotNull(groups={"create"})
      * @Assert\NotBlank(groups={"create"})
-     * @Groups({"archive_season_listing", "archive_season_full"})
+     * @Groups({
+     *     "archive_season_listing",
+     *     "archive_season_full"
+     * })
      * @SWG\Property(property="label", type="string")
      */
     private $label;

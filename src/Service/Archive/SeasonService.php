@@ -1,18 +1,15 @@
 <?php
 
-
 namespace App\Service\Archive;
 
-
-use App\Contract\Service\Archive\StageServiceInterface;
-use App\Entity\Archive\Stage;
+use App\Contract\Service\Archive\SeasonServiceInterface;
+use App\Entity\Archive\Season;
 use App\Service\AbstractEntityService;
-use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Exception;
 
-class StageService extends AbstractEntityService implements StageServiceInterface
+class SeasonService extends AbstractEntityService implements SeasonServiceInterface
 {
 
     /**
@@ -20,44 +17,43 @@ class StageService extends AbstractEntityService implements StageServiceInterfac
      */
     protected function getEntityClassName()
     {
-        return Stage::class;
+        return Season::class;
     }
 
     /**
-     * @param Stage $stage
-     * @return Stage
+     * @param Season $season
+     * @return Season|null
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function save(Stage $stage)
+    public function save(Season $season): ?Season
     {
-        return $this->saveEntity($stage);
+        return $this->saveEntity($season);
     }
 
     /**
-     * @param Stage $stage
+     * @param Season $season
      * @return bool
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function delete(Stage $stage)
+    public function delete(Season $season): bool
     {
-        return $this->deleteEntity($stage);
+        return $this->deleteEntity($season);
     }
 
     /**
      * @param int $id
-     * @return Stage|null
+     * @return Season|null
      * @throws Exception
      */
-    public function findOne(int $id): ?Stage
+    public function findOne(int $id): ?Season
     {
         return $this->get($id);
     }
 
-
     /**
-     * @return Stage[]|array|object[]
+     * @return Season[]
      */
     public function findAll()
     {
