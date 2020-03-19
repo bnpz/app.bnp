@@ -26,6 +26,8 @@ class Season implements EntityInterface
      * @Assert\NotNull(groups={"create"})
      * @Assert\NotBlank(groups={"create"})
      * @Groups({
+     *     "create",
+     *     "update",
      *     "archive_season_listing",
      *     "archive_season_full"
      * })
@@ -38,6 +40,8 @@ class Season implements EntityInterface
      * @Assert\NotNull(groups={"create"})
      * @Assert\NotBlank(groups={"create"})
      * @Groups({
+     *     "create",
+     *     "update",
      *     "archive_season_listing",
      *     "archive_season_full"
      * })
