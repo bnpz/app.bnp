@@ -142,4 +142,11 @@ class UserService extends AbstractEntityService implements UserServiceInterface
     }
 
 
+    /**
+     * @return \App\Repository\AbstractEntityRepository|UserRepository
+     */
+    public function getRepository()
+    {
+        return $this->repository;
+    }
 }

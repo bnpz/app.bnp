@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Contract\Service\User;
-
 
 use App\Entity\User\User;
 use Ramsey\Uuid\UuidInterface;
@@ -51,4 +49,5 @@ interface UserServiceInterface
      * @return bool
      */
     public function isAdmin(User $user);
+
 }

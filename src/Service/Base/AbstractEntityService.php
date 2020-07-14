@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\Persistence\ObjectRepository;
 
 abstract class AbstractEntityService implements IDecoratable
 {
@@ -45,6 +46,11 @@ abstract class AbstractEntityService implements IDecoratable
         $this->entityManager = $this->managerRegistry->getManagerForClass($this->getEntityClassName());
     }
 
+    /**
+     * @param $id
+     * @return object
+     * @throws EntityNotFoundException
+     */
     public function get($id)
     {
         $entity = $this->repository->find($id);
@@ -98,8 +104,6 @@ abstract class AbstractEntityService implements IDecoratable
         $this->entityManager->flush($entity);
         $this->entityManager->detach($entity);
     }
-
-
 
     /**
      * @return string

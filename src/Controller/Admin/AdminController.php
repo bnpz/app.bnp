@@ -11,11 +11,12 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class AdminController
  * @package App\Controller\Admin
  * @IsGranted("ROLE_ADMIN")
+ * @Route("/admin")
  */
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/admin", methods={"GET"})
+     * @Route("", methods={"GET"})
      * @return Response
      */
     public function index()
@@ -23,7 +24,7 @@ class AdminController extends AbstractController
         return $this->render('admin/index.html.twig');
     }
     /**
-     * @Route("/admin/account")
+     * @Route("/account")
      */
     public function account()
     {
@@ -31,7 +32,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/docs")
+     * @Route("/docs")
      */
     public function docs()
     {

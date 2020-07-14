@@ -18,6 +18,7 @@ git push to dev
 *******************************
 *******************************
 TODO
+- !!!!!!!!!! DATABASE UTF8
 - custom AccessDenied page (see: App\Security\AccessDeniedHandler)
 - create new password page
 - add links to login page for register and new password
