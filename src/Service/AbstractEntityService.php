@@ -113,4 +113,25 @@ abstract class AbstractEntityService implements IDecoratable
 
         return true;
     }
+
+    /**
+     * @param EntityInterface $entity
+     * @return EntityInterface|object
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function save(EntityInterface $entity)
+    {
+        return $this->saveEntity($entity);
+    }
+
+    public function findOne($id)
+    {
+        return $this->get($id);
+    }
+
+    public function findAll()
+    {
+        return $this->repository->findAll();
+    }
 }

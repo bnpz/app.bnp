@@ -16,6 +16,7 @@ use Swagger\Annotations as SWG;
  *
  * @ORM\Table(name="contacts")
  * @ORM\Entity(repositoryClass="App\Repository\General\ContactRepository")
+ * @ORM\EntityListeners({"App\EventListener\BaseEntityListener"})
  */
 class Contact implements EntityInterface
 {

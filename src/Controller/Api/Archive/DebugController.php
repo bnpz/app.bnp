@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api\Archive;
 
+use App\Contract\Service\General\ContactServiceInterface;
 use App\Controller\AbstractApiController;
 use Exception;
 use Nelmio\ApiDocBundle\Annotation\Model;
@@ -23,7 +24,7 @@ class DebugController extends AbstractApiController
      * @param Request $request
      * @return JsonResponse
      */
-    public function index(Request $request)
+    public function index(Request $request, ContactServiceInterface $contactService)
     {
         try{
 
