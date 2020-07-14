@@ -8,8 +8,13 @@ namespace App\Entity\Base;
  */
 interface EntityInterface
 {
-    /**
-     * @return mixed
-     */
     public function getId();
+
+    public function getCreatedBy();
+
+    public function setCreatedBy($user);
+
+    public function getUpdatedBy();
+
+    public function setUpdatedBy($user);
 }

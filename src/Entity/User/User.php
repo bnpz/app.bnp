@@ -4,7 +4,7 @@ namespace App\Entity\User;
 
 
 use App\Entity\Base\EntityInterface;
-use App\Entity\Base\Mixin\UuidAbleEntity;
+use App\Entity\Base\Mixin\BaseEntity;
 use App\Mixin\CanInitialise;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -14,11 +14,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\User\UserRepository")
+ * @ORM\EntityListeners({"App\EventListener\BaseEntityListener"})
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements EntityInterface, UserInterface
 {
-    use UuidAbleEntity;
+    use BaseEntity;
     use CanInitialise;
     use TimestampableEntity;
 

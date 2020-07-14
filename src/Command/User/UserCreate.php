@@ -50,7 +50,7 @@ class UserCreate extends Command
         $questionFullName   = new Question('Full name: ', '');
         $questionEmail      = new Question('Email: ', '');
         $questionPassword   = new Question('Password: ', '');
-        $questionRole       = new Question('User role (1 = ROLE_USER; 2 = ROLE_ADMIN): ', '');
+        $questionRole       = new Question('User role (1 = ROLE_USER; 2 = ROLE_ADMIN; 3 = ROLE_EDITOR): ', '');
 
 
         $fullName = $helper->ask($input, $output, $questionFullName);
@@ -79,7 +79,7 @@ class UserCreate extends Command
 
         # new user
         if(!$user) {
-            $newUser = User::init();
+            $newUser = new User();
 
             $newUser->setName($fullName);
             $newUser->setEmail($email);
@@ -90,6 +90,9 @@ class UserCreate extends Command
             }
             elseif ($role == 2){
                 $roles = ['ROLE_ADMIN'];
+            }
+            elseif ($role == 3){
+                $roles = ['ROLE_EDITOR'];
             }
             $newUser->setRoles($roles);
 

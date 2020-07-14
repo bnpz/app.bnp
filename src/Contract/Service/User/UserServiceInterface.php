@@ -10,24 +10,10 @@ use Ramsey\Uuid\UuidInterface;
 interface UserServiceInterface
 {
     /**
-     * @param User $transferEntity
-     * @param User|null $managedEntity
+     * @param User $user
      * @return User
      */
-    public function save(User $transferEntity, ?User $managedEntity = null);
-
-    /**
-     * @param User $transferEntity
-     * @return User
-     */
-    public function create(User $transferEntity);
-
-    /**
-     * @param User $managedEntity
-     * @param User $transferEntity
-     * @return User
-     */
-    public function update(User $managedEntity, User $transferEntity);
+    public function save(User $user);
 
     /**
      * @param User $user

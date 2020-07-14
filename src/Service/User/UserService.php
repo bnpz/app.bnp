@@ -55,56 +55,16 @@ class UserService extends AbstractEntityService implements UserServiceInterface
         return User::class;
     }
 
-
     /**
-     * @param User $transferEntity
-     * @param User|null $managedEntity
-     * @return User
-     * @throws EntityNotFoundException
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function save(User $transferEntity, ?User $managedEntity = null)
-    {
-        if($transferEntity->getId() !== "") {
-            $managedEntity = isset($managedEntity) ? $managedEntity : $this->get($transferEntity->getId());
-        }
-
-        if (isset($managedEntity)){
-            return $this->update($managedEntity, $transferEntity);
-        }
-
-        return $this->create($transferEntity);
-    }
-
-    /**
-     * @param User $transferEntity
+     * @param User $user
      * @return User
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function create(User $transferEntity)
+    public function save(User $user)
     {
-        $managedEntity = User::init();
-        $user = $this->setFields($managedEntity, $transferEntity);
-        $this->saveEntity($user);
-        return $user;
+        return $this->saveEntity($user);
     }
-
-    /**
-     * @param User $managedEntity
-     * @param User $transferEntity
-     * @return User
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function update(User $managedEntity, User $transferEntity)
-    {
-        $user = $this->setFields($managedEntity, $transferEntity);
-        $this->saveEntity($user);
-        return $user;
-    }
-
     /**
      * @param User $user
      * @return void
@@ -113,7 +73,7 @@ class UserService extends AbstractEntityService implements UserServiceInterface
      */
     public function delete(User $user)
     {
-        $this->deleteEntity($user);
+        return $this->deleteEntity($user);
     }
 
     /**
@@ -180,4 +140,6 @@ class UserService extends AbstractEntityService implements UserServiceInterface
             return false;
         }
     }
+
+
 }

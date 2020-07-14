@@ -79,6 +79,7 @@ abstract class AbstractEntityService implements IDecoratable
      * @return object
      * @throws ORMException
      * @throws OptimisticLockException
+     * @throws Exception
      */
     public function saveEntity(EntityInterface $entity)
     {
