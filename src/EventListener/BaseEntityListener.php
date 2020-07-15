@@ -2,11 +2,9 @@
 
 namespace App\EventListener;
 
-
-use App\Contract\Service\User\UserServiceInterface;
 use App\Entity\Base\EntityInterface;
-use App\Entity\Base\Mixin\BaseEntity;
 use App\Entity\User\User;
+use App\Service\User\UserService;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreFlushEventArgs;
 
@@ -17,15 +15,15 @@ use Doctrine\ORM\Event\PreFlushEventArgs;
 class BaseEntityListener
 {
     /**
-     * @var UserServiceInterface
+     * @var UserService
      */
     private $userService;
 
     /**
      * BaseEntityListener constructor.
-     * @param UserServiceInterface $userService
+     * @param UserService $userService
      */
-    public function __construct(UserServiceInterface $userService)
+    public function __construct(UserService $userService)
     {
         $this->userService = $userService;
     }

@@ -4,8 +4,8 @@
 namespace App\Controller\Archive;
 
 
-use App\Contract\Service\Archive\StageServiceInterface;
 use App\Controller\AbstractController;
+use App\Service\Archive\StageService;
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,10 +21,10 @@ class StageController extends AbstractController
 
     /**
      * @Route("", methods={"GET"}, name="archive_stages_index")
-     * @param StageServiceInterface $stageService
+     * @param StageService $stageService
      * @return Response
      */
-    public function index(StageServiceInterface $stageService)
+    public function index(StageService $stageService)
     {
         try{
             //$stageService->findOne(1);
