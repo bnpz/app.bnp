@@ -1,10 +1,10 @@
 <?php
 
-
 namespace App\Command\User;
 
-
-use App\Contract\Service\User\UserServiceInterface;
+use App\Service\User\UserService;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -19,19 +19,17 @@ class UserPassword extends Command
 # the name of the command
     protected static $defaultName = "app:user:password";
     /**
-     * @var UserServiceInterface
+     * @var UserService
      */
     private $userService;
 
     /**
      * UserPassword constructor.
-     * @param UserServiceInterface $userService
+     * @param UserService $userService
      */
-    public function __construct(
-        UserServiceInterface $userService)
+    public function __construct(UserService $userService)
     {
         parent::__construct();
-
         $this->userService = $userService;
     }
 
@@ -44,10 +42,13 @@ class UserPassword extends Command
             ->setHelp('Create new password for existing user.');
     }
 
+
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int|void|null
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -61,7 +62,7 @@ class UserPassword extends Command
         if(!trim($email)) {
             $output->writeln(['Detected empty value.','Nothing is saved.']);
             return;
-        };
+        }
 
         $user = $this->userService->findByEmail($email);
         if($user){
@@ -71,7 +72,7 @@ class UserPassword extends Command
             if(!trim($password)) {
                 $output->writeln(['Detected empty value.','Nothing is saved.']);
                 return;
-            };
+            }
 
             $this->userService->saveNewPassword($user, $password);
 

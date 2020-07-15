@@ -2,9 +2,9 @@
 
 namespace App\Controller\Api\Archive;
 
-use App\Contract\Service\Archive\SeasonServiceInterface;
 use App\Controller\AbstractApiController;
 use App\Entity\Archive\Season;
+use App\Service\Archive\SeasonService;
 use Exception;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -34,14 +34,14 @@ class SeasonController extends AbstractApiController
      *      )
      * )
      * @param Request $request
-     * @param SeasonServiceInterface $seasonService
+     * @param SeasonService $seasonService
      * @return JsonResponse
      */
-    public function index(Request $request, SeasonServiceInterface $seasonService)
+    public function index(Request $request, SeasonService $seasonService)
     {
         try{
 
-            return $this->jsonResponse($seasonService->findAll(),["archive_season_listing"]);
+            return $this->jsonResponse(__METHOD__);
         }
         catch (Exception $exception){
             return $this->error($exception->getMessage(), $exception->getCode());
@@ -65,10 +65,10 @@ class SeasonController extends AbstractApiController
      *     @SWG\Schema(ref=@Model(type=Season::class, groups={"create"}))
      *)
      * @param Request $request
-     * @param SeasonServiceInterface $seasonService
+     * @param SeasonService $seasonService
      * @return JsonResponse
      */
-    public function create(Request $request, SeasonServiceInterface $seasonService)
+    public function create(Request $request, SeasonService $seasonService)
     {
         try{
             /**

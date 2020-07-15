@@ -3,21 +3,26 @@
 
 namespace App\Command\User;
 
-
-use App\Contract\Service\User\UserServiceInterface;
 use App\Entity\User\User;
+use App\Service\User\UserService;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * Class UserCreate
+ * @package App\Command\User
+ */
 class UserCreate extends Command
 {
     # the name of the command
     protected static $defaultName = "app:user:create";
     /**
-     * @var UserServiceInterface
+     * @var UserService
      */
     private $userService;
     /**
@@ -25,9 +30,15 @@ class UserCreate extends Command
      */
     private $passwordEncoder;
 
+    /**
+     * UserCreate constructor.
+     * @param UserService $userService
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     */
     public function __construct(
-        UserServiceInterface $userService,
-        UserPasswordEncoderInterface $passwordEncoder)
+        UserService $userService,
+        UserPasswordEncoderInterface $passwordEncoder
+    )
     {
         parent::__construct();
         $this->userService = $userService;
@@ -40,6 +51,13 @@ class UserCreate extends Command
             ->setHelp('Create new user.');
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|void|null
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $helper = $this->getHelper('question');
@@ -57,17 +75,17 @@ class UserCreate extends Command
         if(!trim($fullName)) {
             $output->writeln(['Detected empty value.','Nothing is saved.']);
             return;
-        };
+        }
         $email = $helper->ask($input, $output, $questionEmail);
         if(!trim($email)) {
             $output->writeln(['Detected empty value.','Nothing is saved.']);
             return;
-        };
+        }
         $password = $helper->ask($input, $output, $questionPassword);
         if(!trim($password)) {
             $output->writeln(['Detected empty value.','Nothing is saved.']);
             return;
-        };
+        }
 
         $role = $helper->ask($input, $output, $questionRole);
         if($role != 1 and $role != 2 ){

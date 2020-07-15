@@ -2,8 +2,8 @@
 
 namespace App\Controller\Admin;
 
-use App\Contract\Service\User\UserServiceInterface;
 use App\Controller\AbstractController;
+use App\Service\User\UserService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,9 +18,10 @@ class AdminUserController extends AbstractController
 {
     /**
      * @Route("", methods={"GET"}, name="admin_user_index")
+     * @param UserService $userService
      * @return Response
      */
-    public function index(UserServiceInterface $userService)
+    public function index(UserService $userService)
     {
         //$users = $userService->getRepository()->
         return $this->render('admin/user/index.html.twig');

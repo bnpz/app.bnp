@@ -2,9 +2,10 @@
 
 namespace App\Controller\Api\Archive;
 
-use App\Contract\Service\Archive\StageServiceInterface;
+use App\Contract\Archive\StageServiceInterface;
 use App\Controller\AbstractApiController;
 use App\Entity\Archive\Stage;
+use App\Service\Archive\StageService;
 use Exception;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -21,33 +22,7 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
  */
 class StageController extends AbstractApiController
 {
-    /**
-     * Get all Stages
-     *
-     * @Route("", methods={"GET"}, name="api_archive_stages_index")
-     * @SWG\Tag(name="Archive/Stage")
-     * @SWG\Response(
-     *     response=200,
-     *     description="Get all Stages",
-     *     @SWG\Schema(
-     *          type="array",
-     *          @SWG\Items(ref=@Model(type=Stage::class))
-     *      )
-     * )
-     * @param Request $request
-     * @param StageServiceInterface $stageService
-     * @return JsonResponse
-     */
-    public function index(Request $request, StageServiceInterface $stageService)
-    {
-        try{
 
-            return $this->jsonResponse($stageService->findAll(),["archive_stage_full"]);
-        }
-        catch (Exception $exception){
-            return $this->error($exception->getMessage(), $exception->getCode());
-        }
-    }
 
     /**
      * Create Stage
@@ -66,20 +41,20 @@ class StageController extends AbstractApiController
      *     @SWG\Schema(ref=@Model(type=Stage::class, groups={"create"}))
      *)
      * @param Request $request
-     * @param StageServiceInterface $stageService
+     * @param StageService $stageService
      * @return JsonResponse
      */
-    public function create(Request $request, StageServiceInterface $stageService)
+    public function create(Request $request, StageService $stageService)
     {
         try{
             /**
              * @var Stage $stage
              */
             $stage = $this->getSerializer()->deserialize(
-                 $request->getContent(),
-                 Stage::class,
-                 'json'
-             );
+                $request->getContent(),
+                Stage::class,
+                'json'
+            );
 
             return $this->jsonResponse($stageService->save($stage),["archive_stage_full"]);
         }
@@ -100,10 +75,10 @@ class StageController extends AbstractApiController
      * )
      * @param Request $request
      * @param $id
-     * @param StageServiceInterface $stageService
+     * @param StageService $stageService
      * @return JsonResponse
      */
-    public function show(Request $request, $id, StageServiceInterface $stageService)
+    public function show(Request $request, $id, StageService $stageService)
     {
         try{
             return $this->jsonResponse($stageService->findOne($id),["archive_stage_full"]);
@@ -130,13 +105,13 @@ class StageController extends AbstractApiController
      *)
      * @param Request $request
      * @param $id
-     * @param StageServiceInterface $stageService
+     * @param StageService $stageService
      * @return JsonResponse
      */
-    public function update(Request $request, $id, StageServiceInterface $stageService)
+    public function update(Request $request, $id, StageService $stageService)
     {
         try{
-            $stage = $stageService->findOne($id);
+            $stage = $stageService->repository->findOneBy(['id' => $id]);
 
             $this->getSerializer()->deserialize(
                 $request->getContent(),

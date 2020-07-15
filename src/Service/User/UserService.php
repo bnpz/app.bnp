@@ -3,10 +3,9 @@
 
 namespace App\Service\User;
 
-use App\Contract\Service\User\UserServiceInterface;
 use App\Entity\User\User;
 use App\Repository\User\UserRepository;
-use App\Service\Base\AbstractEntityService;
+use App\Service\AbstractEntityService;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\OptimisticLockException;
@@ -14,17 +13,15 @@ use Doctrine\ORM\ORMException;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class UserService
  * @package App\Service\User
+ * @property UserRepository $repository
  */
-class UserService extends AbstractEntityService implements UserServiceInterface
+class UserService extends AbstractEntityService
 {
-    /**
-     * @var UserRepository
-     */
-    protected $repository;
     /**
      * @var Security
      */
@@ -34,15 +31,22 @@ class UserService extends AbstractEntityService implements UserServiceInterface
      */
     private $passwordEncoder;
 
+    /**
+     * UserService constructor.
+     * @param ManagerRegistry $managerRegistry
+     * @param ValidatorInterface $validator
+     * @param Security $security
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     */
     public function __construct(
         ManagerRegistry $managerRegistry,
-        UserRepository $userRepository,
+        ValidatorInterface $validator,
         Security $security,
         UserPasswordEncoderInterface $passwordEncoder
     )
     {
-        parent::__construct($managerRegistry);
-        $this->repository = $userRepository;
+        parent::__construct($managerRegistry, $validator);
+
         $this->security = $security;
         $this->passwordEncoder = $passwordEncoder;
     }
@@ -55,36 +59,6 @@ class UserService extends AbstractEntityService implements UserServiceInterface
         return User::class;
     }
 
-    /**
-     * @param User $user
-     * @return User
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function save(User $user)
-    {
-        return $this->saveEntity($user);
-    }
-    /**
-     * @param User $user
-     * @return void
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function delete(User $user)
-    {
-        return $this->deleteEntity($user);
-    }
-
-    /**
-     * @param UuidInterface | string $id
-     * @return User
-     * @throws EntityNotFoundException
-     */
-    public function findById($id)
-    {
-        return $this->get($id);
-    }
     /**
      * @param string $email
      * @return User|null
@@ -100,18 +74,6 @@ class UserService extends AbstractEntityService implements UserServiceInterface
     {
         return $this->security->getUser();
     }
-
-    private function setFields(User $managedEntity, User $transferEntity): User
-    {
-        $this->transcribe($transferEntity, $managedEntity, [
-            'name',
-            'email',
-            'roles',
-            'password'
-        ]);
-        return $managedEntity;
-    }
-
     /**
      * @param User $user
      * @param string $password
@@ -123,8 +85,7 @@ class UserService extends AbstractEntityService implements UserServiceInterface
     {
         $newPasword = $this->passwordEncoder->encodePassword($user, $password);
         $user->setPassword($newPasword);
-        $this->saveEntity($user);
-        return $user;
+        return $this->save($user);
     }
 
     /**

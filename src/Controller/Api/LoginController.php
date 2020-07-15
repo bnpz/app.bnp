@@ -2,12 +2,11 @@
 
 namespace App\Controller\Api;
 
-use App\Contract\Service\User\UserServiceInterface;
 use App\Controller\AbstractApiController;
 use App\Entity\User\User;
 use App\Security\LoginFormAuthenticator;
+use App\Service\User\UserService;
 use Exception;
-use phpDocumentor\Reflection\Types\This;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,14 +23,14 @@ class LoginController extends AbstractApiController
     /**
      * @Route("", methods={"POST"}, name="api_login")
      * @param Request $request
-     * @param UserServiceInterface $userService
+     * @param UserService $userService
      * @param GuardAuthenticatorHandler $guardHandler
      * @param LoginFormAuthenticator $authenticator
      * @return JsonResponse
      */
     public function index(
         Request $request,
-        UserServiceInterface $userService,
+        UserService $userService,
         GuardAuthenticatorHandler $guardHandler,
         LoginFormAuthenticator $authenticator
     )
@@ -59,11 +58,11 @@ class LoginController extends AbstractApiController
 
     /**
      * @param Request $request
-     * @param UserServiceInterface $userService
+     * @param UserService $userService
      * @return User
      * @throws Exception
      */
-    private function _getAdminUser(Request $request, UserServiceInterface $userService)
+    private function _getAdminUser(Request $request, UserService $userService)
     {
         $email = $request->request->get('email');
         $password = $request->request->get('password');
