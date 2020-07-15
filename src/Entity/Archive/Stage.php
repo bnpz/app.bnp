@@ -15,6 +15,7 @@ use Swagger\Annotations as SWG;
  *
  * @ORM\Table(name="stages")
  * @ORM\Entity(repositoryClass="App\Repository\Archive\StageRepository")
+ * @ORM\EntityListeners({"App\EventListener\BaseEntityListener"})
  */
 class Stage implements EntityInterface
 {

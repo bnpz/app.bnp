@@ -2,6 +2,7 @@
 
 namespace App\Repository\Archive;
 
+use App\Entity\Archive\Play;
 use App\Repository\AbstractEntityRepository;
 
 /**
@@ -11,4 +12,8 @@ use App\Repository\AbstractEntityRepository;
 class PlayRepository extends AbstractEntityRepository
 {
 
+    protected function getEntityClassName()
+    {
+        return Play::class;
+    }
 }

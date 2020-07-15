@@ -8,6 +8,7 @@ use App\Entity\Base\EntityInterface;
 use App\Entity\Base\Mixin\BaseEntity;
 use App\Entity\User\User;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PreFlushEventArgs;
 
 /**
  * Class BaseEntityListener
@@ -31,13 +32,14 @@ class BaseEntityListener
 
     /**
      * @param EntityInterface $entity
-     * @param LifecycleEventArgs $args
+     * @param PreFlushEventArgs $args
      */
-    public function postPersist(EntityInterface $entity, LifecycleEventArgs $args)
+    public function preFlush(EntityInterface $entity, PreFlushEventArgs $args)
     {
         $currentUser = $this->userService->getCurrentUser();
         if(!$entity->getCreatedBy() instanceof User and $currentUser instanceof User){
             $entity->setCreatedBy($currentUser);
+            $entity->setUpdatedBy($currentUser);
         }
     }
 

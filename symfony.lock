@@ -136,7 +136,7 @@
         "version": "2.2.3"
     },
     "php": {
-        "version": "7.2"
+        "version": "7.3"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -369,9 +369,6 @@
     },
     "symfony/options-resolver": {
         "version": "v4.3.4"
-    },
-    "symfony/orm-pack": {
-        "version": "v1.0.6"
     },
     "symfony/phpunit-bridge": {
         "version": "4.3",

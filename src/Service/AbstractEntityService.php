@@ -11,6 +11,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\Persistence\ObjectRepository;
 use Exception;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -75,15 +76,22 @@ abstract class AbstractEntityService implements IDecoratable
     }
 
     /**
-     * @param EntityInterface $entity
-     * @return object
+     * @return ServiceEntityRepository
+     */
+    public function getRepository(): ServiceEntityRepository
+    {
+        return $this->repository;
+    }
+
+    /**
+     * @param $entity
+     * @return mixed
      * @throws ORMException
      * @throws OptimisticLockException
      * @throws Exception
      */
-    public function saveEntity(EntityInterface $entity)
+    public function save($entity)
     {
-
         $errors = $this->validator->validate($entity);
 
         if(count($errors) > 0){
@@ -97,41 +105,19 @@ abstract class AbstractEntityService implements IDecoratable
 
             return $entity;
         }
-
     }
 
     /**
-     * @param EntityInterface $entity
+     * @param $entity
      * @return bool
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function deleteEntity(EntityInterface $entity)
+    public function delete($entity)
     {
         $this->entityManager->remove($entity);
         $this->entityManager->flush();
 
         return true;
-    }
-
-    /**
-     * @param EntityInterface $entity
-     * @return EntityInterface|object
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function save(EntityInterface $entity)
-    {
-        return $this->saveEntity($entity);
-    }
-
-    public function findOne($id)
-    {
-        return $this->get($id);
-    }
-
-    public function findAll()
-    {
-        return $this->repository->findAll();
     }
 }

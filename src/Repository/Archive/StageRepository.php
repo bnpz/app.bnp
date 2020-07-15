@@ -2,6 +2,7 @@
 
 namespace App\Repository\Archive;
 
+use App\Entity\Archive\Stage;
 use App\Repository\AbstractEntityRepository;
 
 /**
@@ -10,5 +11,13 @@ use App\Repository\AbstractEntityRepository;
  */
 class StageRepository extends AbstractEntityRepository
 {
+    public function test()
+    {
 
+    }
+
+    protected function getEntityClassName()
+    {
+        return Stage::class;
+    }
 }

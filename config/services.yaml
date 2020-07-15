@@ -33,5 +33,5 @@ services:
     base.entity.listener:
         class: App\EventListener\BaseEntityListener
         tags:
-            - { name: doctrine.orm.entity_listener, event: postPersist, method: postPersist }
+            - { name: doctrine.orm.entity_listener, event: preFlush, method: preFlush }
             - { name: doctrine.orm.entity_listener, event: preUpdate, method: preUpdate }

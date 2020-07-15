@@ -2,6 +2,7 @@
 
 namespace App\Repository\Archive;
 
+use App\Entity\Archive\Season;
 use App\Repository\AbstractEntityRepository;
 
 /**
@@ -11,4 +12,8 @@ use App\Repository\AbstractEntityRepository;
 class SeasonRepository extends AbstractEntityRepository
 {
 
+    protected function getEntityClassName()
+    {
+        return Season::class;
+    }
 }

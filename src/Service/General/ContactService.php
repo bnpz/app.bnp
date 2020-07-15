@@ -1,13 +1,17 @@
 <?php
 namespace App\Service\General;
 
-use App\Contract\Service\Base\EntityServiceInterface;
 use App\Contract\Service\General\ContactServiceInterface;
-use App\Entity\Base\EntityInterface;
 use App\Entity\General\Contact;
+use App\Repository\General\ContactRepository;
 use App\Service\AbstractEntityService;
 
-class ContactService extends AbstractEntityService implements ContactServiceInterface
+/**
+ * Class ContactService
+ * @package App\Service\General
+ * @property ContactRepository $repository
+ */
+class ContactService extends AbstractEntityService
 {
 
     protected function getEntityClassName()
