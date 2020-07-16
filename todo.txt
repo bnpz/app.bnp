@@ -2,6 +2,7 @@
 Before start
 ---------------
 git pull
+composer update "symfony/*" --with-all-dependencies
 composer update
 composer dump-autoload
 php bin/console redis:flushdb
