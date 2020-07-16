@@ -40,9 +40,9 @@
         "fzaninotto/faker": "^1.8",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
+        "symfony/phpunit-bridge": "^5.1",
         "symfony/profiler-pack": "*",
-        "symfony/test-pack": "*",
-        "symfony/web-server-bundle": "4.4.*"
+        "symfony/test-pack": "*"
     },
     "config": {
         "preferred-install": {
