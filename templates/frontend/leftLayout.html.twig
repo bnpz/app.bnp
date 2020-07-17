@@ -4,7 +4,9 @@
     <div class="col-md-3">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-sm-12">
                 {% block leftColumn %}{% endblock %}
+                </div>
             </div>
         </div>
     </div>
@@ -12,7 +14,9 @@
         {{ include('inc/messages.html.twig') }}
         <div class="container-fluid">
             <div class="row">
-                {% block rightColumn %}{% endblock %}
+                <div class="col-sm-12">
+                    {% block rightColumn %}{% endblock %}
+                </div>
             </div>
         </div>
 

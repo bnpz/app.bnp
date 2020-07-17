@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<title>Edit Nermin</title>
+
+{% block body %}
+    <h1>Edit Nermin</h1>
+
+    {{ include('test_nermin/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('test_nermin_index') }}">back to list</a>
+
+    {{ include('test_nermin/_delete_form.html.twig') }}
+{% endblock %}

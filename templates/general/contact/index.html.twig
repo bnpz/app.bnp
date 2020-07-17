@@ -1,0 +1,49 @@
+{% extends "frontend/fullPageLayout.html.twig" %}
+{% block title %}Kontakti{% endblock %}
+{% block full_page %}
+    <h1>Kontakti</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Company</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>PostNumber</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for contact in contacts %}
+            <tr>
+                <td>{{ contact.company }}</td>
+                <td>{{ contact.name }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.phone }}</td>
+                <td>{{ contact.mobile }}</td>
+                <td>{{ contact.address }}</td>
+                <td>{{ contact.postNumber }}</td>
+                <td>{{ contact.city }}</td>
+                <td>{{ contact.country }}</td>
+                <td>
+                    <a href="{{ path('general_contact_show', {'id': contact.id}) }}">show</a>
+                    <a href="{{ path('general_contact_edit', {'id': contact.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('general_contact_new') }}">Create new</a>
+{% endblock %}
+
+

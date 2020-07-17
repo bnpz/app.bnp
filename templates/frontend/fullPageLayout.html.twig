@@ -1,0 +1,10 @@
+{% extends "frontend/base.html.twig" %}
+{% block body %}
+    {{ parent() }}
+    <div class="col-sm-12">
+        {{ include('inc/messages.html.twig') }}
+    </div>
+    <div class="col-sm-12">
+        {% block full_page %}{% endblock %}
+    </div>
+{% endblock %}

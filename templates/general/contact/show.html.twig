@@ -1,0 +1,62 @@
+{% extends 'frontend/leftLayout.html.twig' %}
+{% block title %}Kontakti{% endblock %}
+{% block leftColumn %}
+    {{ parent() }}
+        <h3 class="text-right">{{ contact.company }}</h3>
+        <h1 class="text-right"><strong>{{ contact.name }}</strong></h1>
+{% endblock %}
+{% block rightColumn %}
+    {{ parent() }}
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <th>Email</th>
+            <td>{{ contact.email }}</td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td>{{ contact.phone }}</td>
+        </tr>
+        <tr>
+            <th>Mobile</th>
+            <td>{{ contact.mobile }}</td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td>{{ contact.address }}</td>
+        </tr>
+        <tr>
+            <th>PostNumber</th>
+            <td>{{ contact.postNumber }}</td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td>{{ contact.city }}</td>
+        </tr>
+        <tr>
+            <th>Country</th>
+            <td>{{ contact.country }}</td>
+        </tr>
+        <tr>
+            <th>CreatedAt</th>
+            <td>{{ contact.createdAt ? contact.createdAt|date() : '' }}</td>
+        </tr>
+        <tr>
+            <th>UpdatedAt</th>
+            <td>{{ contact.updatedAt ? contact.updatedAt|date() : '' }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <ul class="list-inline">
+        <li class="list-inline-item">
+            <a class="btn btn-lg btn-bnp btn-outline-info" href="{{ path('general_contact_index') }}">nazad</a>
+        </li>
+        <li class="list-inline-item">
+            <a class="btn btn-lg btn-bnp btn-outline-success" href="{{ path('general_contact_edit', {'id': contact.id}) }}">uredi</a>
+        </li>
+        <li class="list-inline-item">
+            {{ include('general/contact/_delete_form.html.twig') }}
+        </li>
+    </ul>
+{% endblock %}
+

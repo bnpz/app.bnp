@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<title>Nermin index</title>
+
+{% block body %}
+    <h1>Nermin index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th>PostNumber</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Id</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for nermin in nermins %}
+            <tr>
+                <td>{{ nermin.company }}</td>
+                <td>{{ nermin.name }}</td>
+                <td>{{ nermin.email }}</td>
+                <td>{{ nermin.phone }}</td>
+                <td>{{ nermin.mobile }}</td>
+                <td>{{ nermin.address }}</td>
+                <td>{{ nermin.postNumber }}</td>
+                <td>{{ nermin.city }}</td>
+                <td>{{ nermin.country }}</td>
+                <td>{{ nermin.id }}</td>
+                <td>{{ nermin.createdAt ? nermin.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ nermin.updatedAt ? nermin.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('test_nermin_show', {'id': nermin.id}) }}">show</a>
+                    <a href="{{ path('test_nermin_edit', {'id': nermin.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('test_nermin_new') }}">Create new</a>
+{% endblock %}

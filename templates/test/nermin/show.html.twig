@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<title>Nermin</title>
+
+{% block body %}
+    <h1>Nermin</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Company</th>
+                <td>{{ nermin.company }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ nermin.name }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ nermin.email }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ nermin.phone }}</td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td>{{ nermin.mobile }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ nermin.address }}</td>
+            </tr>
+            <tr>
+                <th>PostNumber</th>
+                <td>{{ nermin.postNumber }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ nermin.city }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ nermin.country }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ nermin.id }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ nermin.createdAt ? nermin.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ nermin.updatedAt ? nermin.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('test_nermin_index') }}">back to list</a>
+
+    <a href="{{ path('test_nermin_edit', {'id': nermin.id}) }}">edit</a>
+
+    {{ include('test_nermin/_delete_form.html.twig') }}
+{% endblock %}
