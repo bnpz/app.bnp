@@ -18,11 +18,13 @@ git push to dev
 
 *******************************
 *******************************
+- first and last name for contact
 TODO
 ## make:crud
 - setup templates
 - permissions in twig
 - permissions in controller
+- messages for success and error
 
 
 - !!!!!!!!!! DATABASE UTF8

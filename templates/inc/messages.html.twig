@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-12">
+
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success">
                     <span><i class="far fa-check-circle"></i> </span>{{ message }}
@@ -16,6 +16,6 @@
                     <span><i class="far fa-arrow-alt-circle-right"></i> </span>{{ message }}
                 </div>
             {% endfor %}
-        </div>
+
     </div>
 </div>

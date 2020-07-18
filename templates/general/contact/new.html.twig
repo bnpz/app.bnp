@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-
-<title>New Contact</title>
-
-{% block body %}
-    <h1>Create new Contact</h1>
-
-    {{ include('general/contact/_form.html.twig') }}
-
-    <a href="{{ path('general_contact_index') }}">back to list</a>
+{% extends 'frontend/leftLayout.html.twig' %}
+{% block title %}Kontakti{% endblock %}
+{% block leftColumn %}
+    {{ parent() }}
+    <h1>Novi kontakt</h1>
+    <p>
+        <a class="btn btn-lg btn-bnp btn-outline-primary" href="{{ path('general_contact_index') }}">adresar</a>
+    </p>
 {% endblock %}
+{% block rightColumn %}
+    {{ parent() }}
+    {{ include('general/contact/_form.html.twig') }}
+    <hr>
+{% endblock %}
+

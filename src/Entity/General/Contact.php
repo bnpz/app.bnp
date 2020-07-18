@@ -43,6 +43,9 @@ class Contact implements EntityInterface
      * @ORM\Column(name="email", type="string", unique=true, nullable=true)
      * @Groups({"create", "update", "contact_listing", "contact_full"})
      * @SWG\Property(property="email", type="string")
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
      */
     private $email;
 

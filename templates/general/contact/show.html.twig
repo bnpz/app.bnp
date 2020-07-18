@@ -45,18 +45,29 @@
             <th>UpdatedAt</th>
             <td>{{ contact.updatedAt ? contact.updatedAt|date() : '' }}</td>
         </tr>
+        <tr>
+            <th>CreatedBy</th>
+            <td>{{ contact.createdBy ? contact.createdBy.name : ''}}</td>
+
+        <tr>
+            <th>UpdatedBy</th>
+            <td>{{ contact.updatedBy ? contact.updatedBy.name : ''}}</td>
+        </tr>
+
         </tbody>
     </table>
     <ul class="list-inline">
         <li class="list-inline-item">
-            <a class="btn btn-lg btn-bnp btn-outline-info" href="{{ path('general_contact_index') }}">nazad</a>
+            <a class="btn btn-lg btn-bnp btn-outline-info" href="{{ path('general_contact_index') }}">adresar</a>
         </li>
+        {% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
         <li class="list-inline-item">
             <a class="btn btn-lg btn-bnp btn-outline-success" href="{{ path('general_contact_edit', {'id': contact.id}) }}">uredi</a>
         </li>
         <li class="list-inline-item">
             {{ include('general/contact/_delete_form.html.twig') }}
         </li>
+        {% endif %}
     </ul>
 {% endblock %}
 

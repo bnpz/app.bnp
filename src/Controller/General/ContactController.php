@@ -2,16 +2,18 @@
 
 namespace App\Controller\General;
 
+use App\Controller\AbstractController;
 use App\Entity\General\Contact;
 use App\Form\General\ContactType;
 use App\Repository\General\ContactRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/general/contact")
+ *
  */
 class ContactController extends AbstractController
 {
@@ -59,6 +61,7 @@ class ContactController extends AbstractController
     }
 
     /**
+     *  @IsGranted("ROLE_USER")
      * @Route("/{id}/edit", name="general_contact_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Contact $contact): Response
@@ -69,6 +72,7 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlashSuccess("Success.");
             return $this->redirectToRoute('general_contact_index');
         }
 

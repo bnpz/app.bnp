@@ -1,6 +1,7 @@
 <?php
 namespace App\Entity\Base\Mixin;
 
+use App\Entity\User\User;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Swagger\Annotations as SWG;
@@ -45,10 +46,11 @@ trait BaseEntity
         return $this->id;
     }
 
+
     /**
-     * @return mixed
+     * @return User|null
      */
-    public function getCreatedBy()
+    public function getCreatedBy(): ?User
     {
         return $this->createdBy;
     }
@@ -63,10 +65,11 @@ trait BaseEntity
         return $this;
     }
 
+
     /**
-     * @return mixed
+     * @return User|null
      */
-    public function getUpdatedBy()
+    public function getUpdatedBy(): ?User
     {
         return $this->updatedBy;
     }
