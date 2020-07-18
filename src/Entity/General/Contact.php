@@ -33,11 +33,18 @@ class Contact implements EntityInterface
     private $company;
 
     /**
-     * @ORM\Column(name="name", type="string", nullable=true)
+     * @ORM\Column(name="firstName", type="string", nullable=true)
      * @Groups({"create", "update", "contact_listing", "contact_full"})
-     * @SWG\Property(property="name", type="string")
+     * @SWG\Property(property="firstName", type="string")
      */
-    private $name;
+    private $firstName;
+
+    /**
+     * @ORM\Column(name="lastName", type="string", nullable=true)
+     * @Groups({"create", "update", "contact_listing", "contact_full"})
+     * @SWG\Property(property="lastName", type="string")
+     */
+    private $lastName;
 
     /**
      * @ORM\Column(name="email", type="string", unique=true, nullable=true)
@@ -114,18 +121,46 @@ class Contact implements EntityInterface
      */
     public function getName()
     {
-        return $this->name;
+        return $this->firstName ." ". $this->lastName;
     }
 
     /**
-     * @param mixed $name
+     * @return mixed
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param mixed $firstName
      * @return Contact
      */
-    public function setName($name)
+    public function setFirstName($firstName)
     {
-        $this->name = $name;
+        $this->firstName = $firstName;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param mixed $lastName
+     * @return Contact
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+        return $this;
+    }
+
+
 
     /**
      * @return mixed
@@ -253,6 +288,13 @@ class Contact implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return mixed|string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
 
 
 }

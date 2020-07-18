@@ -11,10 +11,7 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Mobile</th>
-            <th>Address</th>
-            <th>PostNumber</th>
-            <th>City</th>
-            <th>Country</th>
+
             <th>actions</th>
         </tr>
         </thead>
@@ -26,10 +23,7 @@
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.phone }}</td>
                 <td>{{ contact.mobile }}</td>
-                <td>{{ contact.address }}</td>
-                <td>{{ contact.postNumber }}</td>
-                <td>{{ contact.city }}</td>
-                <td>{{ contact.country }}</td>
+
                 <td>
                     <a href="{{ path('general_contact_show', {'id': contact.id}) }}">show</a>
                     <a href="{{ path('general_contact_edit', {'id': contact.id}) }}">edit</a>
