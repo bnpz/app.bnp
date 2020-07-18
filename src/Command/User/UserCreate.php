@@ -51,10 +51,11 @@ class UserCreate extends Command
             ->setHelp('Create new user.');
     }
 
+
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return int|void|null
+     * @return int|void
      * @throws ORMException
      * @throws OptimisticLockException
      */
@@ -68,7 +69,7 @@ class UserCreate extends Command
         $questionFullName   = new Question('Full name: ', '');
         $questionEmail      = new Question('Email: ', '');
         $questionPassword   = new Question('Password: ', '');
-        $questionRole       = new Question('User role (1 = ROLE_USER; 2 = ROLE_ADMIN; 3 = ROLE_EDITOR): ', '');
+        $questionRole       = new Question('User role (1 = ROLE_USER; 2 = ROLE_ADMIN): ', '');
 
 
         $fullName = $helper->ask($input, $output, $questionFullName);
@@ -97,11 +98,11 @@ class UserCreate extends Command
 
         # new user
         if(!$user) {
-            $newUser = new User();
+            $user = new User();
 
-            $newUser->setName($fullName);
-            $newUser->setEmail($email);
-            $newUser->setPassword($this->passwordEncoder->encodePassword($newUser, $password));
+            $user->setName($fullName);
+            $user->setEmail($email);
+            $user->setPassword($this->passwordEncoder->encodePassword($user, $password));
             $roles = [];
             if($role == 1){
                 $roles = ['ROLE_USER'];
@@ -109,19 +110,20 @@ class UserCreate extends Command
             elseif ($role == 2){
                 $roles = ['ROLE_ADMIN'];
             }
-            elseif ($role == 3){
-                $roles = ['ROLE_EDITOR'];
-            }
-            $newUser->setRoles($roles);
+            $user->setRoles($roles);
 
-            $this->userService->save($newUser);
 
             $output->writeln("User created.");
+
+            $newUser = $this->userService->save($user);
+
+            return $newUser->getId();
         }
         else{
             $output->writeln("User with email $email already exists!");
+
+            return $user->getId();
         }
 
-        return;
     }
 }
