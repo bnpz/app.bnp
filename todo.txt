@@ -19,6 +19,12 @@ git push to dev
 *******************************
 *******************************
 TODO
+## make:crud
+- setup templates
+- permissions in twig
+- permissions in controller
+
+
 - !!!!!!!!!! DATABASE UTF8
 - custom AccessDenied page (see: App\Security\AccessDeniedHandler)
 - create new password page
