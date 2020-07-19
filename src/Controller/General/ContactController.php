@@ -6,6 +6,8 @@ use App\Controller\AbstractController;
 use App\Entity\General\Contact;
 use App\Form\General\ContactType;
 use App\Repository\General\ContactRepository;
+use App\Service\General\ContactService;
+use Doctrine\ORM\Query\QueryException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,14 +19,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class ContactController extends AbstractController
 {
     /**
-     * @Route("/", name="general_contact_index", methods={"GET"})
+     * @Route("/", name="general_contact_index", methods={"GET"}, defaults={"page": "1"})
+     * @Route("/page/{page<[1-9]\d*>}", methods={"GET"}, name="general_contact_index_paginated")
      * @param ContactRepository $contactRepository
+     * @param ContactService $contactService
+     * @param int $page
      * @return Response
+     * @throws QueryException
      */
-    public function index(ContactRepository $contactRepository): Response
+    public function index(
+        ContactRepository $contactRepository,
+        ContactService $contactService,
+        int $page
+    ): Response
     {
+
+        $paginator = $contactService->getAllPaginator($page);
+        $paginator->setRouteName('general_contact_index_paginated');
+
         return $this->render('general/contact/index.html.twig', [
-            'contacts' => $contactRepository->findAll(),
+            'contacts' => $paginator->getResults(),
+            'paginator' => $paginator
         ]);
     }
 

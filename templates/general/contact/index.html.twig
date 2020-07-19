@@ -38,6 +38,10 @@
     </table>
 
     <a href="{{ path('general_contact_new') }}">Create new</a>
+
+    {% if paginator.hasToPaginate %}
+        {{ include('inc/paginator.html.twig') }}
+    {% endif %}
 {% endblock %}
 
 

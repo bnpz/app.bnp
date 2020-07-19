@@ -6,11 +6,14 @@ use App\Contract\Service\Base\IDecoratable;
 use App\Entity\Base\EntityInterface;
 use App\Mixin\CanTranscribe;
 use App\Mixin\Decoratable;
+use App\Repository\AbstractEntityRepository;
+use App\Util\Paginator;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\Query\QueryException;
 use Doctrine\Persistence\ObjectRepository;
 use Exception;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -25,7 +28,7 @@ abstract class AbstractEntityService implements IDecoratable
     use CanTranscribe;
 
     /**
-     * @var ServiceEntityRepository $repository
+     * @var AbstractEntityRepository $repository
      */
     protected $repository;
 
@@ -119,5 +122,21 @@ abstract class AbstractEntityService implements IDecoratable
         $this->entityManager->flush();
 
         return true;
+    }
+
+    /**
+     * @param int $page
+     * @param int $limit
+     * @param string $orderBy
+     * @param string $orderDirection
+     * @return Paginator
+     * @throws QueryException
+     * @throws Exception
+     */
+    public function getAllPaginator($page = 1, $limit = 10, $orderBy = "createdAt", $orderDirection = "DESC")
+    {
+        $paginator = $this->repository->getAllPaginator($limit, $orderBy, $orderDirection);
+
+        return $paginator->paginate($page);
     }
 }
