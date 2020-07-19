@@ -9,7 +9,6 @@ use App\Repository\General\ContactRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/general/contact")
@@ -19,6 +18,8 @@ class ContactController extends AbstractController
 {
     /**
      * @Route("/", name="general_contact_index", methods={"GET"})
+     * @param ContactRepository $contactRepository
+     * @return Response
      */
     public function index(ContactRepository $contactRepository): Response
     {
@@ -29,6 +30,8 @@ class ContactController extends AbstractController
 
     /**
      * @Route("/new", name="general_contact_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -52,6 +55,8 @@ class ContactController extends AbstractController
 
     /**
      * @Route("/{id}", name="general_contact_show", methods={"GET"})
+     * @param Contact $contact
+     * @return Response
      */
     public function show(Contact $contact): Response
     {
@@ -61,8 +66,10 @@ class ContactController extends AbstractController
     }
 
     /**
-     *  @IsGranted("ROLE_USER")
      * @Route("/{id}/edit", name="general_contact_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Contact $contact
+     * @return Response
      */
     public function edit(Request $request, Contact $contact): Response
     {
@@ -72,7 +79,6 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlashSuccess("Success.");
             return $this->redirectToRoute('general_contact_index');
         }
 
@@ -84,6 +90,9 @@ class ContactController extends AbstractController
 
     /**
      * @Route("/{id}", name="general_contact_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Contact $contact
+     * @return Response
      */
     public function delete(Request $request, Contact $contact): Response
     {
