@@ -26,6 +26,7 @@ TODO
 - permissions in controller
 - messages for success and error
 
+php bin/console translation:update --dump-messages fr
 
 - !!!!!!!!!! DATABASE UTF8
 - custom AccessDenied page (see: App\Security\AccessDeniedHandler)
