@@ -6,7 +6,10 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Company</th>
+            <th>
+                <a href="{{ path(app.request.attributes.get('_route'), {'orderBy': 'company'}) }}">Company</a>
+
+            </th>
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>

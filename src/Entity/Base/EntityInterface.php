@@ -8,6 +8,8 @@ namespace App\Entity\Base;
  */
 interface EntityInterface
 {
+    const PAGE_LIMIT = 10;
+
     public function getId();
 
     public function getCreatedBy();

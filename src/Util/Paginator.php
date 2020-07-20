@@ -45,7 +45,6 @@ class Paginator
      * @var string
      */
     private $routeName;
-
     /**
      * Paginator constructor.
      * @param QueryBuilder $queryBuilder

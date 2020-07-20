@@ -3,6 +3,7 @@
 namespace App\Controller\General;
 
 use App\Controller\AbstractController;
+use App\Entity\Base\EntityInterface;
 use App\Entity\General\Contact;
 use App\Form\General\ContactType;
 use App\Repository\General\ContactRepository;
@@ -21,21 +22,29 @@ class ContactController extends AbstractController
     /**
      * @Route("/", name="general_contact_index", methods={"GET"}, defaults={"page": "1"})
      * @Route("/page/{page<[1-9]\d*>}", methods={"GET"}, name="general_contact_index_paginated")
-     * @param ContactRepository $contactRepository
+     * @param Request $request
      * @param ContactService $contactService
      * @param int $page
      * @return Response
      * @throws QueryException
      */
     public function index(
-        ContactRepository $contactRepository,
+        Request $request,
         ContactService $contactService,
         int $page
     ): Response
     {
 
-        $paginator = $contactService->getAllPaginator($page);
+        $paginator = $contactService->getAllPaginator(
+            $page,
+            EntityInterface::PAGE_LIMIT,
+            $request->query->get('orderBy', 'createdAt'),
+            $request->query->get('orderDirection', 'desc')
+
+        );
         $paginator->setRouteName('general_contact_index_paginated');
+
+dump($paginator);
 
         return $this->render('general/contact/index.html.twig', [
             'contacts' => $paginator->getResults(),

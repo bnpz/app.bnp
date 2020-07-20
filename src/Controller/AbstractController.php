@@ -6,6 +6,7 @@ namespace App\Controller;
 use Doctrine\Common\Annotations\AnnotationException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Serializer;
 
 abstract class AbstractController extends SymfonyAbstractController
@@ -45,5 +46,6 @@ abstract class AbstractController extends SymfonyAbstractController
     {
         return $this->get('serializer');
     }
+
 
 }
