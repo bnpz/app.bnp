@@ -7,7 +7,7 @@
         <thead>
         <tr>
             <th>
-                <a href="{{ path(app.request.attributes.get('_route'), {'orderBy': 'company'}) }}">Company</a>
+                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'company', 'orderDirection': 'asc'}) }}">Company</a>
 
             </th>
             <th>Name</th>
