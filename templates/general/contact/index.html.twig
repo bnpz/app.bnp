@@ -7,13 +7,35 @@
         <thead>
         <tr>
             <th>
-                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'company', 'orderDirection': 'asc'}) }}">Company</a>
-
+                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'company', 'orderDirection': 'asc'}) }}">
+                    Company
+                </a>
             </th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Mobile</th>
+            <th>
+                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'firstName', 'orderDirection': 'asc'}) }}">
+                    First Name
+                </a>
+            </th>
+            <th>
+                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'lastName', 'orderDirection': 'asc'}) }}">
+                    Last Name
+                </a>
+            </th>
+            <th>
+                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'email', 'orderDirection': 'asc'}) }}">
+                    Email
+                </a>
+            </th>
+            <th>
+                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'phone', 'orderDirection': 'asc'}) }}">
+                    Phone
+                </a>
+            </th>
+            <th>
+                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'firstName', 'orderDirection': 'asc'}) }}">
+                    Mobile
+                </a>
+            </th>
 
             <th>actions</th>
         </tr>
@@ -22,7 +44,8 @@
         {% for contact in contacts %}
             <tr>
                 <td>{{ contact.company }}</td>
-                <td>{{ contact.name }}</td>
+                <td>{{ contact.firstName }}</td>
+                <td>{{ contact.lastName }}</td>
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.phone }}</td>
                 <td>{{ contact.mobile }}</td>
