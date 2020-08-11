@@ -9,24 +9,49 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('homepage') }}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ url('homepage') }}">
+                    {{ 'label.homePage'|trans }}
+                    <span class="sr-only">(current)</span>
+                </a>
             </li>
 
             {# ADRESAR #}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarArchive" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Kontakti
+                    {{ 'label.contacts'|trans }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarArchive">
-                    <a class="dropdown-item" href="{{ url('general_contact_index') }}">Adresar</a>
+                    <a class="dropdown-item" href="{{ url('general_contact_index') }}">
+                        {{ 'label.addressBook'|trans }}
+                    </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ url('general_contact_new') }}">Novi kontakt</a>
+                    <a class="dropdown-item" href="{{ url('general_contact_new') }}">
+                        {{ 'label.new'|trans }}
+                    </a>
+                </div>
+
+
+            </li>
+
+            {# EVENTS #}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarArchive" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ 'label.events'|trans }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarArchive">
+                    <a class="dropdown-item" href="{{ url('general_event_index') }}">
+                        {{ 'label.allEvents'|trans }}
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ url('general_event_new') }}">
+                        {{ 'label.new'|trans }}
+                    </a>
                 </div>
 
 
             </li>
             {# ARHIVA #}
-            <li class="nav-item dropdown">
+            {#<li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarArchive" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Arhiva
                 </a>
@@ -37,7 +62,7 @@
                 </div>
 
 
-            </li>
+            </li>#}
 
         </ul>
 
@@ -49,12 +74,18 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarUser">
                     {% if is_granted("ROLE_ADMIN") %}
-                        <a class="dropdown-item" href="{{ url('app_admin_admin_account') }}">Moji podaci</a>
-                        <a class="dropdown-item" href="{{ url('app_admin_admin_docs') }}">Dokumentacija</a>
+                        <a class="dropdown-item" href="{{ url('app_admin_admin_account') }}">
+                            {{ 'label.myAccount'|trans }}
+                        </a>
+                        <a class="dropdown-item" href="{{ url('app_admin_admin_docs') }}">
+                            {{ 'label.documentation'|trans }}
+                        </a>
                         <div class="dropdown-divider"></div>
                     {% endif %}
 
-                    <a class="dropdown-item" href="{{ url('app_security_logout') }}">Odjava</a>
+                    <a class="dropdown-item" href="{{ url('app_security_logout') }}">
+                        {{ 'label.logout'|trans }}
+                    </a>
                 </div>
             </li>
         </ul>

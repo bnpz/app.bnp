@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<title>Event</title>
+
+{% block body %}
+    <h1>Event</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ event.name }}</td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td>{{ event.time ? event.time|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Premiere</th>
+                <td>{{ event.premiere ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>ExternalProduction</th>
+                <td>{{ event.externalProduction ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ event.id }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ event.createdAt ? event.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ event.updatedAt ? event.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('general_event_index') }}">back to list</a>
+
+    <a href="{{ path('general_event_edit', {'id': event.id}) }}">edit</a>
+
+    {{ include('general/event/_delete_form.html.twig') }}
+{% endblock %}

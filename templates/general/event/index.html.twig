@@ -1,15 +1,13 @@
 {% extends "frontend/fullPageLayout.html.twig" %}
-{% block title %}
-    {{ 'label.addressBook'|trans }}
-{% endblock %}
+{% block title %}Adresar{% endblock %}
 {% block full_page %}
     <div class="row">
         <div class="col-sm-11">
-            <h1 class="pageTitle">{{ 'label.addressBook'|trans }}</h1>
+            <h1>Adresar</h1>
         </div>
         <div class="col-sm-1">
             <h1>
-                <a class="btn btn-bnp btn-success" href="{{ path('general_contact_new') }}">
+                <a class="btn btn-bnp btn-success" href="{{ path('general_event_new') }}">
                     {{ 'label.new' |trans }}
                 </a>
             </h1>
@@ -23,51 +21,37 @@
         <tr>
             <th>
                 <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'company', 'orderDirection': 'asc'}) }}">
-                    {{ 'entityField.company' |trans }}
+                    {{ 'label.name'|trans }}
                 </a>
             </th>
             <th>
                 <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'firstName', 'orderDirection': 'asc'}) }}">
-                    {{ 'entityField.firstName' |trans }}
+                    {{ 'label.time'|trans }}
                 </a>
             </th>
             <th>
                 <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'lastName', 'orderDirection': 'asc'}) }}">
-                    {{ 'entityField.lastName' |trans }}
+                    {{ 'label.premiere'|trans }}
                 </a>
             </th>
             <th>
                 <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'email', 'orderDirection': 'asc'}) }}">
-                    {{ 'entityField.email' |trans }}
+                    {{ 'label.externalProduction'|trans }}
                 </a>
             </th>
-            <th>
-                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'phone', 'orderDirection': 'asc'}) }}">
-                    {{ 'entityField.phone' |trans }}
-                </a>
-            </th>
-            <th>
-                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'firstName', 'orderDirection': 'asc'}) }}">
-                    {{ 'entityField.mobile' |trans }}
-                </a>
-            </th>
-
-            <th>{{ 'label.actions' |trans }}</th>
+            <th>#</th>
         </tr>
         </thead>
         <tbody>
-        {% for contact in contacts %}
+        {% for event in events %}
             <tr>
-                <td>{{ contact.company }}</td>
-                <td>{{ contact.firstName }}</td>
-                <td>{{ contact.lastName }}</td>
-                <td>{{ contact.email }}</td>
-                <td>{{ contact.phone }}</td>
-                <td>{{ contact.mobile }}</td>
-
+                <td>{{ event.name }}</td>
+                <td>{{ event.time }}</td>
+                <td>{{ event.premiere }}</td>
+                <td>{{ event.externalProduction }}</td>
                 <td>
-                    <a href="{{ path('general_contact_show', {'id': contact.id}) }}">show</a>
-                    <a href="{{ path('general_contact_edit', {'id': contact.id}) }}">edit</a>
+                    <a href="{{ path('general_event_show', {'id': event.id}) }}">show</a>
+                    <a href="{{ path('general_event_edit', {'id': event.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -82,5 +66,3 @@
         {{ include('inc/paginator.html.twig') }}
     {% endif %}
 {% endblock %}
-
-

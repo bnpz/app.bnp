@@ -14,6 +14,9 @@ use App\Service\AbstractEntityService;
 class ContactService extends AbstractEntityService
 {
 
+    /**
+     * @return string
+     */
     protected function getEntityClassName()
     {
         return Contact::class;

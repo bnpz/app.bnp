@@ -1,3 +1,23 @@
-paginator.previous: previous
-paginator.next: next
-paginator.current: current
+paginator:
+  previous: previous
+  next: next
+  current: current
+label:
+  myAccount: 'My Account'
+  documentation: 'Documentation'
+  homePage: 'Home'
+  new: 'New'
+  logout: 'Logout'
+  contacts: 'Contacts'
+  addressBook: 'Address Book'
+  events: 'Events'
+  allEvents: 'All Events'
+  actions: '#'
+entityField:
+  company: 'Company'
+  firstName: 'First Name'
+  lastName: 'Last Name'
+  email: 'Email'
+  phone: 'Phone'
+  mobile: 'Mobile'
+

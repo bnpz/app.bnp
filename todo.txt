@@ -18,7 +18,6 @@ git push to dev
 
 *******************************
 *******************************
-- first and last name for contact
 TODO
 ## make:crud
 - setup templates

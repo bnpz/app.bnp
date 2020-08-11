@@ -4,6 +4,9 @@
 .test2{
     border: 1px dashed blue;
 }
+h1,h2,h3,h4,h5{
+    font-weight: normal !important;
+}
 .alert{
     margin-top: 10px !important;
 }
@@ -13,4 +16,7 @@ div.content{
 }
 .btn-bnp{
     min-width: 120px !important;
+}
+ul.pagination{
+    margin-top: 30px !important;
 }
