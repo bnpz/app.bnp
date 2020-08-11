@@ -1,20 +1,18 @@
 <?php
-
 namespace App\Repository\General;
 
-use App\Entity\General\Contact;
+use App\Entity\General\Event;
 use App\Repository\AbstractEntityRepository;
 
 /**
- * Class ContactRepository
+ * Class EventRepository
  * @package App\Repository\General
  */
-class ContactRepository extends AbstractEntityRepository
+class EventRepository extends AbstractEntityRepository
 {
 
     protected function getEntityClassName()
     {
-        return Contact::class;
+        return Event::class;
     }
-
 }
