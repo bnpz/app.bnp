@@ -1,11 +1,8 @@
 {% extends 'frontend/leftLayout.html.twig' %}
-{% block title %}Kontakti{% endblock %}
+{% block title %}{{ 'label.contacts' |trans }}{% endblock %}
 {% block leftColumn %}
     {{ parent() }}
-    <h1>Novi kontakt</h1>
-    <p>
-        <a class="btn btn-lg btn-bnp btn-outline-primary" href="{{ path('general_contact_index') }}">cancel</a>
-    </p>
+    <h1 class="color-new text-right">{{ 'label.new' |trans }}</h1>
 {% endblock %}
 {% block rightColumn %}
     {{ parent() }}

@@ -1,5 +1,5 @@
 {% extends 'frontend/leftLayout.html.twig' %}
-{% block title %}Kontakti{% endblock %}
+{% block title %}{{ 'label.contacts'|trans }}{% endblock %}
 {% block leftColumn %}
     {{ parent() }}
         <h3 class="pageTitle text-right">{{ contact.company }}</h3>
@@ -10,47 +10,47 @@
     <table class="table table-striped">
         <tbody>
         <tr>
-            <th>Email</th>
+            <th>{{ 'entityField.email' |trans }}</th>
             <td>{{ contact.email }}</td>
         </tr>
         <tr>
-            <th>Phone</th>
+            <th>{{ 'entityField.phone' |trans }}</th>
             <td>{{ contact.phone }}</td>
         </tr>
         <tr>
-            <th>Mobile</th>
+            <th>{{ 'entityField.mobile' |trans }}</th>
             <td>{{ contact.mobile }}</td>
         </tr>
         <tr>
-            <th>Address</th>
+            <th>{{ 'entityField.address' |trans }}</th>
             <td>{{ contact.address }}</td>
         </tr>
         <tr>
-            <th>PostNumber</th>
+            <th>{{ 'entityField.postNumber' |trans }}</th>
             <td>{{ contact.postNumber }}</td>
         </tr>
         <tr>
-            <th>City</th>
+            <th>{{ 'entityField.city' |trans }}</th>
             <td>{{ contact.city }}</td>
         </tr>
         <tr>
-            <th>Country</th>
+            <th>{{ 'entityField.country' |trans }}</th>
             <td>{{ contact.country }}</td>
         </tr>
         <tr>
-            <th>CreatedAt</th>
+            <th>{{ 'entityField.createdAt' |trans }}</th>
             <td>{{ contact.createdAt ? contact.createdAt|date() : '' }}</td>
         </tr>
         <tr>
-            <th>UpdatedAt</th>
+            <th>{{ 'entityField.updatedAt' |trans }}</th>
             <td>{{ contact.updatedAt ? contact.updatedAt|date() : '' }}</td>
         </tr>
         <tr>
-            <th>CreatedBy</th>
+            <th>{{ 'entityField.createdBy' |trans }}</th>
             <td>{{ contact.createdBy ? contact.createdBy.name : ''}}</td>
 
         <tr>
-            <th>UpdatedBy</th>
+            <th>{{ 'entityField.updatedBy' |trans }}</th>
             <td>{{ contact.updatedBy ? contact.updatedBy.name : ''}}</td>
         </tr>
 
@@ -58,14 +58,14 @@
     </table>
     <ul class="list-inline">
         <li class="list-inline-item">
-            <a class="btn btn-lg btn-bnp btn-outline-info" href="{{ path('general_contact_index') }}">adresar</a>
+            {{ include('inc/button.index.html.twig',{'route': 'general_contact_index', 'label': 'label.addressBook' |trans}) }}
         </li>
         {% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
         <li class="list-inline-item">
-            <a class="btn btn-lg btn-bnp btn-outline-success" href="{{ path('general_contact_edit', {'id': contact.id}) }}">uredi</a>
+            {{ include('inc/button.edit.html.twig', {'route': 'general_contact_edit', 'id': contact.id}) }}
         </li>
         <li class="list-inline-item">
-            {{ include('general/contact/_delete_form.html.twig') }}
+            {{ include('inc/button.delete.html.twig', {'route': 'general_contact_delete', 'id': contact.id}) }}
         </li>
         {% endif %}
     </ul>

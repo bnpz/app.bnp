@@ -1,0 +1,7 @@
+<form method="post" action="{{ path(route, {'id': id}) }}" onsubmit="return confirm('{{ 'label.deleteQuestion' |trans }}');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ id) }}">
+    <button class="btn btn-lg btn-bnp btn-outline-danger">
+        {{ 'label.delete' |trans }}
+    </button>
+</form>

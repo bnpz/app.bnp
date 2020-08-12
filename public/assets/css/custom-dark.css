@@ -13,3 +13,15 @@ input:focus, textarea:focus {
     border-radius: 0 !important;
     border-color: #53b013 !important;
 }
+.color-new{
+    color: #62c462;
+}
+.color-edit{
+    color: #5bc0de;
+}
+table td{
+    color: #aaa !important;
+}
+div.form-group label{
+    color: #fff !important;
+}

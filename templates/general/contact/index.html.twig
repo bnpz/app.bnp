@@ -9,9 +9,7 @@
         </div>
         <div class="col-sm-1">
             <h1>
-                <a class="btn btn-bnp btn-success" href="{{ path('general_contact_new') }}">
-                    {{ 'label.new' |trans }}
-                </a>
+                {{ include('inc/button.new.html.twig', {'route': 'general_contact_new'}) }}
             </h1>
         </div>
     </div>
@@ -66,8 +64,14 @@
                 <td>{{ contact.mobile }}</td>
 
                 <td>
-                    <a href="{{ path('general_contact_show', {'id': contact.id}) }}">show</a>
-                    <a href="{{ path('general_contact_edit', {'id': contact.id}) }}">edit</a>
+                    {{ include('inc/show.edit.links.html.twig',
+                        {
+                            'showRoute': 'general_contact_show',
+                            'editRoute': 'general_contact_edit',
+                            'id': contact.id
+                        }
+                        )
+                    }}
                 </td>
             </tr>
         {% else %}
