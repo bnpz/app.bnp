@@ -3,6 +3,7 @@ namespace App\Entity\General;
 
 use App\Entity\Base\EntityInterface;
 use App\Entity\Base\Mixin\BaseEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -49,6 +50,19 @@ class Event implements EntityInterface
      * @SWG\Property(property="externalProduction", type="boolean")
      */
     private $externalProduction;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\General\Reservation", mappedBy="event", orphanRemoval=true)
+     */
+    private $reservations;
+
+    /**
+     * Event constructor.
+     */
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -121,5 +135,14 @@ class Event implements EntityInterface
         $this->externalProduction = $externalProduction;
         return $this;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getReservations(): ArrayCollection
+    {
+        return $this->reservations;
+    }
+
 
 }
