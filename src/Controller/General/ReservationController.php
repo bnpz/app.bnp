@@ -3,9 +3,12 @@
 namespace App\Controller\General;
 
 use App\Controller\AbstractController;
+use App\Entity\Base\EntityInterface;
 use App\Entity\General\Reservation;
 use App\Form\General\ReservationType;
 use App\Repository\General\ReservationRepository;
+use App\Service\General\ReservationService;
+use Doctrine\ORM\Query\QueryException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,12 +19,33 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReservationController extends AbstractController
 {
     /**
-     * @Route("/", name="general_reservation_index", methods={"GET"})
+     * @Route("/", name="general_reservation_index", methods={"GET"}, defaults={"page": "1"})
+     * @Route("/page/{page<[1-9]\d*>}", methods={"GET"}, name="general_reservation_index_paginated")
+     * @param Request $request
+     * @param ReservationService $reservationService
+     * @param int $page
+     * @return Response
+     * @throws QueryException
      */
-    public function index(ReservationRepository $reservationRepository): Response
+    public function index(
+        Request $request,
+        ReservationService $reservationService,
+        int $page
+    ): Response
     {
+
+        $paginator = $reservationService->getAllPaginator(
+            $page,
+            EntityInterface::PAGE_LIMIT,
+            $request->query->get('orderBy', 'event'),
+            $request->query->get('orderDirection', 'desc')
+
+        );
+        $paginator->setRouteName('general_reservation_index_paginated');
+
         return $this->render('general/reservation/index.html.twig', [
-            'reservations' => $reservationRepository->findAll(),
+            'reservations' => $paginator->getResults(),
+            'paginator' => $paginator
         ]);
     }
 

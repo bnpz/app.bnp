@@ -47,8 +47,22 @@
                         {{ 'label.new'|trans }}
                     </a>
                 </div>
+            </li>
 
-
+            {# RESERAVTIONS #}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarArchive" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ 'label.reservations'|trans }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarArchive">
+                    <a class="dropdown-item" href="{{ url('general_reservation_index') }}">
+                        {{ 'label.allReservations'|trans }}
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ url('general_reservation_new') }}">
+                        {{ 'label.new'|trans }}
+                    </a>
+                </div>
             </li>
             {# ARHIVA #}
             {#<li class="nav-item dropdown">

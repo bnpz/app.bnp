@@ -20,22 +20,22 @@
         <thead>
         <tr>
             <th>
-                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'company', 'orderDirection': 'asc'}) }}">
+                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'name', 'orderDirection': 'asc'}) }}">
                     {{ 'entityField.eventName'|trans }}
                 </a>
             </th>
             <th>
-                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'firstName', 'orderDirection': 'asc'}) }}">
+                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'time', 'orderDirection': 'desc'}) }}">
                     {{ 'entityField.time'|trans }}
                 </a>
             </th>
             <th class="text-center">
-                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'lastName', 'orderDirection': 'asc'}) }}">
+                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'premiere', 'orderDirection': 'desc'}) }}">
                     {{ 'entityField.premiere'|trans }}
                 </a>
             </th>
             <th class="text-center">
-                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'email', 'orderDirection': 'asc'}) }}">
+                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'externalProduction', 'orderDirection': 'desc'}) }}">
                     {{ 'entityField.externalProduction'|trans }}
                 </a>
             </th>

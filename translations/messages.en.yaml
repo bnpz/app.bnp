@@ -21,6 +21,8 @@ label:
   noRecords: 'No Records found'
   yes: 'Yes'
   no: 'No'
+  reservations: 'Reservations'
+  allReservations: 'All Reservations'
 entityField:
   company: 'Company'
   firstName: 'First Name'

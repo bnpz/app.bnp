@@ -3,6 +3,7 @@ namespace App\Entity\General;
 
 use App\Entity\Base\EntityInterface;
 use App\Entity\Base\Mixin\BaseEntity;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -24,6 +25,7 @@ class Event implements EntityInterface
     use TimestampableEntity;
 
     /**
+     * @var string
      * @ORM\Column(name="name", type="string", nullable=false)
      * @Groups({"create", "update", "event_listing", "event_full"})
      * @SWG\Property(property="name", type="string")
@@ -144,5 +146,16 @@ class Event implements EntityInterface
         return $this->reservations;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $eventTime = "";
+        if($this->time instanceof DateTime){
+            $eventTime = " (".$this->time->format('d.m.Y. H:m').")";
+        }
+        return $this->name. $eventTime;
+    }
 
 }
