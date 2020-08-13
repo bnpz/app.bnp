@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<title>Reservation</title>
+
+{% block body %}
+    <h1>Reservation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Reserved</th>
+                <td>{{ reservation.reserved }}</td>
+            </tr>
+            <tr>
+                <th>Confirmed</th>
+                <td>{{ reservation.confirmed }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ reservation.note }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservation.id }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ reservation.createdAt ? reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ reservation.updatedAt ? reservation.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('general_reservation_index') }}">back to list</a>
+
+    <a href="{{ path('general_reservation_edit', {'id': reservation.id}) }}">edit</a>
+
+    {{ include('general_reservation/_delete_form.html.twig') }}
+{% endblock %}

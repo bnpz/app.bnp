@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<title>Reservation index</title>
+
+{% block body %}
+    <h1>Reservation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Reserved</th>
+                <th>Confirmed</th>
+                <th>Note</th>
+                <th>Id</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.reserved }}</td>
+                <td>{{ reservation.confirmed }}</td>
+                <td>{{ reservation.note }}</td>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.createdAt ? reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ reservation.updatedAt ? reservation.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('general_reservation_show', {'id': reservation.id}) }}">show</a>
+                    <a href="{{ path('general_reservation_edit', {'id': reservation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('general_reservation_new') }}">Create new</a>
+{% endblock %}
