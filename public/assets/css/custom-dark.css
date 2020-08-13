@@ -1,6 +1,9 @@
 .pageTitle{
     color: #f89406;
 }
+h1,h2,h3,h4,h5{
+    color: #FFF;
+}
 input, textarea {
     background-color: #111 !important;
     color: #FFF !important;
@@ -14,10 +17,10 @@ input:focus, textarea:focus {
     border-color: #53b013 !important;
 }
 .color-new{
-    color: #62c462;
+    color: #62c462 !important;
 }
 .color-edit{
-    color: #5bc0de;
+    color: #5bc0de !important;
 }
 table td{
     color: #aaa !important;

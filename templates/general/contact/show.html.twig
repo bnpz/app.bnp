@@ -37,25 +37,12 @@
             <th>{{ 'entityField.country' |trans }}</th>
             <td>{{ contact.country }}</td>
         </tr>
-        <tr>
-            <th>{{ 'entityField.createdAt' |trans }}</th>
-            <td>{{ contact.createdAt ? contact.createdAt|date() : '' }}</td>
-        </tr>
-        <tr>
-            <th>{{ 'entityField.updatedAt' |trans }}</th>
-            <td>{{ contact.updatedAt ? contact.updatedAt|date() : '' }}</td>
-        </tr>
-        <tr>
-            <th>{{ 'entityField.createdBy' |trans }}</th>
-            <td>{{ contact.createdBy ? contact.createdBy.name : ''}}</td>
-
-        <tr>
-            <th>{{ 'entityField.updatedBy' |trans }}</th>
-            <td>{{ contact.updatedBy ? contact.updatedBy.name : ''}}</td>
-        </tr>
 
         </tbody>
     </table>
+
+        {{ include('inc/entity.item.info.html.twig', {'entity': contact}) }}
+
     <ul class="list-inline">
         <li class="list-inline-item">
             {{ include('inc/button.index.html.twig',{'route': 'general_contact_index', 'label': 'label.addressBook' |trans}) }}
@@ -69,5 +56,6 @@
         </li>
         {% endif %}
     </ul>
+
 {% endblock %}
 
