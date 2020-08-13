@@ -2,11 +2,13 @@
 {% block title %}{{ 'label.contacts' |trans }}{% endblock %}
 {% block leftColumn %}
     {{ parent() }}
-    <h1 class="color-new text-right">{{ 'label.new' |trans }}</h1>
+    <h1 class="text-right">
+        <span class="color-gray">{{ 'label.contacts' |trans }} | </span> <span class="color-new">{{ 'label.new' |trans }}</span>
+    </h1>
 {% endblock %}
 {% block rightColumn %}
     {{ parent() }}
-    {{ include('general/contact/_form.html.twig') }}
+    {{ include('inc/entity.form.html.twig') }}
     <hr>
 {% endblock %}
 

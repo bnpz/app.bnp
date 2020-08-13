@@ -4,7 +4,7 @@
 h1,h2,h3,h4,h5{
     color: #FFF;
 }
-input, textarea {
+input, textarea, select {
     background-color: #111 !important;
     color: #FFF !important;
     border-radius: 0 !important;
@@ -22,9 +22,16 @@ input:focus, textarea:focus {
 .color-edit{
     color: #5bc0de !important;
 }
+.color-gray{
+    color: #666;
+}
+tr.event-premiere td{
+    color: #6cc16c !important;
+}
 table td{
-    color: #aaa !important;
+    color: #aaa;
 }
 div.form-group label{
     color: #fff !important;
 }
+

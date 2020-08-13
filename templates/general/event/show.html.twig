@@ -1,46 +1,43 @@
-<!DOCTYPE html>
-
-<title>Event</title>
-
-{% block body %}
-    <h1>Event</h1>
-
-    <table class="table">
+{% extends 'frontend/leftLayout.html.twig' %}
+{% block title %}{{ 'label.events'|trans }}{% endblock %}
+{% block leftColumn %}
+    {{ parent() }}
+    <h1 class="pageTitle text-right">{{ event.name }}</h1>
+{% endblock %}
+{% block rightColumn %}
+    {{ parent() }}
+    <table class="table table-striped">
         <tbody>
-            <tr>
-                <th>Name</th>
-                <td>{{ event.name }}</td>
-            </tr>
-            <tr>
-                <th>Time</th>
-                <td>{{ event.time ? event.time|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Premiere</th>
-                <td>{{ event.premiere ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>ExternalProduction</th>
-                <td>{{ event.externalProduction ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ event.id }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ event.createdAt ? event.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ event.updatedAt ? event.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
+        <tr>
+            <th>{{ 'entityField.time' |trans }}</th>
+            <td>{{ event.time ? event.time|date() : ''}}</td>
+        </tr>
+        <tr>
+            <th>{{ 'entityField.premiere' |trans }}</th>
+            <td>{{ event.premiere ? 'label.yes'|trans }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'entityField.externalProduction' |trans }}</th>
+            <td>{{ event.externalProduction ? 'label.yes'|trans }}</td>
+        </tr>
+
         </tbody>
     </table>
 
-    <a href="{{ path('general_event_index') }}">back to list</a>
+    {{ include('inc/entity.item.info.html.twig', {'entity': event}) }}
 
-    <a href="{{ path('general_event_edit', {'id': event.id}) }}">edit</a>
+    <ul class="list-inline">
+        <li class="list-inline-item">
+            {{ include('inc/button.index.html.twig',{'route': 'general_event_index', 'label': 'label.events' |trans}) }}
+        </li>
+        {% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
+            <li class="list-inline-item">
+                {{ include('inc/button.edit.html.twig', {'route': 'general_event_edit', 'id': event.id}) }}
+            </li>
+            <li class="list-inline-item">
+                {{ include('inc/button.delete.html.twig', {'route': 'general_event_delete', 'id': event.id}) }}
+            </li>
+        {% endif %}
+    </ul>
 
-    {{ include('general/event/_delete_form.html.twig') }}
 {% endblock %}

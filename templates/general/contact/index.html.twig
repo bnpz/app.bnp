@@ -50,7 +50,7 @@
                 </a>
             </th>
 
-            <th>{{ 'label.actions' |trans }}</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -63,7 +63,7 @@
                 <td>{{ contact.phone }}</td>
                 <td>{{ contact.mobile }}</td>
 
-                <td>
+                <td class="text-center">
                     {{ include('inc/show.edit.links.html.twig',
                         {
                             'showRoute': 'general_contact_show',
@@ -76,7 +76,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="13">no records found</td>
+                <td colspan="13">{{ 'label.noRecords'|trans }}</td>
             </tr>
         {% endfor %}
         </tbody>

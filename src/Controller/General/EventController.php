@@ -37,8 +37,8 @@ class EventController extends AbstractController
         $paginator = $eventService->getAllPaginator(
             $page,
             EntityInterface::PAGE_LIMIT,
-            $request->query->get('orderBy', 'createdAt'),
-            $request->query->get('orderDirection', 'desc')
+            $request->query->get('orderBy', 'time'),
+            $request->query->get('orderDirection', 'asc')
 
         );
         $paginator->setRouteName('general_event_index_paginated');
@@ -51,6 +51,8 @@ class EventController extends AbstractController
 
     /**
      * @Route("/new", name="general_event_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -74,6 +76,8 @@ class EventController extends AbstractController
 
     /**
      * @Route("/{id}", name="general_event_show", methods={"GET"})
+     * @param Event $event
+     * @return Response
      */
     public function show(Event $event): Response
     {
@@ -84,6 +88,9 @@ class EventController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="general_event_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Event $event
+     * @return Response
      */
     public function edit(Request $request, Event $event): Response
     {
@@ -104,6 +111,9 @@ class EventController extends AbstractController
 
     /**
      * @Route("/{id}", name="general_event_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Event $event
+     * @return Response
      */
     public function delete(Request $request, Event $event): Response
     {

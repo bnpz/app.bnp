@@ -1,9 +1,9 @@
 {% extends "frontend/fullPageLayout.html.twig" %}
-{% block title %}Adresar{% endblock %}
+{% block title %}{{ 'label.events'|trans }}{% endblock %}
 {% block full_page %}
     <div class="row">
         <div class="col-sm-11">
-            <h1>Adresar</h1>
+            <h1 class="pageTitle">{{ 'label.events'|trans }}</h1>
         </div>
         <div class="col-sm-1">
             <h1>
@@ -21,42 +21,48 @@
         <tr>
             <th>
                 <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'company', 'orderDirection': 'asc'}) }}">
-                    {{ 'label.name'|trans }}
+                    {{ 'entityField.eventName'|trans }}
                 </a>
             </th>
             <th>
                 <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'firstName', 'orderDirection': 'asc'}) }}">
-                    {{ 'label.time'|trans }}
+                    {{ 'entityField.time'|trans }}
                 </a>
             </th>
-            <th>
+            <th class="text-center">
                 <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'lastName', 'orderDirection': 'asc'}) }}">
-                    {{ 'label.premiere'|trans }}
+                    {{ 'entityField.premiere'|trans }}
                 </a>
             </th>
-            <th>
+            <th class="text-center">
                 <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'email', 'orderDirection': 'asc'}) }}">
-                    {{ 'label.externalProduction'|trans }}
+                    {{ 'entityField.externalProduction'|trans }}
                 </a>
             </th>
-            <th>#</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         {% for event in events %}
-            <tr>
+            <tr {% if event.premiere %} class="event-premiere" {% endif %}>
                 <td>{{ event.name }}</td>
-                <td>{{ event.time }}</td>
-                <td>{{ event.premiere }}</td>
-                <td>{{ event.externalProduction }}</td>
-                <td>
-                    <a href="{{ path('general_event_show', {'id': event.id}) }}">show</a>
-                    <a href="{{ path('general_event_edit', {'id': event.id}) }}">edit</a>
+                <td>{{ event.time ? event.time|date() : ''}}</td>
+                <td class="text-center">{{ event.premiere ? 'label.yes'|trans }}</td>
+                <td class="text-center">{{ event.externalProduction ? 'label.yes'|trans }}</td>
+                <td class="text-center">
+                    {{ include('inc/show.edit.links.html.twig',
+                        {
+                            'showRoute': 'general_event_show',
+                            'editRoute': 'general_event_edit',
+                            'id': event.id
+                        }
+                    )
+                    }}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="13">no records found</td>
+                <td colspan="13">{{ 'label.noRecords'|trans }}</td>
             </tr>
         {% endfor %}
         </tbody>

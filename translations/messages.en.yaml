@@ -18,6 +18,9 @@ label:
   actions: '#'
   deleteQuestion: 'Are you sure you want to delete this item?'
   allData: 'All Data'
+  noRecords: 'No Records found'
+  yes: 'Yes'
+  no: 'No'
 entityField:
   company: 'Company'
   firstName: 'First Name'
@@ -33,4 +36,8 @@ entityField:
   updatedAt: 'Updated at'
   createdBy: 'Created by'
   updatedBy: 'Updated by'
+  eventName: 'Title'
+  time: 'Time'
+  premiere: 'Premiere'
+  externalProduction: 'External Production'
 
