@@ -1,43 +1,62 @@
-<!DOCTYPE html>
+{% extends "frontend/fullPageLayout.html.twig" %}
+{% block title %}{{ 'label.reservations'|trans }}{% endblock %}
+{% block full_page %}
+    <div class="row">
+        <div class="col-sm-11">
+            <h1 class="pageTitle">{{ 'label.reservations'|trans }}</h1>
+        </div>
+        <div class="col-sm-1">
+            <h1>
+                <a class="btn btn-bnp btn-success" href="{{ path('general_reservation_new') }}">
+                    {{ 'label.new' |trans }}
+                </a>
+            </h1>
+        </div>
+    </div>
 
-<title>Reservation index</title>
 
-{% block body %}
-    <h1>Reservation index</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
-            <tr>
-                <th>Reserved</th>
-                <th>Confirmed</th>
-                <th>Note</th>
-                <th>Id</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>{{ 'entityField.event'|trans }}</th>
+            <th>{{ 'entityField.time'|trans }}</th>
+            <th>{{ 'entityField.contact'|trans }}</th>
+            <th>{{ 'entityField.reserved'|trans }}</th>
+            <th>{{ 'entityField.confirmed'|trans }}</th>
+            <th>{{ 'entityField.note'|trans }}</th>
+            <th></th>
+        </tr>
         </thead>
         <tbody>
         {% for reservation in reservations %}
-            <tr>
+            <tr {% if reservation.event.premiere %} class="event-premiere" {% endif %}>
+                <td>{{ reservation.event.name }}</td>
+                <td>{{ reservation.event.time ? reservation.event.time|date() : ''}}</td>
+                <td>{{ reservation.contact.name  }}</td>
                 <td>{{ reservation.reserved }}</td>
                 <td>{{ reservation.confirmed }}</td>
                 <td>{{ reservation.note }}</td>
-                <td>{{ reservation.id }}</td>
-                <td>{{ reservation.createdAt ? reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ reservation.updatedAt ? reservation.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('general_reservation_show', {'id': reservation.id}) }}">show</a>
-                    <a href="{{ path('general_reservation_edit', {'id': reservation.id}) }}">edit</a>
+                <td class="text-center">
+                    {{ include('inc/show.edit.links.html.twig',
+                        {
+                            'showRoute': 'general_reservation_show',
+                            'editRoute': 'general_reservation_edit',
+                            'id': reservation.id
+                        }
+                    )
+                    }}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="13">{{ 'label.noRecords'|trans }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('general_reservation_new') }}">Create new</a>
+    {% if paginator.hasToPaginate %}
+        {{ include('inc/paginator.html.twig') }}
+    {% endif %}
 {% endblock %}

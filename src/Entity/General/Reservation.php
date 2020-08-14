@@ -9,6 +9,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Swagger\Annotations as SWG;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Class EventContacts
@@ -19,6 +20,11 @@ use Swagger\Annotations as SWG;
  *     uniqueConstraints={
  *        @ORM\UniqueConstraint(name="reservation_unique", columns={"event_id", "contact_id"})
  *    }
+ * )
+ * @UniqueEntity(
+ *     fields={"event", "contact"},
+ *     errorPath="contact",
+ *     message="contact.reservationExists"
  * )
  * @ORM\Entity(repositoryClass="App\Repository\General\ReservationRepository")
  * @ORM\EntityListeners({"App\EventListener\BaseEntityListener"})

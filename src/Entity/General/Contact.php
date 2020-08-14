@@ -306,7 +306,19 @@ class Contact implements EntityInterface
      */
     public function __toString()
     {
-        return $this->getName();
+        $name = $this->getName();
+        $company = $this->getCompany();
+        $string = "unknown-".$this->getId();
+        if(trim($company) and trim($name)){
+            $string = $name . " ($company)";
+        }
+        elseif (trim($company)){
+            $string = $company;
+        }
+        elseif (trim($name)){
+            $string = $name;
+        }
+        return $string;
     }
 
     /**
@@ -317,6 +329,9 @@ class Contact implements EntityInterface
         return $this->reservations;
     }
 
-
+    public function fullName()
+    {
+        return $this->__toString();
+    }
 
 }

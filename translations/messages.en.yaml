@@ -23,6 +23,8 @@ label:
   no: 'No'
   reservations: 'Reservations'
   allReservations: 'All Reservations'
+  reservationDate: 'Reservation Date'
+  choose: "choose"
 entityField:
   company: 'Company'
   firstName: 'First Name'
@@ -42,4 +44,13 @@ entityField:
   time: 'Time'
   premiere: 'Premiere'
   externalProduction: 'External Production'
+  event: 'Event'
+  contact: 'Contact'
+  reserved: 'Reserved'
+  confirmed: 'Confirmed'
+  note: 'Note'
+message:
+  reservation:
+    success: 'Reservation saved'
+    deleted: 'Reservation deleted'
 

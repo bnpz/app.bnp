@@ -5,10 +5,17 @@ namespace App\Controller\General;
 use App\Controller\AbstractController;
 use App\Entity\Base\EntityInterface;
 use App\Entity\General\Event;
+use App\Entity\General\Reservation;
+use App\Form\General\EventReservationType;
 use App\Form\General\EventType;
+use App\Form\General\ReservationType;
 use App\Repository\General\EventRepository;
 use App\Service\General\EventService;
+use App\Service\General\ReservationService;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Query\QueryException;
+use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -124,5 +131,99 @@ class EventController extends AbstractController
         }
 
         return $this->redirectToRoute('general_event_index');
+    }
+
+    /**
+     * @Route("/{id}/reservation", name="general_event_reseravtion", methods={"GET","POST"})
+     * @param Request $request
+     * @param Event $event
+     * @param ReservationService $reservationService
+     * @return Response
+     */
+    public function reservationAdd(Request $request, Event $event, ReservationService $reservationService): Response
+    {
+
+        $reservation = new Reservation();
+        $reservation->setEvent($event);
+
+        $form = $this->createForm(EventReservationType::class, $reservation);
+        $form->handleRequest($request);
+
+        try {
+            if ($form->isSubmitted() && $form->isValid()) {
+                $reservation = $form->getData();
+
+                $reservationService->save($reservation);
+                $this->addFlashSuccess('message.reservation.success');
+
+                return $this->redirectToRoute('general_event_show', ['id' => $event->getId()]);
+            }
+        }
+        catch (Exception $e) {
+            $this->addFlashError($e->getMessage());
+        }
+        return $this->render('general/reservation/new.html.twig', [
+            'reservation' => $reservation,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/reservation/{reservationId}", name="general_event_reseravtion_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Event $event
+     * @param int reservationId
+     * @param ReservationService $reservationService
+     * @return Response
+     */
+    public function reservationEdit(Request $request, Event $event, $reservationId, ReservationService $reservationService): Response
+    {
+
+        try {
+            $reservation = $reservationService->get($reservationId);
+            $form = $this->createForm(EventReservationType::class, $reservation);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $reservation = $form->getData();
+
+                $reservationService->save($reservation);
+                $this->addFlashSuccess('message.reservation.success');
+
+                return $this->redirectToRoute('general_event_show', ['id' => $event->getId()]);
+
+            }
+
+            return $this->render('general/reservation/edit.html.twig', [
+                'reservation' => $reservation,
+                'form' => $form->createView(),
+            ]);
+
+        }
+        catch (Exception $e) {
+            $this->addFlashError($e->getMessage());
+        }
+
+    }
+    /**
+     * @Route("/{id}/reservation/{reservationId}", name="general_event_reseravtion_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Event $event
+     * @param int reservationId
+     * @param ReservationService $reservationService
+     * @return Response
+     */
+    public function reservationDelete(Request $request, Event $event, $reservationId, ReservationService $reservationService): Response
+    {
+        try {
+            $reservation = $reservationService->get($reservationId);
+            if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
+                $reservationService->delete($reservation);
+                $this->addFlashSuccess('message.reservation.deleted');
+            }
+        } catch (Exception $e) {
+            $this->addFlashError($e->getMessage());
+        }
+        return $this->redirectToRoute('general_event_show', ['id' => $event->getId()]);
     }
 }

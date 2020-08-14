@@ -2,7 +2,7 @@
     color: #f89406;
 }
 h1,h2,h3,h4,h5{
-    color: #FFF;
+    color: #cdeff7;
 }
 input, textarea, select {
     background-color: #111 !important;
@@ -32,6 +32,14 @@ table td{
     color: #aaa;
 }
 div.form-group label{
-    color: #fff !important;
+    color: #cdeff7 !important;
+}
+.small{
+    color: #929191;
+}
+.close {
+    font-weight: 300 !important;
+    color: #cdeff7 !important;
+    text-shadow: none !important;
 }
 

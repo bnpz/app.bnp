@@ -3,22 +3,19 @@
 {% block leftColumn %}
     {{ parent() }}
     <h1 class="pageTitle text-right">{{ event.name }}</h1>
+    <h4 class="text-right">{{ event.time ? event.time|date() : ''}}</h4>
 {% endblock %}
 {% block rightColumn %}
     {{ parent() }}
     <table class="table table-striped">
         <tbody>
         <tr>
-            <th>{{ 'entityField.time' |trans }}</th>
-            <td>{{ event.time ? event.time|date() : ''}}</td>
-        </tr>
-        <tr>
             <th>{{ 'entityField.premiere' |trans }}</th>
-            <td>{{ event.premiere ? 'label.yes'|trans }}</td>
+            <td>{{ event.premiere ? 'label.yes'|trans : 'label.no'|trans }}</td>
         </tr>
         <tr>
             <th>{{ 'entityField.externalProduction' |trans }}</th>
-            <td>{{ event.externalProduction ? 'label.yes'|trans }}</td>
+            <td>{{ event.externalProduction ? 'label.yes'|trans : 'label.no'|trans }}</td>
         </tr>
 
         </tbody>
@@ -39,5 +36,70 @@
             </li>
         {% endif %}
     </ul>
+
+
+    <hr>
+
+    {# RESERAVTIONS #}
+    <h3 class="float-left">{{ 'label.reservations'|trans }}</h3>
+    <h3 class="float-right">
+        <a class="btn btn-bnp btn-success" href="{{ path('general_event_reseravtion', {'id': event.id}) }}">
+            {{ 'label.new' |trans }}
+        </a>
+    </h3>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ 'entityField.contact'|trans }}</th>
+            <th class="text-center">{{ 'entityField.reserved'|trans }}</th>
+            <th class="text-center">{{ 'entityField.confirmed'|trans }}</th>
+            <th>{{ 'entityField.note'|trans }}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reservation in event.reservations %}
+            <tr>
+                <td>
+                    {{ reservation.contact.fullName  }} |
+                    <a href="#" data-toggle="modal" data-target="#entityItemInfoModal-{{ reservation.id }}">
+                        <i class="fas fa-info-circle color-gray"></i>
+                    </a>
+
+                    {{ include('inc/entity.item.info.modal.html.twig',
+                        {
+                            'id': reservation.id,
+                            'entity': reservation,
+                            'title': reservation.contact.fullName
+                        })
+                    }}
+
+                </td>
+                <td class="text-center">{{ reservation.reserved }}</td>
+                <td class="text-center">{{ reservation.confirmed }}</td>
+                <td>{{ reservation.note }}</td>
+                <td class="text-center">
+                    <ul class="list-inline no-margin">
+                        <li class="list-inline-item">
+                            <a class="btn btn-sm btn-bnp btn-outline-info" href="{{ path('general_event_reseravtion_edit', {'id': event.id, 'reservationId': reservation.id}) }}">
+                                {{ 'label.edit' |trans }}
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            {{ include('general/event/_delete_reservation_form.html.twig')}}
+                        </li>
+                    </ul>
+
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">{{ 'label.noRecords'|trans }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}
