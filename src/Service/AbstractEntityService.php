@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Contract\Service\Base\IDecoratable;
-use App\Entity\Base\EntityInterface;
 use App\Mixin\CanTranscribe;
 use App\Mixin\Decoratable;
 use App\Repository\AbstractEntityRepository;
@@ -14,7 +13,6 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Query\QueryException;
-use Doctrine\Persistence\ObjectRepository;
 use Exception;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 

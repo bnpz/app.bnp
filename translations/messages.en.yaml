@@ -15,6 +15,8 @@ label:
   addressBook: 'Address Book'
   events: 'Events'
   allEvents: 'All Events'
+  newEvents: 'New Events'
+  oldEvents: 'Old Events'
   actions: '#'
   deleteQuestion: 'Are you sure you want to delete this item?'
   allData: 'All Data'

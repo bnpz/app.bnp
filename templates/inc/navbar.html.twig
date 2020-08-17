@@ -40,7 +40,10 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarArchive">
                     <a class="dropdown-item" href="{{ url('general_event_index') }}">
-                        {{ 'label.allEvents'|trans }}
+                        {{ 'label.newEvents'|trans }}
+                    </a>
+                    <a class="dropdown-item" href="{{ url('general_event_index_old') }}">
+                        {{ 'label.oldEvents'|trans }}
                     </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ url('general_event_new') }}">

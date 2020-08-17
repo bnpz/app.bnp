@@ -41,13 +41,13 @@ class EventController extends AbstractController
     ): Response
     {
 
-        $paginator = $eventService->getAllPaginator(
-            $page,
-            EntityInterface::PAGE_LIMIT,
-            $request->query->get('orderBy', 'time'),
-            $request->query->get('orderDirection', 'asc')
+            $paginator = $eventService->getNewPaginator(
+                $page,
+                EntityInterface::PAGE_LIMIT,
+                $request->query->get('orderBy', 'time'),
+                $request->query->get('orderDirection', 'DESC')
+            );
 
-        );
         $paginator->setRouteName('general_event_index_paginated');
 
         return $this->render('general/event/index.html.twig', [
@@ -56,6 +56,36 @@ class EventController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/old", name="general_event_index_old", methods={"GET"}, defaults={"page": "1"})
+     * @Route("/old/page/{page<[1-9]\d*>}", methods={"GET"}, name="general_event_index_old_paginated")
+     * @param Request $request
+     * @param EventService $eventService
+     * @param int $page
+     * @return Response
+     * @throws QueryException
+     */
+    public function indexOld(
+        Request $request,
+        EventService $eventService,
+        int $page
+    ): Response
+    {
+
+        $paginator = $eventService->getOldPaginator(
+            $page,
+            EntityInterface::PAGE_LIMIT,
+            $request->query->get('orderBy', 'time'),
+            $request->query->get('orderDirection', 'DESC')
+        );
+
+        $paginator->setRouteName('general_event_index_old_paginated');
+
+        return $this->render('general/event/index.html.twig', [
+            'events' => $paginator->getResults(),
+            'paginator' => $paginator
+        ]);
+    }
     /**
      * @Route("/new", name="general_event_new", methods={"GET","POST"})
      * @param Request $request
