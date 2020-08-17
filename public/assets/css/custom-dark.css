@@ -25,7 +25,7 @@ input:focus, textarea:focus {
 .color-gray{
     color: #666;
 }
-tr.event-premiere td{
+tr.event-premiere td, tr.event-premiere td a{
     color: #6cc16c !important;
 }
 table td{

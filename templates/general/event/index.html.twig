@@ -45,7 +45,7 @@
         <tbody>
         {% for event in events %}
             <tr {% if event.premiere %} class="event-premiere" {% endif %}>
-                <td>{{ event.name }}</td>
+                <td><a href="{{ path('general_event_show', {'id': event.id}) }}">{{ event.name }}</a></td>
                 <td>{{ event.time ? event.time|date() : ''}}</td>
                 <td class="text-center">{{ event.premiere ? 'label.yes'|trans }}</td>
                 <td class="text-center">{{ event.externalProduction ? 'label.yes'|trans }}</td>

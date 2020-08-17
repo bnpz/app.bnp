@@ -62,7 +62,8 @@
         {% for reservation in event.reservations %}
             <tr>
                 <td>
-                    {{ reservation.contact.fullName  }} |
+                    <a href="{{ path('general_contact_show', {'id': reservation.contact.id}) }}">{{ reservation.contact.fullName  }}</a>
+                     |
                     <a href="#" data-toggle="modal" data-target="#entityItemInfoModal-{{ reservation.id }}">
                         <i class="fas fa-info-circle color-gray"></i>
                     </a>

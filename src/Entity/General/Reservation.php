@@ -23,6 +23,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * )
  * @UniqueEntity(
  *     fields={"event", "contact"},
+ *     errorPath="event",
+ *     message="contact.reservationExists"
+ * )
+ * @UniqueEntity(
+ *     fields={"event", "contact"},
  *     errorPath="contact",
  *     message="contact.reservationExists"
  * )

@@ -324,7 +324,7 @@ class Contact implements EntityInterface
     /**
      * @return ArrayCollection
      */
-    public function getReservations(): ArrayCollection
+    public function getReservations()
     {
         return $this->reservations;
     }

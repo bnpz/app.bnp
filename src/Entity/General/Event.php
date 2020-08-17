@@ -158,4 +158,11 @@ class Event implements EntityInterface
         return $this->name. $eventTime;
     }
 
+    /**
+     * @return string
+     */
+    public function getNameWithDate()
+    {
+        return $this->__toString();
+    }
 }

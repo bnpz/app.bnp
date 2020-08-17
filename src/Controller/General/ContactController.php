@@ -5,13 +5,17 @@ namespace App\Controller\General;
 use App\Controller\AbstractController;
 use App\Entity\Base\EntityInterface;
 use App\Entity\General\Contact;
+use App\Entity\General\Reservation;
+use App\Form\General\ContactReservationType;
 use App\Form\General\ContactType;
 use App\Repository\General\ContactRepository;
 use App\Service\General\ContactService;
+use App\Service\General\ReservationService;
 use Doctrine\ORM\Query\QueryException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Exception;
 
 /**
  * @Route("/general/contact")
@@ -101,7 +105,7 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('general_contact_index');
+            return $this->redirectToRoute('general_contact_show', ['id' => $contact->getId()]);
         }
 
         return $this->render('general/contact/edit.html.twig', [
@@ -125,5 +129,99 @@ class ContactController extends AbstractController
         }
 
         return $this->redirectToRoute('general_contact_index');
+    }
+
+    /**
+     * @Route("/{id}/reservation", name="general_contact_reseravtion", methods={"GET","POST"})
+     * @param Request $request
+     * @param Contact $contact
+     * @param ReservationService $reservationService
+     * @return Response
+     */
+    public function reservationAdd(Request $request, Contact $contact, ReservationService $reservationService): Response
+    {
+
+        $reservation = new Reservation();
+        $reservation->setContact($contact);
+
+        $form = $this->createForm(ContactReservationType::class, $reservation);
+        $form->handleRequest($request);
+
+        try {
+            if ($form->isSubmitted() && $form->isValid()) {
+                $reservation = $form->getData();
+
+                $reservationService->save($reservation);
+                $this->addFlashSuccess('message.reservation.success');
+
+                return $this->redirectToRoute('general_contact_show', ['id' => $contact->getId()]);
+            }
+        }
+        catch (Exception $e) {
+            $this->addFlashError($e->getMessage());
+        }
+        return $this->render('general/reservation/new.html.twig', [
+            'reservation' => $reservation,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/reservation/{reservationId}", name="general_contact_reseravtion_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Contact $contact
+     * @param int reservationId
+     * @param ReservationService $reservationService
+     * @return Response
+     */
+    public function reservationEdit(Request $request, Contact $contact, $reservationId, ReservationService $reservationService): Response
+    {
+
+        try {
+            $reservation = $reservationService->get($reservationId);
+            $form = $this->createForm(ContactReservationType::class, $reservation);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $reservation = $form->getData();
+
+                $reservationService->save($reservation);
+                $this->addFlashSuccess('message.reservation.success');
+
+                return $this->redirectToRoute('general_contact_show', ['id' => $contact->getId()]);
+
+            }
+
+            return $this->render('general/reservation/edit.html.twig', [
+                'reservation' => $reservation,
+                'form' => $form->createView(),
+            ]);
+
+        }
+        catch (Exception $e) {
+            $this->addFlashError($e->getMessage());
+        }
+
+    }
+    /**
+     * @Route("/{id}/reservation/{reservationId}", name="general_contact_reseravtion_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Contact $contact
+     * @param int reservationId
+     * @param ReservationService $reservationService
+     * @return Response
+     */
+    public function reservationDelete(Request $request, Contact $contact, $reservationId, ReservationService $reservationService): Response
+    {
+        try {
+            $reservation = $reservationService->get($reservationId);
+            if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
+                $reservationService->delete($reservation);
+                $this->addFlashSuccess('message.reservation.deleted');
+            }
+        } catch (Exception $e) {
+            $this->addFlashError($e->getMessage());
+        }
+        return $this->redirectToRoute('general_contact_show', ['id' => $contact->getId()]);
     }
 }
