@@ -27,6 +27,7 @@ label:
   allReservations: 'All Reservations'
   reservationDate: 'Reservation Date'
   choose: "choose"
+  search: "search"
 entityField:
   company: 'Company'
   firstName: 'First Name'

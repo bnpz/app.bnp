@@ -4,19 +4,20 @@
 {% endblock %}
 {% block full_page %}
     <div class="row">
-        <div class="col-sm-11">
+        <div class="col-sm-10">
             <h1 class="pageTitle">{{ 'label.addressBook'|trans }}</h1>
         </div>
-        <div class="col-sm-1">
-            <h1>
+        <div class="col-sm-2">
+
                 {{ include('inc/button.new.html.twig', {'route': 'general_contact_new'}) }}
-            </h1>
+
+        </div>
+        <div class="col-sm-12">
+            {{ render(controller('App\\Controller\\General\\ContactController::searchBar')) }}
         </div>
     </div>
 
-    <div class="col-sm-12">
-        {{ render(controller('App\\Controller\\General\\ContactController::searchBar')) }}
-    </div>
+
 
     <table class="table table-striped">
         <thead>

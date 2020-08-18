@@ -80,6 +80,15 @@ class CreateDemoContactsCommand extends Command
         for ($i = 0; $i < $arg1; $i++){
             $contact = new Contact;
 
+            $firstName = $this->faker->firstName;
+            $lastName = $this->faker->lastName;
+            $domain = $this->faker->freeEmailDomain;
+
+            $email = strtolower($firstName).".".strtolower($lastName)."@".$domain;
+            $email = str_replace(" ", ".", $email);
+            $email = str_replace("'", ".", $email);
+
+
             $contact->setCompany($this->faker->company)
                 ->setFirstName($this->faker->firstName)
                 ->setLastName($this->faker->lastName)
@@ -89,7 +98,7 @@ class CreateDemoContactsCommand extends Command
                 ->setPostNumber($this->faker->postcode)
                 ->setCity($this->faker->city)
                 ->setCountry($this->faker->country)
-                ->setEmail($this->faker->email)
+                ->setEmail($email)
                 ->setCreatedBy($user)
                 ->setUpdatedBy($user);
 
