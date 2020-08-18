@@ -101,6 +101,7 @@ class Contact implements EntityInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\General\Reservation", mappedBy="contact", orphanRemoval=true)
+     * @ORM\OrderBy({"createdAt" = "DESC"})
      */
     private $reservations;
 

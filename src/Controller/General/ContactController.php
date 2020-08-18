@@ -24,29 +24,51 @@ use Exception;
 class ContactController extends AbstractController
 {
     /**
-     * @Route("/", name="general_contact_index", methods={"GET"}, defaults={"page": "1"})
-     * @Route("/page/{page<[1-9]\d*>}", methods={"GET"}, name="general_contact_index_paginated")
+     * @Route("/", name="general_contact_index", methods={"GET","POST"}, defaults={"page": "1"})
+     * @Route("/page/{page<[1-9]\d*>}", methods={"GET","POST"}, name="general_contact_index_paginated")
      * @param Request $request
      * @param ContactService $contactService
      * @param int $page
      * @return Response
      * @throws QueryException
      */
-    public function index(
-        Request $request,
-        ContactService $contactService,
-        int $page
-    ): Response
+    public function index(Request $request, ContactService $contactService, int $page): Response
     {
 
-        $paginator = $contactService->getAllPaginator(
-            $page,
-            EntityInterface::PAGE_LIMIT,
-            $request->query->get('orderBy', 'createdAt'),
-            $request->query->get('orderDirection', 'desc')
+        $query = "";
+        $searchForm = $request->request->all('form');
+        if(isset($searchForm['query'])) {
+            $query = $searchForm['query'];
 
-        );
+        }
+        /*elseif ($request->get('query')){
+            $query = str_replace("?","", $request->get('query'));
+        }*/
+
+
+        if(trim($query)){
+            $paginator = $contactService->search(
+                $query,
+                1,
+                2000,
+                $request->query->get('orderBy', 'lastName'),
+                $request->query->get('orderDirection', 'ASC')
+
+            );
+        }
+        else{
+            $paginator = $contactService->getAllPaginator(
+                $page,
+                EntityInterface::PAGE_LIMIT,
+                $request->query->get('orderBy', 'lastName'),
+                $request->query->get('orderDirection', 'ASC')
+
+            );
+        }
+
         $paginator->setRouteName('general_contact_index_paginated');
+
+
 
         return $this->render('general/contact/index.html.twig', [
             'contacts' => $paginator->getResults(),
@@ -80,7 +102,7 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="general_contact_show", methods={"GET"})
+     * @Route("/{id<[1-9]\d*>}", name="general_contact_show", methods={"GET"})
      * @param Contact $contact
      * @return Response
      */
@@ -223,5 +245,36 @@ class ContactController extends AbstractController
             $this->addFlashError($e->getMessage());
         }
         return $this->redirectToRoute('general_contact_show', ['id' => $contact->getId()]);
+    }
+
+    /**
+     * @Route("/search", name="general_contact_search", methods={"GET"}, defaults={"page": "1"})
+     * @Route("/search/page/{page<[1-9]\d*>}", methods={"GET"}, name="general_contact_search_paginated")
+     * @param Request $request
+     * @param ContactService $contactService
+     * @param int $page
+     * @return Response
+     * @throws QueryException
+     */
+    public function search(
+        Request $request,
+        ContactService $contactService,
+        int $page
+    ): Response
+    {
+
+        $paginator = $contactService->getAllPaginator(
+            $page,
+            EntityInterface::PAGE_LIMIT,
+            $request->query->get('orderBy', 'createdAt'),
+            $request->query->get('orderDirection', 'desc')
+
+        );
+        $paginator->setRouteName('general_contact_index_paginated');
+
+        return $this->render('general/contact/index.html.twig', [
+            'contacts' => $paginator->getResults(),
+            'paginator' => $paginator
+        ]);
     }
 }

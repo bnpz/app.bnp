@@ -137,4 +137,21 @@ abstract class AbstractEntityService implements IDecoratable
 
         return $paginator->paginate($page);
     }
+
+    /**
+     * @param string $query
+     * @param int $page
+     * @param int $limit
+     * @param string $orderBy
+     * @param string $orderDirection
+     * @return Paginator
+     * @throws QueryException
+     * @throws Exception
+     */
+    public function search($query = "", $page = 1, $limit = 10, $orderBy = "createdAt", $orderDirection = "DESC")
+    {
+        $paginator = $this->repository->getSearchPaginator($query, $limit, $orderBy, $orderDirection);
+
+        return $paginator->paginate($page);
+    }
 }

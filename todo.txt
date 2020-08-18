@@ -19,6 +19,11 @@ git push to dev
 *******************************
 *******************************
 TODO
+- serach
+//- select event filter
+- menu
+- event stat
+
 ## make:crud
 - setup templates
 - permissions in twig

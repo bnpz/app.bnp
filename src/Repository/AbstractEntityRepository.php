@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Util\Paginator;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
-use Doctrine\ORM\Query;
 use Doctrine\ORM\Query\QueryException;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -43,15 +42,33 @@ abstract class AbstractEntityRepository extends ServiceEntityRepository
 
     }
 
+
+
     /**
+     * @param string $query
+     * @param int $limit
      * @param string $orderBy
      * @param string $orderDirection
-     * @return Query
+     * @return Paginator
      * @throws QueryException
      */
-    public function getAllQuery($orderBy = "createdAt", $orderDirection = "DESC")
+    public function getSearchPaginator($query = "", $limit = 10, $orderBy = "createdAt", $orderDirection = "DESC"): Paginator
     {
+        $criteria = Criteria::create();
 
+        $queryBuilder = $this->_em->createQueryBuilder();
+        $queryBuilder->select('entity')->from($this->_entityName, 'entity');
+        if(trim($query)){
+            $metadata = $this->_em->getClassMetadata($this->_entityName);
+            foreach ($metadata->getFieldNames() as $field) {
+                if($metadata->getTypeOfField($field) == "string"){
+                    $queryBuilder->orWhere('lower(entity.' . $field . ') LIKE lower(:value)')
+                        ->setParameters(array(':value' => '%' . $query . '%'));
+                }
+            }
+        }
+        $queryBuilder->addCriteria($criteria->orderBy([$orderBy => $orderDirection]));
 
+        return new Paginator($queryBuilder, $limit);
     }
 }

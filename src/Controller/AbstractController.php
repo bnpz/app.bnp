@@ -5,8 +5,11 @@ namespace App\Controller;
 
 use Doctrine\Common\Annotations\AnnotationException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Serializer;
 
 abstract class AbstractController extends SymfonyAbstractController
@@ -48,4 +51,18 @@ abstract class AbstractController extends SymfonyAbstractController
     }
 
 
+    /**
+     * @return Response
+     */
+    public function searchBar(): Response
+    {
+        $form = $this->createFormBuilder()
+            ->add('query', TextType::class, [
+                'required' => false,
+            ])
+            ->add('submit', SubmitType::class)
+            ->getForm();
+
+        return $this->render('inc/search.form.html.twig', ['form' => $form->createView()]);
+    }
 }

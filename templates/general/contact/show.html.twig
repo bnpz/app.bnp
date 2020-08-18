@@ -100,6 +100,7 @@
                 <td class="text-center">{{ reservation.confirmed }}</td>
                 <td>{{ reservation.note }}</td>
                 <td class="text-center">
+                    {% if date(reservation.event.time) > date() %}
                     <ul class="list-inline no-margin">
                         <li class="list-inline-item">
                             <a class="btn btn-sm btn-bnp btn-outline-info" href="{{ path('general_contact_reseravtion_edit', {'id': contact.id, 'reservationId': reservation.id}) }}">
@@ -110,6 +111,7 @@
                             {{ include('general/contact/_delete_reservation_form.html.twig')}}
                         </li>
                     </ul>
+                    {% endif %}
 
 
                 </td>

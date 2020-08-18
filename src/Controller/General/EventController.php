@@ -43,9 +43,9 @@ class EventController extends AbstractController
 
             $paginator = $eventService->getNewPaginator(
                 $page,
-                EntityInterface::PAGE_LIMIT,
+                1,
                 $request->query->get('orderBy', 'time'),
-                $request->query->get('orderDirection', 'DESC')
+                $request->query->get('orderDirection', 'ASC')
             );
 
         $paginator->setRouteName('general_event_index_paginated');

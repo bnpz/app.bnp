@@ -55,6 +55,7 @@ class Event implements EntityInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\General\Reservation", mappedBy="event", orphanRemoval=true)
+     * @ORM\OrderBy({"createdAt" = "DESC"})
      */
     private $reservations;
 
