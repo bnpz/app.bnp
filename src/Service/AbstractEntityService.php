@@ -14,6 +14,7 @@ use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Query\QueryException;
 use Exception;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -43,16 +44,23 @@ abstract class AbstractEntityService implements IDecoratable
     private $validator;
 
     /**
+     * @var SessionInterface
+     */
+    protected $session;
+
+    /**
      * EntityService constructor.
      * @param ManagerRegistry $managerRegistry
      * @param ValidatorInterface $validator
+     * @param SessionInterface $session
      */
-    public function __construct(ManagerRegistry $managerRegistry, ValidatorInterface $validator)
+    public function __construct(ManagerRegistry $managerRegistry, ValidatorInterface $validator, SessionInterface $session)
     {
         $this->managerRegistry  = $managerRegistry;
         $this->repository       = $this->managerRegistry->getRepository($this->getEntityClassName());
         $this->entityManager    = $this->managerRegistry->getManagerForClass($this->getEntityClassName());
         $this->validator        = $validator;
+        $this->session          = $session;
     }
     /**
      * @return string
@@ -153,5 +161,36 @@ abstract class AbstractEntityService implements IDecoratable
         $paginator = $this->repository->getSearchPaginator($query, $limit, $orderBy, $orderDirection);
 
         return $paginator->paginate($page);
+    }
+
+    /**
+     * @param array $filters
+     */
+    public function setFiltersToSession($filters = [])
+    {
+        $this->session->set($this->getEntityClassNameKey(), $filters);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFiltersFromSession()
+    {
+        return $this->session->get($this->getEntityClassNameKey(), []);
+    }
+
+    /**
+     *
+     */
+    public function clearFiltersFromSession()
+    {
+        $this->session->remove($this->getEntityClassNameKey());
+    }
+    /**
+     * @return string
+     */
+    public function getEntityClassNameKey()
+    {
+        return strtolower(str_replace('\\', ".", $this->getEntityClassName()));
     }
 }
