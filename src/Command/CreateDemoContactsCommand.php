@@ -90,8 +90,8 @@ class CreateDemoContactsCommand extends Command
 
 
             $contact->setCompany($this->faker->company)
-                ->setFirstName($this->faker->firstName)
-                ->setLastName($this->faker->lastName)
+                ->setFirstName($firstName)
+                ->setLastName($lastName)
                 ->setPhone($this->faker->phoneNumber)
                 ->setMobile($this->faker->phoneNumber)
                 ->setAddress($this->faker->streetAddress)

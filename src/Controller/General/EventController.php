@@ -12,6 +12,7 @@ use App\Form\General\ReservationType;
 use App\Repository\General\EventRepository;
 use App\Service\General\EventService;
 use App\Service\General\ReservationService;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Query\QueryException;
@@ -43,7 +44,7 @@ class EventController extends AbstractController
 
             $paginator = $eventService->getNewPaginator(
                 $page,
-                1,
+                EntityInterface::PAGE_LIMIT,
                 $request->query->get('orderBy', 'time'),
                 $request->query->get('orderDirection', 'ASC')
             );
@@ -114,12 +115,16 @@ class EventController extends AbstractController
     /**
      * @Route("/{id}", name="general_event_show", methods={"GET"})
      * @param Event $event
+     * @param ReservationService $reservationService
      * @return Response
+     * @throws NonUniqueResultException
      */
-    public function show(Event $event): Response
+    public function show(Event $event, ReservationService $reservationService): Response
     {
         return $this->render('general/event/show.html.twig', [
             'event' => $event,
+            'totalReserved' => $reservationService->getTotalReservedForEvent($event),
+            'totalConfirmed' => $reservationService->getTotalConfirmedForEvent($event)
         ]);
     }
 
@@ -137,7 +142,7 @@ class EventController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('general_event_index');
+            return $this->redirectToRoute('general_event_show', ['id' => $event->getId()]);
         }
 
         return $this->render('general/event/edit.html.twig', [

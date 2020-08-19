@@ -60,13 +60,18 @@ abstract class AbstractController extends SymfonyAbstractController
             ->add('query', TextType::class, [
                 'required' => false,
                 'label' => false,
-                'attr' => ['minlength' => 3, 'placeholder' => "label.search"]
+                'attr' => ['minlength' => 3, 'placeholder' => "label.searchPlaceholder"]
             ])
             ->add('submit', SubmitType::class, [
-                'attr' => ['hidden' => true]
+                'attr' => [
+                    'hidden' => false,
+                    'class' => 'btn btn-outline-info'
+                ],
+                'label' => 'label.search'
+
             ])
             ->getForm();
 
-        return $this->render('inc/search.form.html.twig', ['form' => $form->createView()]);
+        return $this->render('inc/search.form.html.twig', ['searchForm' => $form->createView()]);
     }
 }

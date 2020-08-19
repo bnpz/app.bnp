@@ -43,3 +43,7 @@
         {% endif %}
     </ul>
 </nav>
+<div class="clearfix"></div>
+<div class="text-center">
+   {{ (paginator.currentPage - 1) * paginator.pageSize + 1}}-{{ paginator.currentPage * paginator.pageSize}}/{{ paginator.numResults }}
+</div>

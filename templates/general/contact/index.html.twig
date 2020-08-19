@@ -3,20 +3,17 @@
     {{ 'label.addressBook'|trans }}
 {% endblock %}
 {% block full_page %}
+
+    <h1 class="pageTitle float-left">{{ 'label.addressBook'|trans }}</h1>
+    <h3 class="float-right">
+        {{ include('inc/button.new.html.twig', {'route': 'general_contact_new'}) }}
+    </h3>
+    <div class="clearfix"></div>
     <div class="row">
-        <div class="col-sm-10">
-            <h1 class="pageTitle">{{ 'label.addressBook'|trans }}</h1>
-        </div>
-        <div class="col-sm-2">
-
-                {{ include('inc/button.new.html.twig', {'route': 'general_contact_new'}) }}
-
-        </div>
         <div class="col-sm-12">
             {{ render(controller('App\\Controller\\General\\ContactController::searchBar')) }}
         </div>
     </div>
-
 
 
     <table class="table table-striped">
@@ -53,30 +50,30 @@
                 </a>
             </th>
 
-            <th></th>
+            {#<th></th>#}
         </tr>
         </thead>
         <tbody>
         {% for contact in contacts %}
-            <tr>
-                <td>{{ contact.company }}</td>
-                <td>{{ contact.firstName }}</td>
-                <td>{{ contact.lastName }}</td>
-                <td>{{ contact.email }}</td>
-                <td>{{ contact.phone }}</td>
-                <td>{{ contact.mobile }}</td>
+                <tr>
+                    <td><a href="{{ path('general_contact_show', {'id': contact.id}) }}">{{ contact.company }}</a></td>
+                    <td><a href="{{ path('general_contact_show', {'id': contact.id}) }}">{{ contact.firstName }}</a></td>
+                    <td><a href="{{ path('general_contact_show', {'id': contact.id}) }}">{{ contact.lastName }}</a></td>
+                    <td><a href="{{ path('general_contact_show', {'id': contact.id}) }}">{{ contact.email }}</a></td>
+                    <td>{{ contact.phone }}</td>
+                    <td>{{ contact.mobile }}</td>
 
-                <td class="text-center">
-                    {{ include('inc/show.edit.links.html.twig',
-                        {
-                            'showRoute': 'general_contact_show',
-                            'editRoute': 'general_contact_edit',
-                            'id': contact.id
-                        }
-                        )
-                    }}
-                </td>
-            </tr>
+                    {#<td class="text-center">
+                        {{ include('inc/show.edit.links.html.twig',
+                            {
+                                'showRoute': 'general_contact_show',
+                                'editRoute': 'general_contact_edit',
+                                'id': contact.id
+                            }
+                            )
+                        }}
+                    </td>#}
+                </tr>
         {% else %}
             <tr>
                 <td colspan="13">{{ 'label.noRecords'|trans }}</td>

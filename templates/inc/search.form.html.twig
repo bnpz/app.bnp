@@ -1,1 +1,10 @@
-{{ form(form) }}
+{{ form(searchForm) }}
+{#{{ form_start(searchForm, { 'attr' : { 'class': 'form-inline' } }) }}
+    <div class="input-group mb-4 mr-sm-4">
+        {{ form_row(searchForm.query,  {'label': false}) }}
+
+    </div>
+{{ form_row(searchForm.submit, { 'attr' : { 'class': 'btn btn-primary mb-4' } }) }}
+
+{{ form_end(searchForm) }}#}
+

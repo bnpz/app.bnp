@@ -28,7 +28,7 @@ input:focus, textarea:focus {
 tr.event-premiere td, tr.event-premiere td a{
     color: #6cc16c !important;
 }
-table td{
+table td, table td a{
     color: #aaa;
 }
 div.form-group label{

@@ -17,8 +17,11 @@ class EventType extends AbstractType
         $currentYear = $today->format('Y');
         $today->modify('+2 years');
         $twoYearsAhead = $today->format('Y');
+
         $builder
+            ->add('production', null, ['label' => "entityField.production"])
             ->add('name', null, ['label' => "entityField.eventName"])
+            ->add('description', null, ['label' => "entityField.description"])
             ->add('time', DateTimeType::class,[
                 'label' => 'entityField.time',
                 'widget' => 'choice',
@@ -26,6 +29,7 @@ class EventType extends AbstractType
             ])
             ->add('premiere', null, ['label' => "entityField.premiere"])
             ->add('externalProduction', null, ['label' => "entityField.externalProduction"])
+            ->add('note', null, ['label' => "entityField.note"])
 
         ;
     }

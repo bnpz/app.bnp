@@ -4,11 +4,22 @@
     {{ parent() }}
     <h1 class="pageTitle text-right">{{ event.name }}</h1>
     <h4 class="text-right">{{ event.time ? event.time|date() : ''}}</h4>
+    <br>
+    <h5 class="text-right">{{ 'entityField.reserved' |trans }}: {{ totalReserved }}</h5>
+    <h5 class="text-right">{{ 'entityField.confirmed' |trans }}: {{ totalConfirmed }}</h5>
 {% endblock %}
 {% block rightColumn %}
     {{ parent() }}
     <table class="table table-striped">
         <tbody>
+        <tr>
+            <th>{{ 'entityField.production' |trans }}</th>
+            <td>{{ event.production }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'entityField.description' |trans }}</th>
+            <td>{{ event.description }}</td>
+        </tr>
         <tr>
             <th>{{ 'entityField.premiere' |trans }}</th>
             <td>{{ event.premiere ? 'label.yes'|trans : 'label.no'|trans }}</td>
@@ -17,7 +28,10 @@
             <th>{{ 'entityField.externalProduction' |trans }}</th>
             <td>{{ event.externalProduction ? 'label.yes'|trans : 'label.no'|trans }}</td>
         </tr>
-
+        <tr>
+            <th>{{ 'entityField.note' |trans }}</th>
+            <td>{{ event.note }}</td>
+        </tr>
         </tbody>
     </table>
 

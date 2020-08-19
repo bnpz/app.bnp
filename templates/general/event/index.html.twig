@@ -20,10 +20,16 @@
         <thead>
         <tr>
             <th>
+                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'production', 'orderDirection': 'asc'}) }}">
+                    {{ 'entityField.production'|trans }}
+                </a>
+            </th>
+            <th>
                 <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'name', 'orderDirection': 'asc'}) }}">
                     {{ 'entityField.eventName'|trans }}
                 </a>
             </th>
+            <th>{{ 'entityField.description'|trans }}</th>
             <th>
                 <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'time', 'orderDirection': 'desc'}) }}">
                     {{ 'entityField.time'|trans }}
@@ -39,17 +45,19 @@
                     {{ 'entityField.externalProduction'|trans }}
                 </a>
             </th>
-            <th></th>
+            {#<th></th>#}
         </tr>
         </thead>
         <tbody>
         {% for event in events %}
             <tr {% if event.premiere %} class="event-premiere" {% endif %}>
+                <td>{{ event.production }}</td>
                 <td><a href="{{ path('general_event_show', {'id': event.id}) }}">{{ event.name }}</a></td>
+                <td>{{ event.description }}</td>
                 <td>{{ event.time ? event.time|date() : ''}}</td>
                 <td class="text-center">{{ event.premiere ? 'label.yes'|trans }}</td>
                 <td class="text-center">{{ event.externalProduction ? 'label.yes'|trans }}</td>
-                <td class="text-center">
+                {#<td class="text-center">
                     {{ include('inc/show.edit.links.html.twig',
                         {
                             'showRoute': 'general_event_show',
@@ -58,7 +66,7 @@
                         }
                     )
                     }}
-                </td>
+                </td>#}
             </tr>
         {% else %}
             <tr>

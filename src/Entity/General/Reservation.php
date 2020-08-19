@@ -33,6 +33,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\General\ReservationRepository")
  * @ORM\EntityListeners({"App\EventListener\BaseEntityListener"})
+ * @ORM\HasLifecycleCallbacks()
  */
 class Reservation implements EntityInterface
 {
@@ -174,4 +175,13 @@ class Reservation implements EntityInterface
         return $this;
     }
 
+    /**
+     * @ORM\PreFlush()
+     */
+    public function checkConfirmedValue()
+    {
+        if($this->confirmed > $this->reserved){
+            $this->confirmed = $this->reserved;
+        }
+    }
 }

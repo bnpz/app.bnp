@@ -25,12 +25,26 @@ class Event implements EntityInterface
     use TimestampableEntity;
 
     /**
+     * @ORM\Column(name="production", type="string", nullable=true)
+     * @Groups({"create", "update", "event_listing", "event_full"})
+     * @SWG\Property(property="production", type="string")
+     */
+    private $production;
+
+    /**
      * @var string
      * @ORM\Column(name="name", type="string", nullable=false)
      * @Groups({"create", "update", "event_listing", "event_full"})
      * @SWG\Property(property="name", type="string")
      */
     private $name;
+
+    /**
+     * @ORM\Column(name="description", type="string", nullable=true)
+     * @Groups({"create", "update", "event_listing", "event_full"})
+     * @SWG\Property(property="description", type="string")
+     */
+    private $description;
 
     /**
      * @ORM\Column(name="time", type="datetime", nullable=false)
@@ -54,6 +68,13 @@ class Event implements EntityInterface
     private $externalProduction;
 
     /**
+     * @ORM\Column(name="note", type="text", nullable=true)
+     * @Groups({"create", "update", "event_listing", "event_full"})
+     * @SWG\Property(property="note", type="string")
+     */
+    private $note;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\General\Reservation", mappedBy="event", orphanRemoval=true)
      * @ORM\OrderBy({"createdAt" = "DESC"})
      */
@@ -70,6 +91,25 @@ class Event implements EntityInterface
     /**
      * @return mixed
      */
+    public function getProduction()
+    {
+        return $this->production;
+    }
+
+    /**
+     * @param mixed $production
+     * @return Event
+     */
+    public function setProduction($production)
+    {
+        $this->production = $production;
+        return $this;
+    }
+
+
+    /**
+     * @return mixed
+     */
     public function getName()
     {
         return $this->name;
@@ -82,6 +122,24 @@ class Event implements EntityInterface
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     * @return Event
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
         return $this;
     }
 
@@ -136,6 +194,24 @@ class Event implements EntityInterface
     public function setExternalProduction($externalProduction)
     {
         $this->externalProduction = $externalProduction;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param mixed $note
+     * @return Event
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
         return $this;
     }
 

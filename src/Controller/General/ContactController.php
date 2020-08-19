@@ -68,8 +68,6 @@ class ContactController extends AbstractController
 
         $paginator->setRouteName('general_contact_index_paginated');
 
-
-
         return $this->render('general/contact/index.html.twig', [
             'contacts' => $paginator->getResults(),
             'paginator' => $paginator

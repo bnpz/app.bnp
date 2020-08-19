@@ -27,7 +27,9 @@ label:
   allReservations: 'All Reservations'
   reservationDate: 'Reservation Date'
   choose: "choose"
-  search: "search"
+  search: "Search"
+  searchPlaceholder: "search for... (min. 4 char)"
+  submit: "submit"
 entityField:
   company: 'Company'
   firstName: 'First Name'
@@ -44,6 +46,8 @@ entityField:
   createdBy: 'Created by'
   updatedBy: 'Updated by'
   eventName: 'Title'
+  production: 'Production'
+  description: 'Description'
   time: 'Time'
   premiere: 'Premiere'
   externalProduction: 'External Production'
