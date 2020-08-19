@@ -8,13 +8,9 @@ use App\Entity\General\Event;
 use App\Entity\General\Reservation;
 use App\Form\General\EventReservationType;
 use App\Form\General\EventType;
-use App\Form\General\ReservationType;
-use App\Repository\General\EventRepository;
 use App\Service\General\EventService;
 use App\Service\General\ReservationService;
 use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Query\QueryException;
 use Exception;
 use Symfony\Component\HttpFoundation\Request;
@@ -238,7 +234,6 @@ class EventController extends AbstractController
         catch (Exception $e) {
             $this->addFlashError($e->getMessage());
         }
-
     }
     /**
      * @Route("/{id}/reservation/{reservationId}", name="general_event_reseravtion_delete", methods={"DELETE"})
