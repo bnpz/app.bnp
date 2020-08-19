@@ -45,5 +45,9 @@
 </nav>
 <div class="clearfix"></div>
 <div class="text-center">
-   {{ (paginator.currentPage - 1) * paginator.pageSize + 1}}-{{ paginator.currentPage * paginator.pageSize}}/{{ paginator.numResults }}
+    {% set lastResult = paginator.currentPage * paginator.pageSize %}
+    {% if lastResult > paginator.numResults  %}
+        {% set lastResult = paginator.numResults %}
+    {% endif %}
+   {{ (paginator.currentPage - 1) * paginator.pageSize + 1}}-{{ lastResult }}/{{ paginator.numResults }}
 </div>
