@@ -30,6 +30,7 @@ label:
   search: "Search"
   searchPlaceholder: "search for... (min. 4 char)"
   submit: "submit"
+  resetFilters: 'Reset Filters'
 entityField:
   company: 'Company'
   firstName: 'First Name'
@@ -51,6 +52,7 @@ entityField:
   time: 'Time'
   premiere: 'Premiere'
   externalProduction: 'External Production'
+  homeProduction: 'Home Production'
   event: 'Event'
   contact: 'Contact'
   reserved: 'Reserved'
