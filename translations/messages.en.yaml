@@ -31,6 +31,9 @@ label:
   searchPlaceholder: "search for... (min. 4 char)"
   submit: "submit"
   resetFilters: 'Reset Filters'
+  users: 'Users'
+  roleAdmin: 'Administrator'
+  roleUser: 'User'
 entityField:
   company: 'Company'
   firstName: 'First Name'
@@ -58,8 +61,13 @@ entityField:
   reserved: 'Reserved'
   confirmed: 'Confirmed'
   note: 'Note'
+  name: 'Name'
+  roles: 'Roles'
+  password: 'Password'
 message:
   reservation:
     success: 'Reservation saved'
     deleted: 'Reservation deleted'
-
+error:
+  user:
+    delete: 'User can not be deleted. Try Deactivate User.'

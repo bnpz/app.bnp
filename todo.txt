@@ -21,7 +21,9 @@ git push to dev
 TODO
 //- menu
 //- dashboard
-- users
+//- users delete
+- change user password
+- deactivatr user
 
 ## make:crud
 - setup templates

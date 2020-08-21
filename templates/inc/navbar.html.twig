@@ -96,12 +96,20 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarUser" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ app.user.name }}
+                    <i class="far fa-user"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarUser">
+                    <span class="dropdown-item-text text-nowrap">
+                        {{ app.user.name }}<br>
+                        <span class="small">{{ app.user.email }}</span>
+                    </span>
+                    <div class="dropdown-divider"></div>
                     {% if is_granted("ROLE_ADMIN") %}
                         <a class="dropdown-item" href="{{ url('app_admin_admin_account') }}">
                             {{ 'label.myAccount'|trans }}
+                        </a>
+                        <a class="dropdown-item" href="{{ path('admin_user_index') }}">
+                            {{ 'label.users'|trans }}
                         </a>
                         <a class="dropdown-item" href="{{ url('app_admin_admin_docs') }}">
                             {{ 'label.documentation'|trans }}

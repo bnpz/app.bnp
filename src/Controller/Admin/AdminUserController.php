@@ -3,10 +3,18 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AbstractController;
+use App\Entity\Base\EntityInterface;
+use App\Entity\User\User;
+use App\Form\Security\RegistrationFormType;
+use App\Form\Security\UserEditType;
 use App\Service\User\UserService;
+use Doctrine\ORM\Query\QueryException;
+use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Class AdminUserController
@@ -17,40 +25,122 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminUserController extends AbstractController
 {
     /**
-     * @Route("", methods={"GET"}, name="admin_user_index")
+     * @Route("", methods={"GET","POST"}, name="admin_user_index", defaults={"page": "1"})
+     * @Route("/page/{page<[1-9]\d*>}", methods={"GET","POST"}, name="admin_user_index_paginated")
+     * @param Request $request
      * @param UserService $userService
+     * @param int $page
      * @return Response
+     * @throws QueryException
      */
-    public function index(UserService $userService)
+    public function index(Request $request, UserService $userService, int $page)
     {
-        //$users = $userService->getRepository()->
-        return $this->render('admin/user/index.html.twig');
+        $paginator = $userService->getAllPaginator(
+            $page,
+            EntityInterface::PAGE_LIMIT,
+            'name',
+            'ASC'
+        );
+        $paginator->setRouteName('admin_user_index_paginated');
+
+        return $this->render('admin/user/index.html.twig', [
+            'users' => $paginator->getResults(),
+            'paginator' => $paginator
+        ]);
     }
 
     /**
-     * @Route("/create", methods={"GET"}, name="admin_user_create")
+     * @Route("/new", name="admin_user_new", methods={"GET","POST"})
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
      * @return Response
      */
-    public function create()
+    public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
-        return $this->render('admin/user/create.html.twig');
+        $user = new User();
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            # todo: send email to user
+
+
+            return $this->redirectToRoute('admin_user_index');
+        }
+
+        return $this->render('admin/user/new.html.twig', [
+            'user' => $user,
+            'form' => $form->createView()
+        ]);
+    }
+    /**
+     * @Route("/{id<[1-9]\d*>}", name="admin_user_show", methods={"GET"})
+     * @param User $user
+     * @return Response
+     */
+    public function show(User $user): Response
+    {
+        return $this->render('admin/user/show.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+
+    /**
+     * @Route("/{id}/edit", name="admin_user_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param User $user
+     * @return Response
+     */
+    public function edit(Request $request, User $user): Response
+    {
+        $form = $this->createForm(UserEditType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('admin_user_show', ['id' => $user->getId()]);
+        }
+
+        return $this->render('admin/user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
-     * @Route("/update", methods={"GET"}, name="admin_user_update")
+     * @Route("/{id}", name="admin_user_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param User $user
      * @return Response
      */
-    public function update()
+    public function delete(Request $request, User $user): Response
     {
-        return $this->render('admin/user/update.html.twig');
-    }
+        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            try{
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($user);
+                $entityManager->flush();
+            }
+            catch (Exception $exception){
+                $this->addFlashError('error.user.delete');
+                return $this->redirectToRoute('admin_user_show', ['id' => $user->getId()]);
+            }
+        }
 
-    /**
-     * @Route("/delete", methods={"GET"}, name="admin_user_delete")
-     * @return Response
-     */
-    public function delete()
-    {
-        return $this->render('admin/user/delete.html.twig');
+        return $this->redirectToRoute('admin_user_index');
     }
 }
