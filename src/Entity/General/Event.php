@@ -230,7 +230,7 @@ class Event implements EntityInterface
     {
         $eventTime = "";
         if($this->time instanceof DateTime){
-            $eventTime = " (".$this->time->format('d.m.Y. H:m').")";
+            $eventTime = " (".$this->time->format('d.m.Y. H.m').")";
         }
         return $this->name. $eventTime;
     }

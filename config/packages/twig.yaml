@@ -5,5 +5,5 @@ twig:
     form_themes: ['bootstrap_4_layout.html.twig']
     exception_controller: null
     date:
-        format: d. m. Y. H:i
+        format: d. m. Y.  H.i
         timezone: Europe/Paris

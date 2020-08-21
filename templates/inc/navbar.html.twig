@@ -34,7 +34,13 @@
             </li>
 
             {# EVENTS #}
-            <li class="nav-item dropdown">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('general_event_index') }}">
+                    {{ 'label.events'|trans }}
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            {#<li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarArchive" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ 'label.events'|trans }}
                 </a>
@@ -53,10 +59,10 @@
                         {{ 'label.new'|trans }}
                     </a>
                 </div>
-            </li>
+            </li>#}
 
             {# RESERAVTIONS #}
-            <li class="nav-item dropdown">
+            {#<li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarArchive" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ 'label.reservations'|trans }}
                 </a>
@@ -69,7 +75,7 @@
                         {{ 'label.new'|trans }}
                     </a>
                 </div>
-            </li>
+            </li>#}
             {# ARHIVA #}
             {#<li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarArchive" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
