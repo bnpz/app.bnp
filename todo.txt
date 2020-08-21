@@ -19,11 +19,8 @@ git push to dev
 *******************************
 *******************************
 TODO
-//- menu
-//- dashboard
-//- users delete
-- change user password
-- deactivatr user
+- deactivate user
+- change user role
 
 ## make:crud
 - setup templates

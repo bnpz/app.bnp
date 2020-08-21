@@ -34,6 +34,8 @@ label:
   users: 'Users'
   roleAdmin: 'Administrator'
   roleUser: 'User'
+  changePassword: 'Change Password'
+  newPassword: 'New Password'
 entityField:
   company: 'Company'
   firstName: 'First Name'
@@ -68,6 +70,8 @@ message:
   reservation:
     success: 'Reservation saved'
     deleted: 'Reservation deleted'
+  password:
+    changed: 'Success. Please logout and login again with new password.'
 error:
   user:
     delete: 'User can not be deleted. Try Deactivate User.'

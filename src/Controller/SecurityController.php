@@ -89,13 +89,4 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new-password", name="app_security_new-password")
-     * @param Request $request
-     * @return Response
-     */
-    public function newPassword(Request $request)
-    {
-        return $this->render('security/new-password.html.twig');
-    }
 }

@@ -104,6 +104,10 @@
                         <span class="small">{{ app.user.email }}</span>
                     </span>
                     <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('user_password', {'id': app.user.id}) }}">
+                            {{ 'label.changePassword'|trans }}
+                        </a>
+                    <div class="dropdown-divider"></div>
                     {% if is_granted("ROLE_ADMIN") %}
                         <a class="dropdown-item" href="{{ url('app_admin_admin_account') }}">
                             {{ 'label.myAccount'|trans }}
