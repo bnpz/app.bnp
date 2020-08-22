@@ -1,20 +1,18 @@
 {% extends "frontend/fullPageLayout.html.twig" %}
 {% block title %}{{ 'label.events'|trans }}{% endblock %}
 {% block full_page %}
-    <div class="row">
-        <div class="col-sm-11">
-            <h1 class="pageTitle">{{ 'label.events'|trans }}</h1>
-        </div>
-        <div class="col-sm-1">
-            <h1>
-                <a class="btn btn-bnp btn-success" href="{{ path('general_event_new') }}">
-                    {{ 'label.new' |trans }}
-                </a>
-            </h1>
-        </div>
-    </div>
+    <h1 class="pageTitle float-left">{{ 'label.events'|trans }}</h1>
+    <h3 class="float-right">
+        {% if filters %}
+        <a class="btn btn-bnp btn-primary" href="{{ path('general_event_clear_filters') }}">
+            {{ 'label.resetFilters'|trans }}
+        </a>
+        {% endif %}
+        {{ include('inc/button.new.html.twig', {'route': 'general_event_new'}) }}
+    </h3>
+    <div class="clearfix"></div>
 
-
+    {{ include('general/event/filters.form.html.twig', {'form': filtersForm}) }}
 
     <table class="table table-striped">
         <thead>

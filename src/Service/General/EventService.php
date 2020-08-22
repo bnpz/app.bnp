@@ -56,4 +56,16 @@ class EventService extends AbstractEntityService
 
         return $paginator->paginate($page);
     }
+
+    /**
+     * @param string $orderBy
+     * @param string $orderDirection
+     * @return int|mixed|string
+     * @throws QueryException
+     */
+    public function getNewEvents($orderBy = "time", $orderDirection = "DESC")
+    {
+        $qb = $this->repository->getAllEventsQueryBuilder($orderBy, $orderDirection, true);
+        return $qb->getQuery()->getResult();
+    }
 }

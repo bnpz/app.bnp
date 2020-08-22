@@ -1,0 +1,52 @@
+{% extends 'frontend/leftLayout.html.twig' %}
+{% block title %}{{ 'label.users'|trans }}{% endblock %}
+{% block leftColumn %}
+    {{ parent() }}
+        <h1 class="pageTitle text-right">{{ user.name }}</h1>
+{% endblock %}
+{% block rightColumn %}
+    {{ parent() }}
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>{{ 'entityField.email' |trans }}</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'entityField.phone' |trans }}</th>
+                <td>{{ user.phone }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'entityField.address' |trans }}</th>
+                <td>{{ user.address }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'entityField.address' |trans }}</th>
+                <td>{{ user.address }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'entityField.roles' |trans }}</th>
+                <td>{{ user.isAdmin ? 'label.roleAdmin'|trans : 'label.roleUser'|trans }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <ul class="list-inline">
+        <li class="list-inline-item">
+            {{ include('inc/button.index.html.twig',{'route': 'admin_user_index', 'label': 'label.users' |trans}) }}
+        </li>
+        {% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
+        <li class="list-inline-item">
+            {{ include('inc/button.edit.html.twig', {'route': 'admin_user_edit', 'id': user.id}) }}
+        </li>
+        <li class="list-inline-item">
+            {{ include('inc/button.delete.html.twig', {'route': 'admin_user_delete', 'id': user.id}) }}
+        </li>
+        {% endif %}
+    </ul>
+
+
+{% endblock %}
+

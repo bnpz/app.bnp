@@ -1,9 +1,44 @@
-{% extends "admin/base.html.twig" %}
-{% block title %}Korisnici{% endblock %}
-{% block body %}
-    <h2>Korisnici</h2>
-    <hr>
+{% extends 'frontend/leftLayout.html.twig' %}
 
-    <p>templates\admin\Users\index.html.twig</p>
+{% block title %}{{ 'label.users'|trans }}{% endblock %}
+{% block leftColumn %}
+    {{ parent() }}
+    <h1><i class="fas fa-users fa-2x"></i></h1>
+{% endblock %}
+{% block rightColumn %}
+    {{ parent() }}
 
+    <h1 class="pageTitle float-left">{{ 'label.users'|trans }}</h1>
+    <h3 class="float-right">
+        {{ include('inc/button.new.html.twig', {'route': 'admin_user_new'}) }}
+    </h3>
+    <div class="clearfix"></div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ 'entityField.name'|trans }}</th>
+            <th>{{ 'entityField.email'|trans }}</th>
+            <th>{{ 'entityField.phone'|trans }}</th>
+            <th>{{ 'entityField.roles'|trans }} </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><a href="{{ path('admin_user_show', {'id': user.id}) }}">{{ user.name }}</a></td>
+                <td><a href="{{ path('admin_user_show', {'id': user.id}) }}">{{ user.email }}</a></td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.isAdmin ? 'label.roleAdmin'|trans : 'label.roleUser'|trans }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">{{ 'label.noRecords'|trans }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if paginator.hasToPaginate %}
+        {{ include('inc/paginator.html.twig') }}
+    {% endif %}
 {% endblock %}

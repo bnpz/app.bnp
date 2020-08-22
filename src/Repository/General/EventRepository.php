@@ -7,6 +7,7 @@ use App\Util\Paginator;
 use DateTime;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Query\QueryException;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * Class EventRepository
@@ -24,6 +25,32 @@ class EventRepository extends AbstractEntityRepository
     }
 
     /**
+     * @param string $orderBy
+     * @param string $orderDirection
+     * @param bool $newOnly
+     * @param bool $oldOnly
+     * @return QueryBuilder
+     * @throws QueryException
+     */
+    public function getAllEventsQueryBuilder($orderBy = "time", $orderDirection = "DESC", $newOnly = false, $oldOnly = false)
+    {
+        $criteria = Criteria::create();
+        if($newOnly){
+            $criteria->andWhere($criteria::expr()->gte('time', new DateTime('now')));
+        }
+        elseif ($oldOnly){
+            $criteria->andWhere($criteria::expr()->lt('time', new DateTime('now')));
+        }
+
+        $criteria->orderBy([$orderBy => $orderDirection]);
+
+        $queryBuilder = $this->_em->createQueryBuilder();
+        $queryBuilder->select('entity')->from($this->_entityName, 'entity');
+        $queryBuilder->addCriteria($criteria);
+
+        return $queryBuilder;
+    }
+    /**
      * @param int $limit
      * @param string $orderBy
      * @param string $orderDirection
@@ -32,16 +59,7 @@ class EventRepository extends AbstractEntityRepository
      */
     public function getNewPaginator($limit = 10, $orderBy = "time", $orderDirection = "DESC"): Paginator
     {
-
-        $criteria = Criteria::create();
-        $criteria->andWhere($criteria::expr()->gt('time', new DateTime('now')));
-        $criteria->orderBy([$orderBy => $orderDirection]);
-
-        $queryBuilder = $this->_em->createQueryBuilder();
-        $queryBuilder->select('entity')->from($this->_entityName, 'entity');
-        $queryBuilder->addCriteria($criteria);
-
-        return new Paginator($queryBuilder, $limit);
+        return new Paginator($this->getAllEventsQueryBuilder($orderBy, $orderDirection, true), $limit);
     }
 
     /**
@@ -53,14 +71,6 @@ class EventRepository extends AbstractEntityRepository
      */
     public function getOldPaginator($limit = 10, $orderBy = "time", $orderDirection = "DESC"): Paginator
     {
-        $criteria = Criteria::create();
-        $criteria->andWhere($criteria::expr()->lt('time', new DateTime('now')));
-        $criteria->orderBy([$orderBy => $orderDirection]);
-
-        $queryBuilder = $this->_em->createQueryBuilder();
-        $queryBuilder->select('entity')->from($this->_entityName, 'entity');
-        $queryBuilder->addCriteria($criteria);
-
-        return new Paginator($queryBuilder, $limit);
+        return new Paginator($this->getAllEventsQueryBuilder($orderBy, $orderDirection, false, true), $limit);
     }
 }

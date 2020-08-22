@@ -141,9 +141,7 @@ abstract class AbstractEntityService implements IDecoratable
      */
     public function getAllPaginator($page = 1, $limit = 10, $orderBy = "createdAt", $orderDirection = "DESC")
     {
-        $paginator = $this->repository->getAllPaginator($limit, $orderBy, $orderDirection);
-
-        return $paginator->paginate($page);
+        return $this->repository->getAllPaginator($page, $limit, $orderBy, $orderDirection);
     }
 
     /**
@@ -158,9 +156,7 @@ abstract class AbstractEntityService implements IDecoratable
      */
     public function search($query = "", $page = 1, $limit = 10, $orderBy = "createdAt", $orderDirection = "DESC")
     {
-        $paginator = $this->repository->getSearchPaginator($query, $limit, $orderBy, $orderDirection);
-
-        return $paginator->paginate($page);
+        return $this->repository->getSearchPaginator($page, $query, $limit, $orderBy, $orderDirection);
     }
 
     /**
@@ -168,15 +164,24 @@ abstract class AbstractEntityService implements IDecoratable
      */
     public function setFiltersToSession($filters = [])
     {
-        $this->session->set($this->getEntityClassNameKey(), $filters);
+        $allFilters = $this->session->get('filters', []);
+        $allFilters[$this->getEntityClassNameKey()] = $filters;
+        $this->session->set('filters', $allFilters);
     }
 
     /**
-     * @return mixed
+     * @return array|mixed
      */
     public function getFiltersFromSession()
     {
-        return $this->session->get($this->getEntityClassNameKey(), []);
+        $allFilters = $this->session->get('filters', []);
+        if(!isset($allFilters[$this->getEntityClassNameKey()])){
+            $filters = [];
+        }
+        else{
+            $filters = $allFilters[$this->getEntityClassNameKey()];
+        }
+        return $filters;
     }
 
     /**
@@ -184,7 +189,11 @@ abstract class AbstractEntityService implements IDecoratable
      */
     public function clearFiltersFromSession()
     {
-        $this->session->remove($this->getEntityClassNameKey());
+        $allFilters = $this->session->get('filters', []);
+        if(isset($allFilters[$this->getEntityClassNameKey()])){
+            unset($allFilters[$this->getEntityClassNameKey()]);
+        }
+        $this->session->set('filters', $allFilters);
     }
     /**
      * @return string
@@ -192,5 +201,19 @@ abstract class AbstractEntityService implements IDecoratable
     public function getEntityClassNameKey()
     {
         return strtolower(str_replace('\\', ".", $this->getEntityClassName()));
+    }
+
+    /**
+     * @param array $filters
+     * @param int $page
+     * @param int $limit
+     * @param string $orderBy
+     * @param string $orderDirection
+     * @return Paginator
+     * @throws QueryException
+     */
+    public function getFilterPaginator($filters = [], $page = 1, $limit = 10, $orderBy = "createdAt", $orderDirection = "DESC")
+    {
+        return $this->repository->getFilterPaginator($filters, $page, $limit, $orderBy, $orderDirection);
     }
 }

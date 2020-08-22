@@ -19,12 +19,8 @@ git push to dev
 *******************************
 *******************************
 TODO
-- serach events
-//- select event filter
-//- delete orphan
-- menu
-//- event stat
-//- confirmed must me less than reserved
+- deactivate user
+- change user role
 
 ## make:crud
 - setup templates

@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -37,15 +38,17 @@ class UserService extends AbstractEntityService
      * @param ValidatorInterface $validator
      * @param Security $security
      * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param SessionInterface $session
      */
     public function __construct(
         ManagerRegistry $managerRegistry,
         ValidatorInterface $validator,
         Security $security,
-        UserPasswordEncoderInterface $passwordEncoder
+        UserPasswordEncoderInterface $passwordEncoder,
+        SessionInterface $session
     )
     {
-        parent::__construct($managerRegistry, $validator);
+        parent::__construct($managerRegistry, $validator, $session);
 
         $this->security = $security;
         $this->passwordEncoder = $passwordEncoder;

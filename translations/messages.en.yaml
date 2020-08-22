@@ -30,6 +30,12 @@ label:
   search: "Search"
   searchPlaceholder: "search for... (min. 4 char)"
   submit: "submit"
+  resetFilters: 'Reset Filters'
+  users: 'Users'
+  roleAdmin: 'Administrator'
+  roleUser: 'User'
+  changePassword: 'Change Password'
+  newPassword: 'New Password'
 entityField:
   company: 'Company'
   firstName: 'First Name'
@@ -51,13 +57,21 @@ entityField:
   time: 'Time'
   premiere: 'Premiere'
   externalProduction: 'External Production'
+  homeProduction: 'Home Production'
   event: 'Event'
   contact: 'Contact'
   reserved: 'Reserved'
   confirmed: 'Confirmed'
   note: 'Note'
+  name: 'Name'
+  roles: 'Roles'
+  password: 'Password'
 message:
   reservation:
     success: 'Reservation saved'
     deleted: 'Reservation deleted'
-
+  password:
+    changed: 'Success. Please logout and login again with new password.'
+error:
+  user:
+    delete: 'User can not be deleted. Try Deactivate User.'
