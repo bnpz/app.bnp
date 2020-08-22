@@ -45,6 +45,13 @@
             {{ include('inc/button.delete.html.twig', {'route': 'admin_user_delete', 'id': user.id}) }}
         </li>
         {% endif %}
+        {% if is_granted("ROLE_ADMIN") %}
+            <li class="list-inline-item">
+                <a class="btn btn-lg btn-bnp btn-outline-warning" href="{{ path('admin_user_password', {'id': user.id}) }}">
+                    {{ 'label.changePassword' |trans }}
+                </a>
+            </li>
+        {% endif %}
     </ul>
 
 

@@ -7,6 +7,7 @@ use App\Entity\Base\EntityInterface;
 use App\Entity\User\User;
 use App\Form\Security\RegistrationFormType;
 use App\Form\Security\UserEditType;
+use App\Form\Security\UserNewPasswordType;
 use App\Service\User\UserService;
 use Doctrine\ORM\Query\QueryException;
 use Exception;
@@ -142,5 +143,42 @@ class AdminUserController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_user_index');
+    }
+
+    /**
+     * @Route("/{id}/password", name="admin_user_password", methods={"GET","POST"})
+     * @param Request $request
+     * @param User $user
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return Response
+     */
+    public function password(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder) : Response
+    {
+
+        $form = $this->createForm(UserNewPasswordType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlashSuccess('message.password.changedByAdmin');
+
+            return $this->redirectToRoute('admin_user_show', ['id' => $user->getId()]);
+        }
+
+        return $this->render('user/password.html.twig',[
+            'user' => $user,
+            'form' => $form->createView()
+        ]);
     }
 }

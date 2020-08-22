@@ -72,6 +72,7 @@ message:
     deleted: 'Reservation deleted'
   password:
     changed: 'Success. Please logout and login again with new password.'
+    changedByAdmin: 'Password changed.'
 error:
   user:
     delete: 'User can not be deleted. Try Deactivate User.'
