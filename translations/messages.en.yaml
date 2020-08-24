@@ -36,6 +36,8 @@ label:
   roleUser: 'User'
   changePassword: 'Change Password'
   newPassword: 'New Password'
+  login: 'Login'
+  rememberMe: 'Remember me'
 entityField:
   company: 'Company'
   firstName: 'First Name'
