@@ -60,7 +60,7 @@ abstract class AbstractController extends SymfonyAbstractController
             ->add('query', TextType::class, [
                 'required' => false,
                 'label' => false,
-                'attr' => ['minlength' => 3, 'placeholder' => "label.searchPlaceholder"]
+                'attr' => ['minlength' => 4, 'placeholder' => "label.searchPlaceholder"]
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
