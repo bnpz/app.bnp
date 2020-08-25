@@ -1,0 +1,80 @@
+paginator:
+  previous: prethodna
+  next: slijedeća
+  current: trenutna
+label:
+  myAccount: 'Moj račun'
+  documentation: 'Documentacija'
+  homePage: 'Početna'
+  new: 'Novi'
+  edit: 'Uredi'
+  delete: 'Izbriši'
+  save: 'Sačuvaj'
+  logout: 'Odjava'
+  contacts: 'Kontakti'
+  addressBook: 'Adresar'
+  events: 'Programi'
+  allEvents: 'Svi programi'
+  newEvents: 'Predstojeći programi'
+  oldEvents: 'Stari programi'
+  actions: '#'
+  deleteQuestion: 'Jeste li sigurni da želite brisati?'
+  allData: 'Svi podaci'
+  noRecords: 'Nema rezultata'
+  yes: 'Da'
+  no: 'Ne'
+  reservations: 'Rezervacije'
+  allReservations: 'Sve rezervacije'
+  reservationDate: 'Datum rezervacije'
+  choose: "izaberi"
+  search: "Pretraga"
+  searchPlaceholder: "traži... (min. 4 karaktera)"
+  submit: "pošalji"
+  resetFilters: 'Ukloni filtere'
+  users: 'Korisnici'
+  roleAdmin: 'Administrator'
+  roleUser: 'Korisnik'
+  changePassword: 'Promijeni lozinku'
+  newPassword: 'Nova lozinka'
+  login: 'Prijava'
+  rememberMe: 'Zapamti me'
+entityField:
+  company: 'Ustanova/Firma'
+  firstName: 'Ime'
+  lastName: 'Prezime'
+  email: 'Email'
+  phone: 'Telefon'
+  mobile: 'Mobitel'
+  address: 'Adresa'
+  postNumber: 'Poštanski broj'
+  city: 'Grad'
+  country: 'Država'
+  createdAt: 'Kreirano'
+  updatedAt: 'Uređeno'
+  createdBy: 'Kreirao'
+  updatedBy: 'Uredio'
+  eventName: 'Naslov'
+  production: 'Produkcija'
+  description: 'Opis'
+  time: 'Vrijeme'
+  premiere: 'Premijera'
+  externalProduction: 'Vanjska produkcija'
+  homeProduction: 'BNP produkcija'
+  event: 'Program'
+  contact: 'Kontakt'
+  reserved: 'Rezervisano'
+  confirmed: 'Potvrđeno'
+  note: 'Napomena'
+  name: 'Ime'
+  roles: 'Nivo pristupa'
+  password: 'Lozinka'
+message:
+  reservation:
+    success: 'Reservacija je sačuvana'
+    deleted: 'Reservacija je izbrisana'
+  password:
+    changed: 'Uspješno ste promijenili lozinku. Molimo Vas da se odjavite i ponovo prijavite sa novom lozinkom.'
+    changedByAdmin: 'Lozinka je promijenjena.'
+error:
+  user:
+    delete: 'Korisnika je nemoguće izbrisati. Probajte ga deaktivirati.'
