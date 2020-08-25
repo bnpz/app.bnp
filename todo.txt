@@ -6,7 +6,7 @@ composer recipes:install symfony/framework-bundle --force
 composer update
 composer dump-autoload
 php bin/console redis:flushdb
-    php bin/console cache:clear
+php bin/console cache:clear
 php bin/console doctrine:migrations:diff
 php bin/console doctrine:migrations:migrate
 
