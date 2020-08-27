@@ -1,0 +1,2 @@
+# Disable directory and files listing in browser
+Options -Indexes
