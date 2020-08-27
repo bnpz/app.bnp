@@ -44,6 +44,12 @@ class EventFiltersType extends AbstractType
         else{
             $homeProductionValue = false;
         }
+        if(isset($filters['canceled'])){
+            $canceledValue = (bool)$filters['canceled'];
+        }
+        else{
+            $canceledValue = false;
+        }
 
         $builder
             ->add('premiere', null, [
@@ -59,6 +65,11 @@ class EventFiltersType extends AbstractType
             ->add('externalProduction', null, [
                 'label' => "entityField.externalProduction",
                 'data' => $externalProductionValue
+            ])
+            ->add('canceled', null, [
+                'label' => "entityField.canceled",
+                'data' => $canceledValue
+
             ])
            /* ->add('submit', SubmitType::class, [
                 'attr' => [

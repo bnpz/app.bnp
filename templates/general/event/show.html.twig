@@ -29,6 +29,10 @@
             <td>{{ event.externalProduction ? 'label.yes'|trans : 'label.no'|trans }}</td>
         </tr>
         <tr>
+            <th>{{ 'entityField.canceled' |trans }}</th>
+            <td>{{ event.canceled ? 'label.yes'|trans : 'label.no'|trans }}</td>
+        </tr>
+        <tr>
             <th>{{ 'entityField.note' |trans }}</th>
             <td>{{ event.note }}</td>
         </tr>

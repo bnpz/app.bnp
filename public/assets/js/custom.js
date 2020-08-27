@@ -13,4 +13,7 @@ $('input#event_filters_externalProduction').on('change', function() {
 $('input#event_filters_premiere').on('change', function() {
     $(this).closest('form').submit();
 });
+$('input#event_filters_canceled').on('change', function() {
+    $(this).closest('form').submit();
+});
 

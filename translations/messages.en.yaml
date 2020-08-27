@@ -68,6 +68,7 @@ entityField:
   name: 'Name'
   roles: 'Roles'
   password: 'Password'
+  canceled: 'Canceled'
 message:
   reservation:
     success: 'Reservation saved'

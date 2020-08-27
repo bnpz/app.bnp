@@ -68,6 +68,7 @@ entityField:
   name: 'Ime'
   roles: 'Nivo pristupa'
   password: 'Lozinka'
+  canceled: 'Otkazano'
 message:
   reservation:
     success: 'Reservacija je sačuvana'

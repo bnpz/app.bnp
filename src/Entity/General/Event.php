@@ -68,6 +68,13 @@ class Event implements EntityInterface
     private $externalProduction;
 
     /**
+     * @ORM\Column(name="canceled", type="boolean", nullable=false, options={"default":false})
+     * @Groups({"create", "update", "event_listing", "event_full"})
+     * @SWG\Property(property="canceled", type="boolean")
+     */
+    private $canceled;
+
+    /**
      * @ORM\Column(name="note", type="text", nullable=true)
      * @Groups({"create", "update", "event_listing", "event_full"})
      * @SWG\Property(property="note", type="string")
@@ -194,6 +201,24 @@ class Event implements EntityInterface
     public function setExternalProduction($externalProduction)
     {
         $this->externalProduction = $externalProduction;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCanceled()
+    {
+        return $this->canceled;
+    }
+
+    /**
+     * @param mixed $canceled
+     * @return Event
+     */
+    public function setCanceled($canceled)
+    {
+        $this->canceled = $canceled;
         return $this;
     }
 

@@ -43,6 +43,9 @@
                     {{ 'entityField.externalProduction'|trans }}
                 </a>
             </th>
+            <th class="text-center">
+                {{ 'entityField.canceled'|trans }}
+            </th>
             {#<th></th>#}
         </tr>
         </thead>
@@ -55,6 +58,7 @@
                 <td>{{ event.time ? event.time|date() : ''}}</td>
                 <td class="text-center">{{ event.premiere ? 'label.yes'|trans }}</td>
                 <td class="text-center">{{ event.externalProduction ? 'label.yes'|trans }}</td>
+                <td class="text-center">{{ event.canceled ? 'label.yes'|trans }}</td>
                 {#<td class="text-center">
                     {{ include('inc/show.edit.links.html.twig',
                         {
