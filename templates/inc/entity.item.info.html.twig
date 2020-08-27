@@ -1,10 +1,5 @@
 <p class="small">
-    {{ 'entityField.createdAt' |trans }}: {{ entity.createdAt ? entity.createdAt|date() : '' }}
+    {{ 'entityField.createdBy' |trans }}: {{ entity.createdBy ? entity.createdBy.name : '' }} ({{ entity.createdAt ? entity.createdAt|date() : '' }})
     |
-    {{ 'entityField.updatedAt' |trans }}: {{ entity.updatedAt ? entity.updatedAt|date() : '' }}
-    |
-    {{ 'entityField.createdBy' |trans }}: {{ entity.createdBy ? entity.createdBy.name : '' }}
-    |
-    {{ 'entityField.updatedBy' |trans }}: {{ entity.updatedBy ? entity.updatedBy.name : '' }}
+    {{ 'entityField.updatedBy' |trans }}: {{ entity.updatedBy ? entity.updatedBy.name : '' }} ({{ entity.updatedAt ? entity.updatedAt|date() : '' }})
 </p>
-
