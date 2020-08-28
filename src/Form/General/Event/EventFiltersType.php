@@ -99,11 +99,7 @@ class EventFiltersType extends AbstractType
                 'label' => "entityField.externalProduction",
                 'data' => $externalProductionValue
             ])
-            ->add('canceled', null, [
-                'label' => "entityField.canceled",
-                'data' => $canceledValue
 
-            ])
             ->add('guesting', null, [
                 'label' => "entityField.guesting",
                 'data' => $guestingValue
@@ -112,10 +108,14 @@ class EventFiltersType extends AbstractType
                 'label' => "entityField.festival",
                 'data' => $festivalValue
             ])
+            ->add('canceled', null, [
+                'label' => "entityField.canceled",
+                'data' => $canceledValue
+            ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
                     'hidden' => false,
-                    'class' => 'btn btn-outline-info'
+                    'class' => 'btn bt-lg btn-bnp btn-info'
                 ],
                 'label' => 'label.applyFilters'
 

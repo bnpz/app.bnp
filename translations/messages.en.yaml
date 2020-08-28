@@ -40,7 +40,8 @@ label:
   rememberMe: 'Remember me'
   from: 'From'
   to: 'To'
-  applyFilters: Apply Filters
+  applyFilters: 'Apply Filters'
+  cancel: 'Cancel'
 entityField:
   company: 'Company'
   firstName: 'First Name'

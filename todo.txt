@@ -21,6 +21,8 @@ git push to dev
 TODO
 - deactivate user
 - change user role
+- date filters
+- email notif
 
 ## make:crud
 - setup templates

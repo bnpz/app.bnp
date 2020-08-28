@@ -99,10 +99,13 @@ class EventRepository extends AbstractEntityRepository
                 }
             }
 
+            $criteria->orderBy([$orderBy => $orderDirection]);
+
             if(isset($filters['fromDate'])){
                 $fromDate = new DateTime($filters['fromDate']);
                 $fromDate->setTime(0,0);
                 $criteria->andWhere($criteria::expr()->gte('time', $fromDate));
+                $criteria->orderBy(['time' => 'ASC']);
             }
             if(isset($filters['toDate'])){
                 $toDate = new DateTime($filters['toDate']);
@@ -113,7 +116,7 @@ class EventRepository extends AbstractEntityRepository
             $queryBuilder = $this->_em->createQueryBuilder();
             $queryBuilder->select('entity')->from($this->_entityName, 'entity');
 
-            $criteria->orderBy([$orderBy => $orderDirection]);
+
 
             $queryBuilder->addCriteria($criteria);
 

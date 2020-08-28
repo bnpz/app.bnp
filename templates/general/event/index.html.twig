@@ -3,16 +3,46 @@
 {% block full_page %}
     <h1 class="pageTitle float-left">{{ 'label.events'|trans }}</h1>
     <h3 class="float-right">
-        {% if filters %}
-        <a class="btn btn-bnp btn-primary" href="{{ path('general_event_clear_filters') }}">
-            {{ 'label.resetFilters'|trans }}
-        </a>
-        {% endif %}
         {{ include('inc/button.new.html.twig', {'route': 'general_event_new'}) }}
     </h3>
+
     <div class="clearfix"></div>
 
-    {{ include('general/event/filters.form.html.twig', {'form': filtersForm}) }}
+    <!-- Filters modal -->
+    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#eventFiltersModal">
+        {{ 'label.applyFilters'|trans }}
+    </button>
+    {% if filters %}
+        <a class="btn btn-outline-secondary" href="{{ path('general_event_clear_filters') }}">
+            {{ 'label.resetFilters'|trans }}
+        </a>
+    {% endif %}
+
+    <!-- Modal -->
+    <div class="modal fade" id="eventFiltersModal" tabindex="-1" role="dialog" aria-labelledby="eventFiltersModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="eventFiltersModalTitle">{{ 'label.events'|trans }}</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ include('general/event/filters.form.html.twig', {'form': filtersForm}) }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                        {{ 'label.cancel'|trans }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    {#{{ include('general/event/filters.form.html.twig', {'form': filtersForm}) }}#}
 
     <table class="table table-striped">
         <thead>

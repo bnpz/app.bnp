@@ -40,7 +40,8 @@ label:
   rememberMe: 'Zapamti me'
   from: 'Od'
   to: 'Do'
-  applyFilters: Filtriraj
+  applyFilters: 'Filtriraj'
+  cancel: 'Otkaži'
 entityField:
   company: 'Ustanova/Firma'
   firstName: 'Ime'
