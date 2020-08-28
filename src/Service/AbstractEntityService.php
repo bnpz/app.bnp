@@ -109,7 +109,7 @@ abstract class AbstractEntityService implements IDecoratable
         }
         else{
             $this->entityManager->persist($entity);
-            $this->entityManager->flush($entity);
+            $this->entityManager->flush();
             $this->entityManager->refresh($entity);
 
             return $entity;
