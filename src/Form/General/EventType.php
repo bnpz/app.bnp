@@ -30,7 +30,10 @@ class EventType extends AbstractType
             ->add('premiere', null, ['label' => "entityField.premiere"])
             ->add('externalProduction', null, ['label' => "entityField.externalProduction"])
             ->add('canceled', null, ['label' => "entityField.canceled"])
+            ->add('guestingTitle', null, ['label' => "entityField.guestingTitle"])
+            ->add('festivalTitle', null, ['label' => "entityField.festivalTitle"])
             ->add('note', null, ['label' => "entityField.note"])
+
 
         ;
     }

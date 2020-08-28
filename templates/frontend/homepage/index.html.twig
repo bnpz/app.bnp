@@ -13,6 +13,8 @@
         <tr>
             <th>{{ 'entityField.time'|trans }}</th>
             <th>{{ 'entityField.eventName'|trans }}</th>
+            <th>{{ 'entityField.guestingTitle'|trans }}</th>
+            <th>{{ 'entityField.festivalTitle'|trans }}</th>
             <th class="text-center">{{ 'entityField.premiere'|trans }} </th>
             <th class="text-center">{{ 'entityField.externalProduction'|trans }}</th>
             <th class="text-center">{{ 'entityField.canceled'|trans }}</th>
@@ -23,6 +25,8 @@
             <tr {% if event.premiere %} class="event-premiere" {% endif %}>
                 <td>{{ event.time ? event.time|date() : ''}}</td>
                 <td><a href="{{ path('general_event_show', {'id': event.id}) }}">{{ event.name }}</a></td>
+                <td>{{ event.guestingTitle }}</td>
+                <td>{{ event.festivalTitle }}</td>
                 <td class="text-center">{{ event.premiere ? 'label.yes'|trans }}</td>
                 <td class="text-center">{{ event.externalProduction ? 'label.yes'|trans }}</td>
                 <td class="text-center">{{ event.canceled ? 'label.yes'|trans }}</td>

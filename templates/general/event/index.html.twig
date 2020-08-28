@@ -33,6 +33,12 @@
                     {{ 'entityField.time'|trans }}
                 </a>
             </th>
+            <th>
+                {{ 'entityField.guestingTitle'|trans }}
+            </th>
+            <th>
+                {{ 'entityField.festivalTitle'|trans }}
+            </th>
             <th class="text-center">
                 <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'premiere', 'orderDirection': 'desc'}) }}">
                     {{ 'entityField.premiere'|trans }}
@@ -56,6 +62,8 @@
                 <td><a href="{{ path('general_event_show', {'id': event.id}) }}">{{ event.name }}</a></td>
                 <td>{{ event.description }}</td>
                 <td>{{ event.time ? event.time|date() : ''}}</td>
+                <td>{{ event.guestingTitle }}</td>
+                <td>{{ event.festivalTitle }}</td>
                 <td class="text-center">{{ event.premiere ? 'label.yes'|trans }}</td>
                 <td class="text-center">{{ event.externalProduction ? 'label.yes'|trans }}</td>
                 <td class="text-center">{{ event.canceled ? 'label.yes'|trans }}</td>

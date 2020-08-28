@@ -16,4 +16,10 @@ $('input#event_filters_premiere').on('change', function() {
 $('input#event_filters_canceled').on('change', function() {
     $(this).closest('form').submit();
 });
+$('input#event_filters_guesting').on('change', function() {
+    $(this).closest('form').submit();
+});
+$('input#event_filters_festival').on('change', function() {
+    $(this).closest('form').submit();
+});
 

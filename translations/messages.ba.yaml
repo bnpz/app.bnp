@@ -69,6 +69,10 @@ entityField:
   roles: 'Nivo pristupa'
   password: 'Lozinka'
   canceled: 'Otkazano'
+  guesting: 'Gostovanje'
+  guestingTitle: 'Opis gostovanja'
+  festival: 'Festival'
+  festivalTitle: 'Naziv festivala'
 message:
   reservation:
     success: 'Reservacija je sačuvana'

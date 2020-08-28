@@ -18,6 +18,7 @@ use Swagger\Annotations as SWG;
  * @ORM\Table(name="events")
  * @ORM\Entity(repositoryClass="App\Repository\General\EventRepository")
  * @ORM\EntityListeners({"App\EventListener\BaseEntityListener"})
+ * @ORM\HasLifecycleCallbacks()
  */
 class Event implements EntityInterface
 {
@@ -73,6 +74,34 @@ class Event implements EntityInterface
      * @SWG\Property(property="canceled", type="boolean")
      */
     private $canceled;
+
+    /**
+     * @ORM\Column(name="guesting", type="boolean", nullable=false, options={"default":false})
+     * @Groups({"create", "update", "event_listing", "event_full"})
+     * @SWG\Property(property="guesting", type="boolean")
+     */
+    private $guesting;
+
+    /**
+     * @ORM\Column(name="guestingTitle", type="string", nullable=true)
+     * @Groups({"create", "update", "event_listing", "event_full"})
+     * @SWG\Property(property="guestingTitle", type="string")
+     */
+    private $guestingTitle;
+
+    /**
+     * @ORM\Column(name="festival", type="boolean", nullable=false, options={"default":false})
+     * @Groups({"create", "update", "event_listing", "event_full"})
+     * @SWG\Property(property="festival", type="boolean")
+     */
+    private $festival;
+
+    /**
+     * @ORM\Column(name="festivalTitle", type="string", nullable=true)
+     * @Groups({"create", "update", "event_listing", "event_full"})
+     * @SWG\Property(property="festivalTitle", type="string")
+     */
+    private $festivalTitle;
 
     /**
      * @ORM\Column(name="note", type="text", nullable=true)
@@ -225,6 +254,79 @@ class Event implements EntityInterface
     /**
      * @return mixed
      */
+    public function getGuesting()
+    {
+        return $this->guesting;
+    }
+
+    /**
+     * @param mixed $guesting
+     * @return Event
+     */
+    public function setGuesting($guesting)
+    {
+        $this->guesting = $guesting;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGuestingTitle()
+    {
+        return $this->guestingTitle;
+    }
+
+    /**
+     * @param mixed $guestingTitle
+     * @return Event
+     */
+    public function setGuestingTitle($guestingTitle)
+    {
+        $this->guestingTitle = $guestingTitle;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFestival()
+    {
+        return $this->festival;
+    }
+
+    /**
+     * @param mixed $festival
+     * @return Event
+     */
+    public function setFestival($festival)
+    {
+        $this->festival = $festival;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFestivalTitle()
+    {
+        return $this->festivalTitle;
+    }
+
+    /**
+     * @param mixed $festivalTitle
+     * @return Event
+     */
+    public function setFestivalTitle($festivalTitle)
+    {
+        $this->festivalTitle = $festivalTitle;
+        return $this;
+    }
+
+
+    /**
+     * @return mixed
+     */
     public function getNote()
     {
         return $this->note;
@@ -266,5 +368,24 @@ class Event implements EntityInterface
     public function getNameWithDate()
     {
         return $this->__toString();
+    }
+
+    /**
+     * @ORM\PreFlush()
+     */
+    public function autoSetGuestingAndFestivalValues()
+    {
+        if(trim($this->guestingTitle)){
+            $this->guesting = true;
+        }
+        else{
+            $this->guesting = false;
+        }
+        if(trim($this->festivalTitle)){
+            $this->festival = true;
+        }
+        else{
+            $this->festival = false;
+        }
     }
 }

@@ -69,6 +69,10 @@ entityField:
   roles: 'Roles'
   password: 'Password'
   canceled: 'Canceled'
+  guesting: 'Guesting'
+  guestingTitle: 'Guesting Title'
+  festival: 'Festival'
+  festivalTitle: 'Festival Title'
 message:
   reservation:
     success: 'Reservation saved'

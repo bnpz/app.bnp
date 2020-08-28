@@ -50,6 +50,18 @@ class EventFiltersType extends AbstractType
         else{
             $canceledValue = false;
         }
+        if(isset($filters['guesting'])) {
+            $guestingValue = true;
+        }
+        else {
+            $guestingValue = false;
+        }
+        if(isset($filters['festival'])) {
+            $festivalValue = true;
+        }
+        else {
+            $festivalValue = false;
+        }
 
         $builder
             ->add('premiere', null, [
@@ -70,6 +82,14 @@ class EventFiltersType extends AbstractType
                 'label' => "entityField.canceled",
                 'data' => $canceledValue
 
+            ])
+            ->add('guesting', null, [
+                'label' => "entityField.guesting",
+                'data' => $guestingValue
+            ])
+            ->add('festival', null, [
+                'label' => "entityField.festival",
+                'data' => $festivalValue
             ])
            /* ->add('submit', SubmitType::class, [
                 'attr' => [
