@@ -73,4 +73,55 @@ class EventRepository extends AbstractEntityRepository
     {
         return new Paginator($this->getAllEventsQueryBuilder($orderBy, $orderDirection, false, true), $limit);
     }
+
+    public function getFilterPaginator($filters = [], $page = 1, $limit = 10, $orderBy = "createdAt", $orderDirection = "DESC")
+    {
+        if(is_array($filters) and !empty($filters)){
+            $metadata = $this->_em->getClassMetadata($this->_entityName);
+            $fieldNames = $metadata->getFieldNames();
+
+            $criteria = Criteria::create();
+
+            foreach ($filters as $filterName => $filterValue) {
+                if(in_array($filterName, $fieldNames)){
+                    if($metadata->getTypeOfField($filterName) == "datetime"){
+                        $fromDate = new DateTime($filterValue);
+                        $fromDate->setTime(0,0);
+                        $toDate = new DateTime($filterValue);
+                        $toDate->setTime(23, 59);
+
+                        $criteria->andWhere($criteria::expr()->gte($filterName, $fromDate));
+                        $criteria->andWhere($criteria::expr()->lte($filterName, $toDate));
+                    }
+                    else{
+                        $criteria->andWhere($criteria::expr()->eq($filterName, $filterValue));
+                    }
+                }
+            }
+
+            if(isset($filters['fromDate'])){
+                $fromDate = new DateTime($filters['fromDate']);
+                $fromDate->setTime(0,0);
+                $criteria->andWhere($criteria::expr()->gte('time', $fromDate));
+            }
+            if(isset($filters['toDate'])){
+                $toDate = new DateTime($filters['toDate']);
+                $toDate->setTime(23, 59);
+                $criteria->andWhere($criteria::expr()->lte('time', $toDate));
+            }
+
+            $queryBuilder = $this->_em->createQueryBuilder();
+            $queryBuilder->select('entity')->from($this->_entityName, 'entity');
+
+            $criteria->orderBy([$orderBy => $orderDirection]);
+
+            $queryBuilder->addCriteria($criteria);
+
+            $paginator = new Paginator($queryBuilder, $limit);
+            return $paginator->paginate($page);
+        }
+        else{
+            return $this->getAllPaginator($page, $limit, $orderBy, $orderDirection);
+        }
+    }
 }

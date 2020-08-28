@@ -34,11 +34,12 @@ class EventController extends AbstractController
      */
     public function index(Request $request, EventService $eventService, int $page): Response
     {
+
         $filters = $eventService->getFiltersFromSession();
         $form = $this->createForm(EventFiltersType::class, null, [
             'action' => $this->generateUrl('general_event_set_filters')
         ]);
-
+        dump($filters);
         $paginator = $eventService->getFilterPaginator(
                 $filters,
                 $page,
@@ -309,6 +310,9 @@ class EventController extends AbstractController
         if(isset($filters['homeProduction'])) {
             $filters['externalProduction'] = 0;
         }
+        if(isset($filters['fromDate']) and !trim($filters['fromDate'])) unset($filters['fromDate']);
+        if(isset($filters['toDate']) and !trim($filters['toDate'])) unset($filters['toDate']);
+
         $eventService->setFiltersToSession($filters);
         return $this->redirectToRoute('general_event_index');
     }

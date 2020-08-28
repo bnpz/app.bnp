@@ -4,8 +4,12 @@ namespace App\Form\General\Event;
 
 use App\Entity\General\Event;
 use App\Service\General\EventService;
+use DateTime;
+use Exception;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,6 +26,7 @@ class EventFiltersType extends AbstractType
      *
      * @param FormBuilderInterface $builder
      * @param array $options
+     * @throws Exception
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -64,6 +69,22 @@ class EventFiltersType extends AbstractType
         }
 
         $builder
+            ->add('fromDate', DateType::class, [
+                'label' => "label.from",
+                'widget' => 'single_text',
+                'html5' => true,
+                'empty_data'  => null,
+                'required' => false,
+                'data' => isset($filters['fromDate']) ? new DateTime($filters['fromDate']) : null
+            ])
+            ->add('toDate', DateType::class, [
+                'label' => "label.to",
+                'widget' => 'single_text',
+                'html5' => true,
+                'empty_data'  => null,
+                'required' => false,
+                'data' => isset($filters['toDate']) ? new DateTime($filters['toDate']) : null
+            ])
             ->add('premiere', null, [
                 'label' => "entityField.premiere",
                 'data' => $premiereValue
@@ -91,14 +112,14 @@ class EventFiltersType extends AbstractType
                 'label' => "entityField.festival",
                 'data' => $festivalValue
             ])
-           /* ->add('submit', SubmitType::class, [
+            ->add('submit', SubmitType::class, [
                 'attr' => [
                     'hidden' => false,
                     'class' => 'btn btn-outline-info'
                 ],
-                'label' => 'label.submit'
+                'label' => 'label.applyFilters'
 
-            ])*/
+            ])
         ;
     }
 

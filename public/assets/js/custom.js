@@ -2,7 +2,7 @@
 Form: EventFiltersType; template: templates/general/event/filters.form.html.twig
 uncheck checkbox when another is checked
 */
-$('input#event_filters_homeProduction').on('change', function() {
+/*$('input#event_filters_homeProduction').on('change', function() {
     $('input#event_filters_externalProduction').prop('checked', false);
     $(this).closest('form').submit();
 });
@@ -21,5 +21,5 @@ $('input#event_filters_guesting').on('change', function() {
 });
 $('input#event_filters_festival').on('change', function() {
     $(this).closest('form').submit();
-});
+});*/
 

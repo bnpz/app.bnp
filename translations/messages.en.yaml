@@ -38,6 +38,9 @@ label:
   newPassword: 'New Password'
   login: 'Login'
   rememberMe: 'Remember me'
+  from: 'From'
+  to: 'To'
+  applyFilters: Apply Filters
 entityField:
   company: 'Company'
   firstName: 'First Name'

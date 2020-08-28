@@ -29,7 +29,7 @@
             </th>
             <th>{{ 'entityField.description'|trans }}</th>
             <th>
-                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'time', 'orderDirection': 'desc'}) }}">
+                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'time', 'orderDirection': 'asc'}) }}">
                     {{ 'entityField.time'|trans }}
                 </a>
             </th>

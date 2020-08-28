@@ -43,3 +43,6 @@ div.form-group label{
     text-shadow: none !important;
 }
 
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}

@@ -38,6 +38,9 @@ label:
   newPassword: 'Nova lozinka'
   login: 'Prijava'
   rememberMe: 'Zapamti me'
+  from: 'Od'
+  to: 'Do'
+  applyFilters: Filtriraj
 entityField:
   company: 'Ustanova/Firma'
   firstName: 'Ime'
