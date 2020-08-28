@@ -75,7 +75,10 @@ class EventFiltersType extends AbstractType
                 'html5' => true,
                 'empty_data'  => null,
                 'required' => false,
-                'data' => isset($filters['fromDate']) ? new DateTime($filters['fromDate']) : null
+                'data' => isset($filters['fromDate']) ? new DateTime($filters['fromDate']) : null,
+                'attr' => [
+                    'class' => 'date-max-width'
+                ],
             ])
             ->add('toDate', DateType::class, [
                 'label' => "label.to",
@@ -83,7 +86,10 @@ class EventFiltersType extends AbstractType
                 'html5' => true,
                 'empty_data'  => null,
                 'required' => false,
-                'data' => isset($filters['toDate']) ? new DateTime($filters['toDate']) : null
+                'data' => isset($filters['toDate']) ? new DateTime($filters['toDate']) : null,
+                'attr' => [
+                    'class' => 'date-max-width'
+                ],
             ])
             ->add('premiere', null, [
                 'label' => "entityField.premiere",
