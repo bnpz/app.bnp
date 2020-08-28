@@ -39,7 +39,6 @@ class EventController extends AbstractController
         $form = $this->createForm(EventFiltersType::class, null, [
             'action' => $this->generateUrl('general_event_set_filters')
         ]);
-        dump($filters);
         $paginator = $eventService->getFilterPaginator(
                 $filters,
                 $page,
