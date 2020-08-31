@@ -30,7 +30,7 @@ class AdminController extends AbstractController
      */
     public function account(Swift_Mailer $mailer)
     {
-        //dump(urlencode('NijeTajPasvord(7)'));
+
         $message = (new Swift_Message('Hello Email'))
             ->setFrom('bnp.zenica.web@gmail.com')
             ->setReplyTo('info@bnp.zenica')
