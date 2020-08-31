@@ -23,6 +23,7 @@ TODO
 - change user role
 - date filters
 - email notif
+- https://myaccount.google.com/security#connectedapps
 
 ## make:crud
 - setup templates
