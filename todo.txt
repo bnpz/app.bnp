@@ -2,7 +2,7 @@
 Before start
 ---------------
 git pull
-composer recipes:install symfony/framework-bundle --force
+//composer recipes:install symfony/framework-bundle --force
 composer update
 composer dump-autoload
 php bin/console redis:flushdb

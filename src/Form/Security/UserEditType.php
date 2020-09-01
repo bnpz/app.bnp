@@ -20,6 +20,7 @@ class UserEditType extends AbstractType
             ->add('email',null, ['label' => "entityField.email"])
             ->add('phone',null, ['label' => "entityField.phone"])
             ->add('address',null, ['label' => "entityField.address"])
+            ->add('emailNotifications',null, ['label' => "entityField.emailNotifications"])
         ;
     }
 

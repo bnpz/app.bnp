@@ -62,6 +62,11 @@ class User implements EntityInterface, UserInterface
     private $address;
 
     /**
+     * @ORM\Column(name="emailNotifications", type="boolean", nullable=false, options={"default":false})
+     */
+    private $emailNotifications;
+
+    /**
      * @return string
      */
     public function getName(): ?string
@@ -177,6 +182,25 @@ class User implements EntityInterface, UserInterface
     }
 
     /**
+     * @return mixed
+     */
+    public function getEmailNotifications()
+    {
+        return $this->emailNotifications;
+    }
+
+    /**
+     * @param mixed $emailNotifications
+     * @return User
+     */
+    public function setEmailNotifications($emailNotifications)
+    {
+        $this->emailNotifications = $emailNotifications;
+        return $this;
+    }
+
+
+    /**
      * @see UserInterface
      */
     public function getSalt()
@@ -209,4 +233,5 @@ class User implements EntityInterface, UserInterface
             return false;
         }
     }
+
 }

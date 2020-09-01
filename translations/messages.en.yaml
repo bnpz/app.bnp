@@ -82,6 +82,7 @@ entityField:
   guestingTitle: 'Guesting Title'
   festival: 'Festival'
   festivalTitle: 'Festival Title'
+  emailNotifications: 'Email notifications'
 message:
   reservation:
     success: 'Reservation saved'

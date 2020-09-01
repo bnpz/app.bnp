@@ -38,6 +38,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('phone',null, ['label' => "entityField.phone"])
             ->add('address',null, ['label' => "entityField.address"])
+            ->add('emailNotifications',null, ['label' => "entityField.emailNotifications"])
             /*->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [

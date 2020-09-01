@@ -21,6 +21,7 @@
             <th>{{ 'entityField.email'|trans }}</th>
             <th>{{ 'entityField.phone'|trans }}</th>
             <th>{{ 'entityField.roles'|trans }} </th>
+            <th>{{ 'entityField.emailNotifications'|trans }} </th>
         </tr>
         </thead>
         <tbody>
@@ -30,6 +31,7 @@
                 <td><a href="{{ path('admin_user_show', {'id': user.id}) }}">{{ user.email }}</a></td>
                 <td>{{ user.phone }}</td>
                 <td>{{ user.isAdmin ? 'label.roleAdmin'|trans : 'label.roleUser'|trans }}</td>
+                <td>{{ user.emailNotifications ? 'label.yes'|trans : 'label.no'|trans }}</td>
             </tr>
         {% else %}
             <tr>

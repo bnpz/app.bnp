@@ -82,6 +82,7 @@ entityField:
   guestingTitle: 'Opis gostovanja'
   festival: 'Festival'
   festivalTitle: 'Naziv festivala'
+  emailNotifications: 'Email notifikacije'
 message:
   reservation:
     success: 'Reservacija je sačuvana'
