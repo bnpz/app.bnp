@@ -43,6 +43,6 @@ services:
             - { name: doctrine.orm.entity_listener, event: preUpdate, method: preUpdate }
             - { name: doctrine.orm.entity_listener, event: preRemove, method: preRemove }
         arguments:
-            $adminEmail: 'bnp.zenica.web@gmail.com'
+            $adminEmail: 'info@bnp.ba'
             $sendToEmails:
-                - 'info@bnp.ba'
+                - 'nermin.hadzimejlic@bnp.ba'
