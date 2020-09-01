@@ -105,4 +105,18 @@ class UserService extends AbstractEntityService
         }
     }
 
+    /**
+     * @return array
+     */
+    public function getEmailsToNotify()
+    {
+        $emails = [];
+        $users = $this->repository->findBy(['emailNotifications' => true]);
+        foreach ($users as $user) {
+            $emails[] = $user->getEmail();
+        }
+
+        return $emails;
+    }
+
 }

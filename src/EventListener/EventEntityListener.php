@@ -3,6 +3,7 @@ namespace App\EventListener;
 
 use App\Entity\General\Event;
 use App\Service\General\EventService;
+use App\Service\User\UserService;
 use DateTime;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Exception;
@@ -31,6 +32,10 @@ class EventEntityListener
      * @var Environment
      */
     private $templating;
+    /**
+     * @var UserService
+     */
+    private $userService;
 
     private $adminEmail;
     private $sendToEmails;
@@ -40,22 +45,23 @@ class EventEntityListener
      * @param EventService $eventService
      * @param Swift_Mailer $mailer
      * @param Environment $environment
+     * @param UserService $userService
      * @param $adminEmail
-     * @param $sendToEmails
      */
     public function __construct(
         EventService $eventService,
         Swift_Mailer $mailer,
         Environment $environment,
-        $adminEmail,
-        $sendToEmails
+        UserService $userService,
+        $adminEmail
     )
     {
         $this->eventService = $eventService;
         $this->mailer = $mailer;
         $this->adminEmail = $adminEmail;
-        $this->sendToEmails = $sendToEmails;
         $this->templating = $environment;
+        $this->userService = $userService;
+        $this->sendToEmails = $this->userService->getEmailsToNotify();
     }
 
     /**
@@ -148,7 +154,13 @@ class EventEntityListener
                     'text/html'
                 );
 
-            $this->mailer->send($message);
+            $mailSent = $this->mailer->send($message);
+            if($mailSent){
+                dump('success');
+            }
+            else{
+                dump('error');
+            }
         }
         catch(Exception $exception){
 

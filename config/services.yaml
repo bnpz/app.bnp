@@ -44,11 +44,4 @@ services:
             - { name: doctrine.orm.entity_listener, event: preRemove, method: preRemove }
         arguments:
             $adminEmail: 'info@bnp.ba'
-            $sendToEmails:
-                - 'nermin.hadzimejlic@bnp.ba'
-                - 'miroljub.mijatovic@bnp.ba'
-                - 'pr@bnp.ba'
-                - 'marketing.prodaja@bnp.ba'
-                - 'denis.krdzalic@bnp.ba'
-                - 'tehnika@bnp.ba'
-                - 'belmir.miskic@bnp.ba'
+
