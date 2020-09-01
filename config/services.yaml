@@ -46,4 +46,9 @@ services:
             $adminEmail: 'info@bnp.ba'
             $sendToEmails:
                 - 'nermin.hadzimejlic@bnp.ba'
-                - 'nermingk@gmail.com'
+                - 'miroljub.mijatovic@bnp.ba'
+                - 'pr@bnp.ba'
+                - 'marketing.prodaja@bnp.ba'
+                - 'denis.krdzalic@bnp.ba'
+                - 'tehnika@bnp.ba'
+                - 'belmir.miskic@bnp.ba'
