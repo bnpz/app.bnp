@@ -46,3 +46,4 @@ services:
             $adminEmail: 'info@bnp.ba'
             $sendToEmails:
                 - 'nermin.hadzimejlic@bnp.ba'
+                - 'nermingk@gmail.com'
