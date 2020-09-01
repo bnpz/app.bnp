@@ -42,6 +42,11 @@ label:
   to: 'To'
   applyFilters: 'Apply Filters'
   cancel: 'Cancel'
+  dataChanged: 'Data changed'
+  oldValue: 'Old value'
+  newValue: 'New Value'
+  deleted: 'Deleted'
+  eventDeleted: 'Event Deleted'
 entityField:
   company: 'Company'
   firstName: 'First Name'

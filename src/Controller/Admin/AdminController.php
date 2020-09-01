@@ -4,8 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Swift_Mailer;
-use Swift_Message;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -28,25 +26,10 @@ class AdminController extends AbstractController
     /**
      * @Route("/account")
      */
-    public function account(Swift_Mailer $mailer)
+    public function account()
     {
-
-        $message = (new Swift_Message('Hello Email'))
-            ->setFrom('bnp.zenica.web@gmail.com')
-            ->setReplyTo('info@bnp.zenica')
-            ->setTo('nermingk@gmail.com')
-            ->setBody("Test msg");
-        dump($mailer);
-
-        if($mailer->send($message, $failedRecipients)){
-            dump('success');
-        }
-        else{
-            dump('error');
-            dump($failedRecipients);
-        }
-
         return $this->render('admin/account.html.twig');
+
     }
 
     /**

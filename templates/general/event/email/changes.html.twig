@@ -1,0 +1,18 @@
+<h2>{{ title }}</h2>
+<hr>
+<h3>{{ 'label.dataChanged'|trans }}</h3>
+{% for key, value in data %}
+    <p>
+        <strong>{{ "entityField.#{ key }" | trans }}</strong><br>
+        {% if not value.oldValue is same as(false) and not value.oldValue is same as(true) %}
+            {{ 'label.oldValue'|trans }}: {{ value.oldValue }}<br>
+            {{ 'label.newValue'|trans }}: <strong>{{ value.newValue }}</strong>
+        {% else %}
+            {{ 'label.oldValue'|trans }}: {{ value.oldValue ? 'label.yes'|trans : 'label.no'|trans}}<br>
+            {{ 'label.newValue'|trans }}: <strong>{{ value.newValue ? 'label.yes'|trans : 'label.no'|trans}}</strong>
+        {% endif %}
+    </p>
+
+{% endfor %}
+
+<p>{{ 'entityField.updatedBy'|trans }}: {{ user }}</p>

@@ -17,7 +17,10 @@ use Swagger\Annotations as SWG;
  *
  * @ORM\Table(name="events")
  * @ORM\Entity(repositoryClass="App\Repository\General\EventRepository")
- * @ORM\EntityListeners({"App\EventListener\BaseEntityListener"})
+ * @ORM\EntityListeners({
+ *     "App\EventListener\BaseEntityListener",
+ *     "App\EventListener\EventEntityListener"
+ * })
  * @ORM\HasLifecycleCallbacks()
  */
 class Event implements EntityInterface

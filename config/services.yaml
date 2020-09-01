@@ -35,3 +35,14 @@ services:
         tags:
             - { name: doctrine.orm.entity_listener, event: preFlush, method: preFlush }
             - { name: doctrine.orm.entity_listener, event: preUpdate, method: preUpdate }
+
+    event.entity.listener:
+        class: App\EventListener\EventEntityListener
+        tags:
+            - { name: doctrine.orm.entity_listener, event: prePersist, method: prePersist }
+            - { name: doctrine.orm.entity_listener, event: preUpdate, method: preUpdate }
+            - { name: doctrine.orm.entity_listener, event: preRemove, method: preRemove }
+        arguments:
+            $adminEmail: 'bnp.zenica.web@gmail.com'
+            $sendToEmails:
+                - 'info@bnp.ba'

@@ -1,0 +1,30 @@
+<h1>{{ 'label.events' |trans }} | {{ 'label.new' |trans }}</h1>
+<hr>
+<h3>{{ event.name }}</h3>
+<h3>{{ event.time ? event.time|date() : ''}}</h3>
+<hr>
+<p>
+    {{ 'entityField.production' |trans }}: {{ event.production }}
+</p>
+<p>
+    {{ 'entityField.description' |trans }}: {{ event.description }}
+</p>
+<p>
+    {{ 'entityField.premiere' |trans }}: {{ event.premiere ? 'label.yes'|trans : 'label.no'|trans }}
+</p>
+<p>
+    {{ 'entityField.externalProduction' |trans }}: {{ event.externalProduction ? 'label.yes'|trans : 'label.no'|trans }}
+</p>
+<p>
+    {{ 'entityField.canceled' |trans }}: {{ event.canceled ? 'label.yes'|trans : 'label.no'|trans }}
+</p>
+<p>
+    {{ 'entityField.guestingTitle' |trans }}: {{ event.guestingTitle }}
+</p>
+<p>
+    {{ 'entityField.festivalTitle' |trans }}: {{ event.festivalTitle }}
+</p>
+<p>
+    {{ 'entityField.note' |trans }}: {{ event.note }}
+</p>
+
