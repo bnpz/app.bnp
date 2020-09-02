@@ -40,6 +40,7 @@ label:
   rememberMe: 'Remember me'
   from: 'From'
   to: 'To'
+  filters: 'Filters'
   applyFilters: 'Apply Filters'
   cancel: 'Cancel'
   dataChanged: 'Data changed'
