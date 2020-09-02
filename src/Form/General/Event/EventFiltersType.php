@@ -67,6 +67,18 @@ class EventFiltersType extends AbstractType
         else {
             $festivalValue = false;
         }
+        if(isset($filters['forAdults'])) {
+            $forAdultsValue = true;
+        }
+        else {
+            $forAdultsValue = false;
+        }
+        if(isset($filters['forChildren'])) {
+            $forChildrenValue = true;
+        }
+        else {
+            $forChildrenValue = false;
+        }
 
         $builder
             ->add('fromDate', DateType::class, [
@@ -91,11 +103,6 @@ class EventFiltersType extends AbstractType
                     'class' => 'date-max-width'
                 ],
             ])
-            ->add('premiere', null, [
-                'label' => "entityField.premiere",
-                'data' => $premiereValue
-
-            ])
             ->add('homeProduction', CheckboxType::class, [
                 'label' => "entityField.homeProduction",
                 'data' => $homeProductionValue,
@@ -105,7 +112,18 @@ class EventFiltersType extends AbstractType
                 'label' => "entityField.externalProduction",
                 'data' => $externalProductionValue
             ])
-
+            ->add('forAdults', null, [
+                'label' => "entityField.forAdults",
+                'data' => $forAdultsValue
+            ])
+            ->add('forChildren', null, [
+                'label' => "entityField.forChildren",
+                'data' => $forChildrenValue
+            ])
+            ->add('premiere', null, [
+                'label' => "entityField.premiere",
+                'data' => $premiereValue
+            ])
             ->add('guesting', null, [
                 'label' => "entityField.guesting",
                 'data' => $guestingValue

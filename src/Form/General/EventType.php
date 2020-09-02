@@ -27,6 +27,8 @@ class EventType extends AbstractType
                 'widget' => 'choice',
                 'years' => range($currentYear, $twoYearsAhead)
             ])
+            ->add('forAdults', null, ['label' => "entityField.forAdults"])
+            ->add('forChildren', null, ['label' => "entityField.forChildren"])
             ->add('premiere', null, ['label' => "entityField.premiere"])
             ->add('externalProduction', null, ['label' => "entityField.externalProduction"])
             ->add('canceled', null, ['label' => "entityField.canceled"])

@@ -83,6 +83,8 @@ entityField:
   festival: 'Festival'
   festivalTitle: 'Naziv festivala'
   emailNotifications: 'Email notifikacije'
+  forAdults: 'Za odrasle'
+  forChildren: 'Za djecu'
 message:
   reservation:
     success: 'Reservacija je sačuvana'

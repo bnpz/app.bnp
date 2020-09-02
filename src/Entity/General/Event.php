@@ -120,6 +120,20 @@ class Event implements EntityInterface
     private $reservations;
 
     /**
+     * @ORM\Column(name="for_children", type="boolean", nullable=false, options={"default":false})
+     * @Groups({"create", "update", "event_listing", "event_full"})
+     * @SWG\Property(property="forChildren", type="boolean")
+     */
+    private $forChildren;
+
+    /**
+     * @ORM\Column(name="for_adults", type="boolean", nullable=false, options={"default":false})
+     * @Groups({"create", "update", "event_listing", "event_full"})
+     * @SWG\Property(property="forAdults", type="boolean")
+     */
+    private $forAdults;
+
+    /**
      * Event constructor.
      */
     public function __construct()
@@ -391,4 +405,42 @@ class Event implements EntityInterface
             $this->festival = false;
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getForChildren()
+    {
+        return $this->forChildren;
+    }
+
+    /**
+     * @param mixed $forChildren
+     * @return Event
+     */
+    public function setForChildren($forChildren)
+    {
+        $this->forChildren = $forChildren;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getForAdults()
+    {
+        return $this->forAdults;
+    }
+
+    /**
+     * @param mixed $forAdults
+     * @return Event
+     */
+    public function setForAdults($forAdults)
+    {
+        $this->forAdults = $forAdults;
+        return $this;
+    }
+
+
 }

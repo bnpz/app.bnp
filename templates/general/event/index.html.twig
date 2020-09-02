@@ -42,8 +42,6 @@
 
     <hr>
 
-    {#{{ include('general/event/filters.form.html.twig', {'form': filtersForm}) }}#}
-
     <table class="table table-striped">
         <thead>
         <tr>
@@ -62,6 +60,12 @@
                 <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'time', 'orderDirection': 'asc'}) }}">
                     {{ 'entityField.time'|trans }}
                 </a>
+            </th>
+            <th class="text-center">
+                {{ 'entityField.forAdults'|trans }}
+            </th>
+            <th class="text-center">
+                {{ 'entityField.forChildren'|trans }}
             </th>
             <th>
                 {{ 'entityField.guestingTitle'|trans }}
@@ -92,6 +96,8 @@
                 <td><a href="{{ path('general_event_show', {'id': event.id}) }}">{{ event.name }}</a></td>
                 <td>{{ event.description }}</td>
                 <td>{{ event.time ? event.time|date() : ''}}</td>
+                <td class="text-center">{{ event.forAdults ? 'label.yes'|trans }}</td>
+                <td class="text-center">{{ event.forChildren ? 'label.yes'|trans }}</td>
                 <td>{{ event.guestingTitle }}</td>
                 <td>{{ event.festivalTitle }}</td>
                 <td class="text-center">{{ event.premiere ? 'label.yes'|trans }}</td>

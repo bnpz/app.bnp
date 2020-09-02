@@ -83,6 +83,8 @@ entityField:
   festival: 'Festival'
   festivalTitle: 'Festival Title'
   emailNotifications: 'Email notifications'
+  forAdults: 'For adults'
+  forChildren: 'For children'
 message:
   reservation:
     success: 'Reservation saved'

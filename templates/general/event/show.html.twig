@@ -21,6 +21,14 @@
             <td>{{ event.description }}</td>
         </tr>
         <tr>
+            <th>{{ 'entityField.forAdults' |trans }}</th>
+            <td>{{ event.forAdults ? 'label.yes'|trans : 'label.no'|trans }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'entityField.forChildren' |trans }}</th>
+            <td>{{ event.forChildren ? 'label.yes'|trans : 'label.no'|trans }}</td>
+        </tr>
+        <tr>
             <th>{{ 'entityField.premiere' |trans }}</th>
             <td>{{ event.premiere ? 'label.yes'|trans : 'label.no'|trans }}</td>
         </tr>
