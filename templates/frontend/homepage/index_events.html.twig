@@ -1,0 +1,41 @@
+{% extends 'frontend/leftLayout.html.twig' %}
+
+{% block title %}{{ 'label.homePage'|trans }}{% endblock %}
+{% block leftColumn %}
+    {{ parent() }}
+    <h1><i class="fas fa-home fa-2x"></i></h1>
+{% endblock %}
+{% block rightColumn %}
+    {{ parent() }}
+    <h3 class="float-left">{{ 'label.events'|trans }}</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ 'entityField.time'|trans }}</th>
+            <th>{{ 'entityField.eventName'|trans }}</th>
+            <th>{{ 'entityField.guestingTitle'|trans }}</th>
+            <th>{{ 'entityField.festivalTitle'|trans }}</th>
+            <th class="text-center">{{ 'entityField.premiere'|trans }} </th>
+            <th class="text-center">{{ 'entityField.externalProduction'|trans }}</th>
+            <th class="text-center">{{ 'entityField.canceled'|trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for event in events %}
+            <tr {% if event.premiere %} class="event-premiere" {% endif %}>
+                <td>{{ event.time ? event.time|date() : ''}}</td>
+                <td><a href="{{ path('general_event_show', {'id': event.id}) }}">{{ event.name }}</a></td>
+                <td>{{ event.guestingTitle }}</td>
+                <td>{{ event.festivalTitle }}</td>
+                <td class="text-center">{{ event.premiere ? 'label.yes'|trans }}</td>
+                <td class="text-center">{{ event.externalProduction ? 'label.yes'|trans }}</td>
+                <td class="text-center">{{ event.canceled ? 'label.yes'|trans }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">{{ 'label.noRecords'|trans }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

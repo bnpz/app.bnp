@@ -9,6 +9,7 @@
     <div class="clearfix"></div>
 
     <!-- Filters modal -->
+
     <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#eventFiltersModal">
         {{ 'label.filters'|trans }}
     </button>
@@ -17,6 +18,16 @@
             {{ 'label.resetFilters'|trans }}
         </a>
     {% endif %}
+
+
+    {#<span> | </span>
+    <a class="btn btn-outline-secondary" href="#">
+        <i class="fas fa-table"></i>
+    </a>
+    <a class="btn btn-outline-secondary" href="#">
+        <i class="fas fa-th-large"></i>
+    </a>#}
+
 
     <!-- Modal -->
     <div class="modal fade" id="eventFiltersModal" tabindex="-1" role="dialog" aria-labelledby="eventFiltersModalTitle" aria-hidden="true">

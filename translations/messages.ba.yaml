@@ -48,6 +48,7 @@ label:
   newValue: 'Novi podatak'
   deleted: 'Izbrisano'
   eventDeleted: 'Program je izbrisan.'
+  user: 'Korisnik'
 entityField:
   company: 'Ustanova/Firma'
   firstName: 'Ime'

@@ -48,6 +48,7 @@ label:
   newValue: 'New Value'
   deleted: 'Deleted'
   eventDeleted: 'Event Deleted'
+  user: 'User'
 entityField:
   company: 'Company'
   firstName: 'First Name'
