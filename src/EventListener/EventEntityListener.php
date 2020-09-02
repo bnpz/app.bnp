@@ -2,12 +2,12 @@
 namespace App\EventListener;
 
 use App\Entity\General\Event;
+use App\Service\EmailService;
 use App\Service\General\EventService;
 use App\Service\User\UserService;
 use DateTime;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Exception;
-use Swift_Mailer;
 use Swift_Message;
 use Twig\Environment;
 
@@ -25,9 +25,9 @@ class EventEntityListener
      */
     private $eventService;
     /**
-     * @var Swift_Mailer
+     * @var EmailService
      */
-    private $mailer;
+    private $emailService;
     /**
      * @var Environment
      */
@@ -43,21 +43,21 @@ class EventEntityListener
     /**
      * EventEntityListener constructor.
      * @param EventService $eventService
-     * @param Swift_Mailer $mailer
+     * @param EmailService $emailService
      * @param Environment $environment
      * @param UserService $userService
      * @param $adminEmail
      */
     public function __construct(
         EventService $eventService,
-        Swift_Mailer $mailer,
+        EmailService $emailService,
         Environment $environment,
         UserService $userService,
         $adminEmail
     )
     {
         $this->eventService = $eventService;
-        $this->mailer = $mailer;
+        $this->emailService = $emailService;
         $this->adminEmail = $adminEmail;
         $this->templating = $environment;
         $this->userService = $userService;
@@ -84,7 +84,7 @@ class EventEntityListener
                     'text/html'
                 );
 
-            $this->mailer->send($message);
+            $this->emailService->send($message);
         }
         catch(Exception $exception){
 
@@ -154,13 +154,7 @@ class EventEntityListener
                     'text/html'
                 );
 
-            $mailSent = $this->mailer->send($message);
-            if($mailSent){
-                dump('success');
-            }
-            else{
-                dump('error');
-            }
+                $this->emailService->send($message);
         }
         catch(Exception $exception){
 
@@ -188,7 +182,7 @@ class EventEntityListener
                     'text/html'
                 );
 
-            $this->mailer->send($message);
+            $this->emailService->send($message);
         }
         catch(Exception $exception){
 
