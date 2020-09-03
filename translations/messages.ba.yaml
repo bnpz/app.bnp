@@ -49,6 +49,7 @@ label:
   deleted: 'Izbrisano'
   eventDeleted: 'Program je izbrisan.'
   user: 'Korisnik'
+  age: 'Dob'
 entityField:
   company: 'Ustanova/Firma'
   firstName: 'Ime'

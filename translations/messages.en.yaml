@@ -49,6 +49,7 @@ label:
   deleted: 'Deleted'
   eventDeleted: 'Event Deleted'
   user: 'User'
+  age: 'Age'
 entityField:
   company: 'Company'
   firstName: 'First Name'

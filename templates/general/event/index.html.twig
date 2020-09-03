@@ -57,6 +57,9 @@
         <thead>
         <tr>
             <th>
+                {# BNP (home) icon #}
+            </th>
+            <th>
                 {{ 'entityField.eventType'|trans }}
             </th>
             <th>
@@ -76,58 +79,58 @@
                 </a>
             </th>
             <th class="text-center">
-                {{ 'entityField.forAdults'|trans }}
+                {#{{ 'label.age'|trans }}#}
+            </th>
+            <th>{# guesting and festival #}</th>
+            <th class="text-center">
+                {#{{ 'entityField.premiere'|trans }}#}
             </th>
             <th class="text-center">
-                {{ 'entityField.forChildren'|trans }}
+                {#{{ 'entityField.canceled'|trans }}#}
             </th>
-            <th>
-                {{ 'entityField.guestingTitle'|trans }}
-            </th>
-            <th>
-                {{ 'entityField.festivalTitle'|trans }}
-            </th>
-            <th class="text-center">
-                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'premiere', 'orderDirection': 'desc'}) }}">
-                    {{ 'entityField.premiere'|trans }}
-                </a>
-            </th>
-            <th class="text-center">
-                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'externalProduction', 'orderDirection': 'desc'}) }}">
-                    {{ 'entityField.externalProduction'|trans }}
-                </a>
-            </th>
-            <th class="text-center">
-                {{ 'entityField.canceled'|trans }}
-            </th>
-            {#<th></th>#}
+
         </tr>
         </thead>
         <tbody>
         {% for event in events %}
             <tr {% if event.canceled %} class="event-canceled" {% elseif event.premiere %} class="event-premiere" {% endif %}>
+                <td>{% if not event.externalProduction %}<i class="fas fa-home"></i>{% endif %}</td>
                 <td>{{ event.eventType ? event.eventType.name : "" }}</td>
                 <td>{{ event.production }}</td>
                 <td><a href="{{ path('general_event_show', {'id': event.id}) }}">{{ event.name }}</a></td>
                 <td>{{ event.description }}</td>
                 <td>{{ event.time ? event.time|date() : ''}}</td>
-                <td class="text-center">{{ event.forAdults ? 'label.yes'|trans }}</td>
-                <td class="text-center">{{ event.forChildren ? 'label.yes'|trans }}</td>
-                <td>{{ event.guestingTitle }}</td>
-                <td>{{ event.festivalTitle }}</td>
-                <td class="text-center">{{ event.premiere ? 'label.yes'|trans }}</td>
-                <td class="text-center">{{ event.externalProduction ? 'label.yes'|trans }}</td>
-                <td class="text-center">{{ event.canceled ? 'label.yes'|trans }}</td>
-                {#<td class="text-center">
-                    {{ include('inc/show.edit.links.html.twig',
-                        {
-                            'showRoute': 'general_event_show',
-                            'editRoute': 'general_event_edit',
-                            'id': event.id
-                        }
-                    )
-                    }}
-                </td>#}
+
+                {% if event.forAdults %}
+                    <td class="text-center"><i class="fas fa-user-tie"></i></td>
+                {% elseif event.forChildren %}
+                    <td class="text-center"><i class="fas fa-1x fa-child"></i></td>
+                {% else %}
+                    <td class="text-center"></td>
+                {% endif %}
+                <td class="text-center">
+                    {% if event.guesting or event.festival %}
+                        <i class="fas fa-truck"></i>
+                    {% endif %}
+                    {#{% if event.guesting %}
+                        {{ event.guestingTitle }}
+                    {% endif %}
+                    {% if event.guesting and event.festival %}<br>{% endif %}
+                    {% if event.festival %}
+                        {{ event.festivalTitle }}
+                    {% endif %}#}
+                </td>
+                <td class="text-center">
+                    {% if event.premiere %}
+                        <i class="fas fa-theater-masks"></i>
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    {% if event.canceled %}
+                        <i class="fas fa-ban"></i>
+                    {% endif %}
+                </td>
+
             </tr>
         {% else %}
             <tr>
