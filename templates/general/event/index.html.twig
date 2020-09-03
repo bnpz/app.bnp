@@ -102,7 +102,7 @@
         </thead>
         <tbody>
         {% for event in events %}
-            <tr {% if event.premiere %} class="event-premiere" {% endif %}>
+            <tr {% if event.canceled %} class="event-canceled" {% elseif event.premiere %} class="event-premiere" {% endif %}>
                 <td>{{ event.production }}</td>
                 <td><a href="{{ path('general_event_show', {'id': event.id}) }}">{{ event.name }}</a></td>
                 <td>{{ event.description }}</td>

@@ -28,6 +28,9 @@ input:focus, textarea:focus {
 tr.event-premiere td, tr.event-premiere td a{
     color: #6cc16c !important;
 }
+tr.event-canceled td, tr.event-canceled td a{
+    color: #c16c80 !important;
+}
 table td, table td a{
     color: #aaa;
 }
