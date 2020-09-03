@@ -33,6 +33,19 @@ class EventTypeCreateCommand extends Command
      */
     private $userService;
 
+    private $defaultTypes = [
+        "predstava",
+        "koncert",
+        "promocija",
+        "tribina",
+        "svečanost",
+        "izložba",
+        "balet",
+        "opera",
+        "ples",
+        "ostalo"
+    ];
+
     public function __construct(EventTypeService $eventTypeService, UserService $userService)
     {
         parent::__construct();
@@ -63,31 +76,40 @@ class EventTypeCreateCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $arg1 = $input->getArgument('arg1');
 
-        if ($eventTypeName = $arg1) {
-            $io->note(sprintf('You passed an argument: %s', $arg1));
-        }
-        else{
-            $io->error("Please enter EventType name as argument.");
-            return 0;
-        }
-
-        $existingType = $this->eventTypeService->findByName($eventTypeName);
-
-        if($existingType instanceof EventType){
-            $io->error(sprintf('Event type (%s) exists.', $arg1));
-            return 0;
-        }
-
+        $newTypes = [];
         $user = $this->userService->findByEmail("nermingk@gmail.com");
 
-        $eventType = new EventType();
-        $eventType->setName($eventTypeName)
-            ->setCreatedBy($user)
-            ->setUpdatedBy($user);
+        if ($eventTypeName = $arg1) {
+            $io->note(sprintf('You passed an argument: %s', $arg1));
+            $newTypes[] = $eventTypeName;
+        }
+        else{
+            $newTypes = $this->defaultTypes;
+        }
 
-        $newType = $this->eventTypeService->save($eventType);
 
-        $io->success('Success. ID: '.$newType->getId());
+        foreach ($newTypes as $eventTypeName) {
+
+            $existingType = $this->eventTypeService->findByName($eventTypeName);
+
+            if($existingType instanceof EventType){
+                $io->note(sprintf('Event type (%s) exists.', $eventTypeName));
+            }
+            else{
+                $eventType = new EventType();
+                $eventType->setName($eventTypeName)
+                    ->setCreatedBy($user)
+                    ->setUpdatedBy($user);
+
+                $newType = $this->eventTypeService->save($eventType);
+
+                $io->success('Success. ID: '.$newType->getId());
+            }
+
+        }
+
+
+        $io->success('DONE');
 
         return 0;
     }
