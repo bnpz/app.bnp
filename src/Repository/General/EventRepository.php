@@ -77,10 +77,11 @@ class EventRepository extends AbstractEntityRepository
     public function getFilterPaginator($filters = [], $page = 1, $limit = 10, $orderBy = "createdAt", $orderDirection = "DESC")
     {
         if(is_array($filters) and !empty($filters)){
-            $metadata = $this->_em->getClassMetadata($this->_entityName);
-            $fieldNames = $metadata->getFieldNames();
-
             $criteria = Criteria::create();
+
+            $metadata = $this->_em->getClassMetadata($this->_entityName);
+            $fieldNames = array_merge($metadata->getFieldNames(), $metadata->getAssociationNames());
+
 
             foreach ($filters as $filterName => $filterValue) {
                 if(in_array($filterName, $fieldNames)){

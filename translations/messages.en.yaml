@@ -87,6 +87,7 @@ entityField:
   emailNotifications: 'Email notifications'
   forAdults: 'For adults'
   forChildren: 'For children'
+  eventType: 'Event Type'
 message:
   reservation:
     success: 'Reservation saved'

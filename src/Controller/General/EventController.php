@@ -311,6 +311,7 @@ class EventController extends AbstractController
         }
         if(isset($filters['fromDate']) and !trim($filters['fromDate'])) unset($filters['fromDate']);
         if(isset($filters['toDate']) and !trim($filters['toDate'])) unset($filters['toDate']);
+        if(isset($filters['eventType']) and !trim($filters['eventType'])) unset($filters['eventType']);
 
         $eventService->setFiltersToSession($filters);
         return $this->redirectToRoute('general_event_index');

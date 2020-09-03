@@ -13,6 +13,10 @@
     <table class="table table-striped">
         <tbody>
         <tr>
+            <th>{{ 'entityField.eventType' |trans }}</th>
+            <td>{{ event.eventType ? event.eventType.name : "" }}</td>
+        </tr>
+        <tr>
             <th>{{ 'entityField.production' |trans }}</th>
             <td>{{ event.production }}</td>
         </tr>

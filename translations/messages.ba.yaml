@@ -87,6 +87,7 @@ entityField:
   emailNotifications: 'Email notifikacije'
   forAdults: 'Za odrasle'
   forChildren: 'Za djecu'
+  eventType: 'Vrsta programa'
 message:
   reservation:
     success: 'Reservacija je sačuvana'

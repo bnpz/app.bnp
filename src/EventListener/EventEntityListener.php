@@ -18,7 +18,7 @@ use Twig\Environment;
 class EventEntityListener
 {
     const DATE_FORMAT = 'd. m. Y.  H.i';
-    private $ignoreFields = ['createdBy', 'updatedBy','createdAt', 'updatedAt'];
+    private $ignoreFields = ['createdBy', 'updatedBy','createdAt', 'updatedAt', 'eventType'];
 
     /**
      * @var EventService
@@ -136,6 +136,7 @@ class EventEntityListener
             'user' => $eventEntity->getUpdatedBy()->getName()
         ];
 
+        if(!is_array($changedFields) or empty($changedFields)) return;
 
         try{
             $message = (new Swift_Message($results['title']))

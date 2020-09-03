@@ -3,8 +3,11 @@
 namespace App\Form\General\Event;
 
 use App\Entity\General\Event;
+use App\Repository\General\EventTypeRepository;
 use App\Service\General\EventService;
+use App\Service\General\EventTypeService;
 use DateTime;
+use Doctrine\ORM\EntityRepository;
 use Exception;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -13,12 +16,30 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class EventFiltersType
+ * @package App\Form\General\Event
+ */
 class EventFiltersType extends AbstractType
 {
+    /**
+     * @var EventService
+     */
     private $eventService;
-    public function __construct(EventService $eventService)
+    /**
+     * @var EventTypeService
+     */
+    private $eventTypeService;
+
+    /**
+     * EventFiltersType constructor.
+     * @param EventService $eventService
+     * @param EventTypeService $eventTypeService
+     */
+    public function __construct(EventService $eventService, EventTypeService $eventTypeService)
     {
         $this->eventService = $eventService;
+        $this->eventTypeService = $eventTypeService;
     }
 
     /**
@@ -79,6 +100,10 @@ class EventFiltersType extends AbstractType
         else {
             $forChildrenValue = false;
         }
+        $eventTypeValue = null;
+        if(isset($filters['eventType'])) {
+            $eventTypeValue = $filters['eventType'];
+        }
 
         $builder
             ->add('fromDate', DateType::class, [
@@ -102,6 +127,18 @@ class EventFiltersType extends AbstractType
                 'attr' => [
                     'class' => 'date-max-width'
                 ],
+            ])
+            ->add('eventType', null, [
+                'required' => false,
+                'label' => "entityField.eventType",
+                'placeholder' => '--',
+                'empty_data'  => null,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('entity')
+                        ->orderBy('entity.id', 'ASC');
+                },
+                'data' => $eventTypeValue ? $this->eventTypeService->get($eventTypeValue) : null
+
             ])
             ->add('homeProduction', CheckboxType::class, [
                 'label' => "entityField.homeProduction",

@@ -4,6 +4,7 @@ namespace App\Form\General;
 
 use App\Entity\General\Event;
 use DateTime;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,6 +20,16 @@ class EventType extends AbstractType
         $twoYearsAhead = $today->format('Y');
 
         $builder
+            ->add('eventType', null, [
+                'required' => true,
+                'label' => "entityField.eventType",
+                'placeholder' => '--',
+                'empty_data'  => null,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('entity')
+                        ->orderBy('entity.id', 'ASC');
+                }
+            ])
             ->add('production', null, ['label' => "entityField.production"])
             ->add('name', null, ['label' => "entityField.eventName"])
             ->add('description', null, ['label' => "entityField.description"])
@@ -35,7 +46,6 @@ class EventType extends AbstractType
             ->add('guestingTitle', null, ['label' => "entityField.guestingTitle"])
             ->add('festivalTitle', null, ['label' => "entityField.festivalTitle"])
             ->add('note', null, ['label' => "entityField.note"])
-
 
         ;
     }
