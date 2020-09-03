@@ -134,6 +134,14 @@ class Event implements EntityInterface
     private $forAdults;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\General\EventType", inversedBy="events")
+     * @ORM\JoinColumn(name="event_type_id", referencedColumnName="id", nullable=true)
+     * @Groups({"create", "update", "event_listing", "event_full"})
+     * @SWG\Property(property="eventType", type="integer")
+     */
+    private $eventType;
+
+    /**
      * Event constructor.
      */
     public function __construct()
@@ -441,6 +449,25 @@ class Event implements EntityInterface
         $this->forAdults = $forAdults;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEventType()
+    {
+        return $this->eventType;
+    }
+
+    /**
+     * @param mixed $eventType
+     * @return Event
+     */
+    public function setEventType($eventType)
+    {
+        $this->eventType = $eventType;
+        return $this;
+    }
+
 
 
 }
