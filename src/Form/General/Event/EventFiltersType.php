@@ -131,7 +131,7 @@ class EventFiltersType extends AbstractType
             ->add('eventType', null, [
                 'required' => false,
                 'label' => "entityField.eventType",
-                'placeholder' => '--',
+                //'placeholder' => '--',
                 'empty_data'  => null,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('entity')
