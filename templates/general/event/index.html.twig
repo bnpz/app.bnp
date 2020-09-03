@@ -57,6 +57,9 @@
         <thead>
         <tr>
             <th>
+                {{ 'entityField.eventType'|trans }}
+            </th>
+            <th>
                 <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'production', 'orderDirection': 'asc'}) }}">
                     {{ 'entityField.production'|trans }}
                 </a>
@@ -103,6 +106,7 @@
         <tbody>
         {% for event in events %}
             <tr {% if event.canceled %} class="event-canceled" {% elseif event.premiere %} class="event-premiere" {% endif %}>
+                <td>{{ event.eventType ? event.eventType.name : "" }}</td>
                 <td>{{ event.production }}</td>
                 <td><a href="{{ path('general_event_show', {'id': event.id}) }}">{{ event.name }}</a></td>
                 <td>{{ event.description }}</td>
