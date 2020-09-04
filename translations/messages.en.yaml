@@ -50,6 +50,7 @@ label:
   eventDeleted: 'Event Deleted'
   user: 'User'
   age: 'Age'
+  type: 'Type'
 entityField:
   company: 'Company'
   firstName: 'First Name'
@@ -99,3 +100,10 @@ message:
 error:
   user:
     delete: 'User can not be deleted. Try Deactivate User.'
+Mon: Mon
+Tue: Tue
+Wed: Wed
+Thu: Thu
+Fri: Fri
+Sat: Sat
+Sun: Sun

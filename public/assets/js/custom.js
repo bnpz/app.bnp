@@ -1,4 +1,10 @@
 /*
+    For bootstrap tooltips
+ */
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+/*
 Form: EventFiltersType; template: templates/general/event/filters.form.html.twig
 uncheck checkbox when another is checked
 */

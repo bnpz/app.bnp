@@ -53,81 +53,64 @@
 
     <hr>
 
-    <table class="table table-striped">
+    <table class="table table-striped table-events">
         <thead>
         <tr>
-            <th>
-                {# BNP (home) icon #}
-            </th>
-            <th>
-                {{ 'entityField.eventType'|trans }}
-            </th>
-            <th>
-                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'production', 'orderDirection': 'asc'}) }}">
-                    {{ 'entityField.production'|trans }}
-                </a>
-            </th>
-            <th>
-                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'name', 'orderDirection': 'asc'}) }}">
-                    {{ 'entityField.eventName'|trans }}
-                </a>
-            </th>
-            <th>{{ 'entityField.description'|trans }}</th>
-            <th>
-                <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage, 'orderBy': 'time', 'orderDirection': 'asc'}) }}">
-                    {{ 'entityField.time'|trans }}
-                </a>
-            </th>
-            <th class="text-center">
-                {#{{ 'label.age'|trans }}#}
-            </th>
+            <th>{# BNP (home) icon #}</th>
+            <th>{{ 'label.type'|trans }}</th>
+            <th>{{ 'entityField.time'|trans }}</th>
+            <th>{{ 'entityField.eventName'|trans }}</th>
+            <th>{{ 'entityField.production'|trans }}</th>
+            <th class="text-center">{#{{ 'label.age'|trans }}#}</th>
             <th>{# guesting and festival #}</th>
-            <th class="text-center">
-                {#{{ 'entityField.premiere'|trans }}#}
-            </th>
-            <th class="text-center">
-                {#{{ 'entityField.canceled'|trans }}#}
-            </th>
+            <th class="text-center">{#{{ 'entityField.premiere'|trans }}#}</th>
+            <th class="text-center">{#{{ 'entityField.canceled'|trans }}#}</th>
 
         </tr>
         </thead>
         <tbody>
         {% for event in events %}
             <tr {% if event.canceled %} class="event-canceled" {% elseif event.premiere %} class="event-premiere" {% endif %}>
-                <td>{% if not event.externalProduction %}<i class="fas fa-home"></i>{% endif %}</td>
-                <td>{{ event.eventType ? event.eventType.name : "" }}</td>
-                <td>{{ event.production }}</td>
-                <td><a href="{{ path('general_event_show', {'id': event.id}) }}">{{ event.name }}</a></td>
-                <td>{{ event.description }}</td>
-                <td>{{ event.time ? event.time|date() : ''}}</td>
+                <td style="width: 30px;">{% if not event.externalProduction %}<i class="fas fa-home" data-toggle="tooltip" data-placement="right" title="{{ 'entityField.homeProduction'|trans }}"></i>{% endif %}</td>
+                <td style="width: 100px;">{{ event.eventType ? event.eventType.name : "" }}</td>
+                <td style="width: 200px;">
+                    <a href="{{ path('general_event_show', {'id': event.id}) }}" data-toggle="tooltip" data-placement="top" title="{{ event.description }}">
+                        {{ event.time ? event.time|date('D')|trans }}, {{ event.time ? event.time|date() }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('general_event_show', {'id': event.id}) }}" data-toggle="tooltip" data-placement="top" title="{{ event.description }}">
+                        {{ event.name }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('general_event_show', {'id': event.id}) }}" data-toggle="tooltip" data-placement="top" title="{{ event.description }}">
+                        {{ event.production }}
+                    </a>
+                </td>
 
                 {% if event.forAdults %}
-                    <td class="text-center"><i class="fas fa-user-tie"></i></td>
+                    <td class="text-center">
+                        <i class="fas fa-user-tie" data-toggle="tooltip" data-placement="top" title="{{ 'entityField.forAdults'|trans }}"></i>
+                    </td>
                 {% elseif event.forChildren %}
-                    <td class="text-center"><i class="fas fa-1x fa-child"></i></td>
+                    <td class="text-center"><i class="fas fa-1x fa-child" data-toggle="tooltip" data-placement="top" title="{{ 'entityField.forChildren'|trans }}"></i></td>
                 {% else %}
                     <td class="text-center"></td>
                 {% endif %}
                 <td class="text-center">
                     {% if event.guesting or event.festival %}
-                        <i class="fas fa-truck"></i>
+                        <i class="fas fa-truck" data-toggle="tooltip" data-placement="top" title="{% if event.festival %}{{ event.festivalTitle }}{% elseif event.guesting%}{{ event.guestingTitle }}{% endif %}"></i>
                     {% endif %}
-                    {#{% if event.guesting %}
-                        {{ event.guestingTitle }}
-                    {% endif %}
-                    {% if event.guesting and event.festival %}<br>{% endif %}
-                    {% if event.festival %}
-                        {{ event.festivalTitle }}
-                    {% endif %}#}
                 </td>
                 <td class="text-center">
                     {% if event.premiere %}
-                        <i class="fas fa-theater-masks"></i>
+                        <i class="fas fa-theater-masks" data-toggle="tooltip" data-placement="top" title="{{ 'entityField.premiere'|trans }}"></i>
                     {% endif %}
                 </td>
                 <td class="text-center">
                     {% if event.canceled %}
-                        <i class="fas fa-ban"></i>
+                        <i class="fas fa-ban" data-toggle="tooltip" data-placement="left" title="{{ 'entityField.canceled'|trans }}"></i>
                     {% endif %}
                 </td>
 

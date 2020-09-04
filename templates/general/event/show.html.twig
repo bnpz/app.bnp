@@ -3,7 +3,7 @@
 {% block leftColumn %}
     {{ parent() }}
     <h1 class="pageTitle text-right">{{ event.name }}</h1>
-    <h4 class="text-right">{{ event.time ? event.time|date() : ''}}</h4>
+    <h4 class="text-right">{{ event.time ? event.time|date('D')|trans }}, {{ event.time ? event.time|date() }}</h4>
     <br>
     <h5 class="text-right">{{ 'entityField.reserved' |trans }}: {{ totalReserved }}</h5>
     <h5 class="text-right">{{ 'entityField.confirmed' |trans }}: {{ totalConfirmed }}</h5>

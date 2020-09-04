@@ -50,6 +50,7 @@ label:
   eventDeleted: 'Program je izbrisan.'
   user: 'Korisnik'
   age: 'Dob'
+  type: 'Vrsta'
 entityField:
   company: 'Ustanova/Firma'
   firstName: 'Ime'
@@ -99,3 +100,10 @@ message:
 error:
   user:
     delete: 'Korisnika je nemoguće izbrisati. Probajte ga deaktivirati.'
+Mon: Pon
+Tue: Uto
+Wed: Sri
+Thu: Čet
+Fri: Pet
+Sat: Sub
+Sun: Ned
