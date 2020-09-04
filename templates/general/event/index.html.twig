@@ -99,8 +99,10 @@
                     <td class="text-center"></td>
                 {% endif %}
                 <td class="text-center">
-                    {% if event.guesting or event.festival %}
-                        <i class="fas fa-truck" data-toggle="tooltip" data-placement="top" title="{% if event.festival %}{{ event.festivalTitle }}{% elseif event.guesting%}{{ event.guestingTitle }}{% endif %}"></i>
+                    {% if event.festival %}
+                        <i class="fas fa-car-side" data-toggle="tooltip" data-placement="top" title="{{ event.festivalTitle }}"></i>
+                    {% elseif event.guesting %}
+                        <i class="fas fa-truck" data-toggle="tooltip" data-placement="top" title="{{ event.guestingTitle }}"></i>
                     {% endif %}
                 </td>
                 <td class="text-center">
