@@ -18,7 +18,7 @@ use Twig\Environment;
 class EventEntityListener
 {
     const DATE_FORMAT = 'd. m. Y.  H.i';
-    private $ignoreFields = ['createdBy', 'updatedBy','createdAt', 'updatedAt', 'eventType'];
+    private $ignoreFields = ['createdBy', 'updatedBy','createdAt', 'updatedAt', 'eventType', 'forChildren', 'forAdults'];
 
     /**
      * @var EventService
@@ -104,6 +104,7 @@ class EventEntityListener
 
         $changedFields = [];
         foreach ($changeSet as $fieldName => $values) {
+
             if(in_array($fieldName, $this->ignoreFields)) continue;
 
             $oldValue = $values[0];
