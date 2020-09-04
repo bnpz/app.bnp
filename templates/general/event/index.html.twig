@@ -70,7 +70,7 @@
         </thead>
         <tbody>
         {% for event in events %}
-            <tr {% if event.canceled %} class="event-canceled" {% elseif event.premiere %} class="event-premiere" {% endif %}>
+            <tr {% if event.canceled %} class="event-canceled" {% elseif event.premiere %} class="event-premiere" {% elseif event.guesting or event.festival %} class="event-guesting-festival" {% endif %}>
                 <td style="width: 30px;">{% if not event.externalProduction %}<i class="fas fa-home" data-toggle="tooltip" data-placement="right" title="{{ 'entityField.homeProduction'|trans }}"></i>{% endif %}</td>
                 <td style="width: 100px;">{{ event.eventType ? event.eventType.name : "" }}</td>
                 <td style="width: 200px;">
