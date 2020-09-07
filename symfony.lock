@@ -136,7 +136,7 @@
         "version": "2.2.3"
     },
     "php": {
-        "version": "7.3"
+        "version": "7.4"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -569,7 +569,7 @@
         "version": "v2.11.3"
     },
     "webimpress/safe-writer": {
-        "version": "2.0.1"
+        "version": "2.1.0"
     },
     "webmozart/assert": {
         "version": "1.5.0"
