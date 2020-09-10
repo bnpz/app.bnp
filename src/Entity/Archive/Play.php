@@ -8,7 +8,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
-
+use Swagger\Annotations as SWG;
 
 /**
  * Class Play
@@ -26,6 +26,7 @@ class Play implements EntityInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\Archive\Season", inversedBy="plays")
      * @ORM\JoinColumn(name="season_id", referencedColumnName="id", nullable=false)
      * @Groups({"archive_play_full"})
+     * @SWG\Property(property="season", type="integer")
      */
     private $season;
 
@@ -33,6 +34,7 @@ class Play implements EntityInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\Archive\Stage")
      * @ORM\JoinColumn(name="stage_id", referencedColumnName="id", nullable=false)
      * @Groups({"archive_play_full"})
+     * @SWG\Property(property="stage", type="integer")
      */
     private $stage;
 
@@ -41,6 +43,7 @@ class Play implements EntityInterface
      * @Assert\NotNull(groups={"create"})
      * @Assert\NotBlank(groups={"create"})
      * @Groups({"archive_play_listing", "archive_play_full"})
+     * @SWG\Property(property="title", type="string")
      */
     private $title;
 
@@ -49,8 +52,16 @@ class Play implements EntityInterface
      * @Assert\NotNull(groups={"create"})
      * @Assert\NotBlank(groups={"create"})
      * @Groups({"archive_play_full"})
+     * @SWG\Property(property="premiereDate", type="date")
      */
     private $premiereDate;
+
+    /**
+     * @ORM\Column(name="active", type="boolean", nullable=false, options={"default":false})
+     * @Groups({"create", "update", "archive_play_listing", "archive_play_full"})
+     * @SWG\Property(property="active", type="boolean")
+     */
+    private $active;
 
     /**
      * @return mixed
@@ -122,6 +133,24 @@ class Play implements EntityInterface
     public function setPremiereDate($premiereDate)
     {
         $this->premiereDate = $premiereDate;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param mixed $active
+     * @return Play
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
         return $this;
     }
 
