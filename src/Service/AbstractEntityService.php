@@ -14,6 +14,7 @@ use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Query\QueryException;
 use Exception;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -41,6 +42,9 @@ abstract class AbstractEntityService implements IDecoratable
      */
     private $managerRegistry;
 
+    /**
+     * @var ValidatorInterface
+     */
     private $validator;
 
     /**
@@ -49,18 +53,30 @@ abstract class AbstractEntityService implements IDecoratable
     protected $session;
 
     /**
+     * @var ContainerInterface
+     */
+    protected $container;
+
+    /**
      * EntityService constructor.
      * @param ManagerRegistry $managerRegistry
      * @param ValidatorInterface $validator
      * @param SessionInterface $session
+     * @param ContainerInterface $container
      */
-    public function __construct(ManagerRegistry $managerRegistry, ValidatorInterface $validator, SessionInterface $session)
+    public function __construct(
+        ManagerRegistry $managerRegistry,
+        ValidatorInterface $validator,
+        SessionInterface $session,
+        ContainerInterface $container
+    )
     {
         $this->managerRegistry  = $managerRegistry;
         $this->repository       = $this->managerRegistry->getRepository($this->getEntityClassName());
         $this->entityManager    = $this->managerRegistry->getManagerForClass($this->getEntityClassName());
         $this->validator        = $validator;
         $this->session          = $session;
+        $this->container        = $container;
     }
     /**
      * @return string
