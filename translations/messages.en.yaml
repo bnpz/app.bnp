@@ -51,6 +51,7 @@ label:
   user: 'User'
   age: 'Age'
   type: 'Type'
+  notifications: 'Notifications'
 entityField:
   company: 'Company'
   firstName: 'First Name'

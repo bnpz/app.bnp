@@ -4,6 +4,17 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+        android.app.controller.token: '%env(ANDROID_APP_CONTROLLER_TOKEN)%'
+        android.app.api.vijesti.read: '%env(ANDROID_APP_API_VIJESTI_READ)%'
+        android.app.api.raspored.all: '%env(ANDROID_APP_API_RASPORED_ALL)%'
+        android.app.api.raspored.today: '%env(ANDROID_APP_API_RASPORED_TODAY)%'
+        # hours before event start to send notification
+        android.app.event.time.offset: '-3'
+        # max results in website api response
+        android.app.results.limit: '3'
+        android.app.topic: '%env(ANDROID_APP_TOPIC)%'
+        android.app.firebase.url: '%env(ANDROID_APP_FIREBASE_URL)%'
+        android.app.firebase.token: '%env(ANDROID_APP_FIREBASE_TOKEN)%'
 
 services:
     # default configuration for services in *this* file

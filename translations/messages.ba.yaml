@@ -51,6 +51,7 @@ label:
   user: 'Korisnik'
   age: 'Dob'
   type: 'Vrsta'
+  notifications: 'Notifikacije'
 entityField:
   company: 'Ustanova/Firma'
   firstName: 'Ime'
