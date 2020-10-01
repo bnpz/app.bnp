@@ -70,7 +70,7 @@ class EventEntityListener
     public function prePersist(Event $eventEntity)
     {
         try{
-            $message = (new Swift_Message($eventEntity->getNameWithDate()))
+            $message = (new Swift_Message($eventEntity->getName()))
                 ->setFrom($this->adminEmail)
                 ->setReplyTo($this->adminEmail)
                 ->setTo($this->sendToEmails)
