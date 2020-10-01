@@ -8,7 +8,6 @@ use App\Entity\General\Contact;
 use App\Entity\General\Reservation;
 use App\Form\General\ContactReservationType;
 use App\Form\General\ContactType;
-use App\Repository\General\ContactRepository;
 use App\Service\General\ContactService;
 use App\Service\General\ReservationService;
 use Doctrine\ORM\Query\QueryException;
