@@ -112,10 +112,11 @@ class UserCreate extends Command
             }
             $user->setRoles($roles);
 
-
-            $output->writeln("User created.");
+            $user->setEmailNotifications(false);
 
             $newUser = $this->userService->save($user);
+
+            $output->writeln("User created.");
 
             return $newUser->getId();
         }

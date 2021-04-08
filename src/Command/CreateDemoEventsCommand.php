@@ -90,7 +90,10 @@ class CreateDemoEventsCommand extends Command
                 ->setTime($this->faker->dateTimeThisYear("2020-12-31"))
                 ->setPremiere(false)
                 ->setExternalProduction($this->faker->boolean)
-                ->setNote($this->faker->sentence(8, true));
+                ->setNote($this->faker->sentence(8, true))
+                ->setCanceled($this->faker->boolean)
+                ->setForChildren($this->faker->boolean)
+                ->setForAdults($this->faker->boolean);
 
             $this->eventService->save($event);
 

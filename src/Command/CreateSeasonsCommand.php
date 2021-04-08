@@ -22,7 +22,7 @@ class CreateSeasonsCommand extends Command
     /**
      * @var string
      */
-    protected static $defaultName = 'app:seson:create';
+    protected static $defaultName = 'app:season:create';
 
 
 
