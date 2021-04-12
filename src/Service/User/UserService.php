@@ -41,18 +41,16 @@ class UserService extends AbstractEntityService
      * @param Security $security
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param SessionInterface $session
-     * @param ContainerInterface $container
      */
     public function __construct(
         ManagerRegistry $managerRegistry,
         ValidatorInterface $validator,
         Security $security,
         UserPasswordEncoderInterface $passwordEncoder,
-        SessionInterface $session,
-        ContainerInterface $container
+        SessionInterface $session
     )
     {
-        parent::__construct($managerRegistry, $validator, $session, $container);
+        parent::__construct($managerRegistry, $validator, $session);
 
         $this->security = $security;
         $this->passwordEncoder = $passwordEncoder;

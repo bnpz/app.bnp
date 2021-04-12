@@ -4,8 +4,12 @@ namespace App\Service\AndroidApp;
 use App\Entity\AndroidApp\Notification;
 use App\Service\AbstractEntityService;
 use DateTime;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Exception;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
@@ -18,6 +22,19 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
  */
 class NotificationService extends AbstractEntityService
 {
+
+    private $params;
+
+    public function __construct(
+        ManagerRegistry $managerRegistry,
+        ValidatorInterface $validator,
+        SessionInterface $session,
+        ParameterBagInterface $params
+    )
+    {
+        parent::__construct($managerRegistry, $validator, $session);
+        $this->params = $params;
+    }
 
     /**
      * @return string
@@ -33,8 +50,8 @@ class NotificationService extends AbstractEntityService
     public function getDataFromWebsiteApi()
     {
         $client = HttpClient::create();
-        $limit = $this->container->getParameter('android.app.results.limit');
-        $newsUrl = $this->container->getParameter('android.app.api.vijesti.read')."?limit=$limit";
+        $limit = $this->params->get('android.app.results.limit');
+        $newsUrl = $this->params->get('android.app.api.vijesti.read')."?limit=$limit";
 
         print "GET NEWS"."<br>";
         try {
