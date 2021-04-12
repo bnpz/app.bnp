@@ -4,6 +4,7 @@ namespace App\Entity\Archive;
 
 use App\Entity\Base\EntityInterface;
 use App\Entity\Base\Mixin\BaseEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -25,11 +26,28 @@ class Stage implements EntityInterface
      * @ORM\Column(name="name", type="string")
      * @Assert\NotNull(groups={"create"})
      * @Assert\NotBlank(groups={"create"})
-     * @Groups({"create", "update", "archive_stage_listing", "archive_stage_full"})
+     * @Groups({
+     *     "create",
+     *     "update",
+     *     "archive_stage_listing",
+     *     "archive_stage_full"
+     * })
      * @SWG\Property(property="name", type="string")
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Archive\Performance", mappedBy="stage")
+     */
+    private $performances;
+
+    /**
+     * Stage constructor.
+     */
+    public function __construct()
+    {
+        $this->performances = new ArrayCollection();
+    }
     /**
      * @return mixed
      */
@@ -46,6 +64,14 @@ class Stage implements EntityInterface
     {
         $this->name = $name;
         return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPerformances(): ArrayCollection
+    {
+        return $this->performances;
     }
 
 

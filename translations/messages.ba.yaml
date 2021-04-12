@@ -52,6 +52,7 @@ label:
   age: 'Dob'
   type: 'Vrsta'
   notifications: 'Notifikacije'
+  archive: 'Arhiva'
 entityField:
   company: 'Ustanova/Firma'
   firstName: 'Ime'

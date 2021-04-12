@@ -15,6 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -76,7 +77,7 @@ class UserService extends AbstractEntityService
     /**
      * @return User|null
      */
-    public function getCurrentUser(): ?User
+    public function getCurrentUser(): ?UserInterface
     {
         return $this->security->getUser();
     }

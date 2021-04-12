@@ -5,7 +5,6 @@ use App\Entity\Base\EntityInterface;
 use App\Entity\Base\Mixin\BaseEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Nelmio\ApiDocBundle\Annotation\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Swagger\Annotations as SWG;
@@ -50,17 +49,19 @@ class Season implements EntityInterface
     private $label;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Archive\Play", mappedBy="season")
-     * @Groups({"archive_season_full"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Archive\Performance", mappedBy="season")
+     * @Groups({
+     *     "archive_season_full
+     * "})
      */
-    private $plays;
+    private $performances;
 
     /**
      * Season constructor.
      */
     public function __construct()
     {
-        $this->plays = new ArrayCollection();
+        $this->performances = new ArrayCollection();
     }
 
     /**
@@ -100,11 +101,11 @@ class Season implements EntityInterface
     }
 
     /**
-     * @return mixed
+     * @return ArrayCollection
      */
-    public function getPlays()
+    public function getPerformances()
     {
-        return $this->plays;
+        return $this->performances;
     }
 
 

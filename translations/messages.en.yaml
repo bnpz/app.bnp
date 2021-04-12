@@ -52,6 +52,7 @@ label:
   age: 'Age'
   type: 'Type'
   notifications: 'Notifications'
+  archive: 'Archive'
 entityField:
   company: 'Company'
   firstName: 'First Name'
