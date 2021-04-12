@@ -31,9 +31,20 @@ class CreateSeasonsCommand extends Command
      */
     private $seasonService;
 
-    public function __construct(SeasonService $seasonService)
+    /**
+     * @var UserService
+     */
+    private $userService;
+
+    /**
+     * CreateSeasonsCommand constructor.
+     * @param UserService $userService
+     * @param SeasonService $seasonService
+     */
+    public function __construct(UserService $userService, SeasonService $seasonService)
     {
         parent::__construct();
+        $this->userService = $userService;
         $this->seasonService = $seasonService;
     }
 
@@ -59,6 +70,7 @@ class CreateSeasonsCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $arg1 = $input->getArgument('arg1');
+        $user = $this->userService->findByEmail("info@bnp.ba");
 
         $year = 1950;
         $seasons[] = $year;
@@ -85,11 +97,10 @@ class CreateSeasonsCommand extends Command
                 $season = new Season();
                 $season->setNumber($key + 1);
                 $season->setLabel($label);
+                $season->setCreatedBy($user);
                 $this->seasonService->save($season);
             }
-
         }
-
 
         $io->success('DONE');
 
