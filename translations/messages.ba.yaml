@@ -7,6 +7,7 @@ label:
   documentation: 'Documentacija'
   homePage: 'Početna'
   new: 'Novi'
+  newFemale: 'Nova'
   edit: 'Uredi'
   delete: 'Izbriši'
   save: 'Sačuvaj'
@@ -53,6 +54,12 @@ label:
   type: 'Vrsta'
   notifications: 'Notifikacije'
   archive: 'Arhiva'
+  performance: 'Predstava'
+  season: 'Sezona'
+  stage: 'Scena'
+  title: 'Naslov'
+  premiere: 'Premijera'
+  activePerformance: 'Aktivna predstava'
 entityField:
   company: 'Ustanova/Firma'
   firstName: 'Ime'
@@ -92,6 +99,7 @@ entityField:
   forAdults: 'Za odrasle'
   forChildren: 'Za djecu'
   eventType: 'Vrsta programa'
+  stageLabel: 'Nekadašnji naziv scene'
 message:
   reservation:
     success: 'Reservacija je sačuvana'

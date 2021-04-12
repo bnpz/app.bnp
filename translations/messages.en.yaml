@@ -7,6 +7,7 @@ label:
   documentation: 'Documentation'
   homePage: 'Home'
   new: 'New'
+  newFemale: 'New'
   edit: 'Edit'
   delete: 'Delete'
   save: 'Save'
@@ -53,6 +54,12 @@ label:
   type: 'Type'
   notifications: 'Notifications'
   archive: 'Archive'
+  performance: 'Performance'
+  season: 'Season'
+  stage: 'Stage'
+  title: 'Title'
+  premiere: 'Premiere'
+  activePerformance: 'Active performance'
 entityField:
   company: 'Company'
   firstName: 'First Name'
@@ -92,6 +99,7 @@ entityField:
   forAdults: 'For adults'
   forChildren: 'For children'
   eventType: 'Event Type'
+  stageLabel: 'Former stage title'
 message:
   reservation:
     success: 'Reservation saved'

@@ -108,5 +108,11 @@ class Season implements EntityInterface
         return $this->performances;
     }
 
-
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->label;
+    }
 }
