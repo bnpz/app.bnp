@@ -1,7 +1,7 @@
 <?php
 namespace App\Service\Archive;
 
-use App\Entity\Archive\Season;
+use App\Entity\Archive\Performance;
 use App\Repository\Archive\PerformanceRepository;
 use App\Service\AbstractEntityService;
 
@@ -17,6 +17,6 @@ class PerformanceService extends AbstractEntityService
      */
     protected function getEntityClassName()
     {
-        return Season::class;
+        return Performance::class;
     }
 }

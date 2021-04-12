@@ -1,0 +1,25 @@
+{% extends "frontend/fullPageLayout.html.twig" %}
+{% block title %}
+    {{ 'label.performance'|trans }}
+{% endblock %}
+{% block full_page %}
+
+    <h1 class="pageTitle float-left">{{ 'label.performance'|trans }}</h1>
+    <h3 class="float-right">
+        {{ include('inc/button.new.html.twig', {'route': 'archive_performance_new', 'label': 'label.newFemale'}) }}
+    </h3>
+    <div class="clearfix"></div>
+    {#<div class="row">
+        <div class="col-sm-12">
+            {{ render(controller('App\\Controller\\General\\ContactController::searchBar')) }}
+        </div>
+    </div>#}
+
+    <p>Predstave index</p>
+
+    {% if paginator.hasToPaginate %}
+        {{ include('inc/paginator.html.twig') }}
+    {% endif %}
+{% endblock %}
+
+

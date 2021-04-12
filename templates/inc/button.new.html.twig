@@ -1,3 +1,7 @@
 <a class="btn btn-bnp btn-success" href="{{ path(route) }}">
-    {{ 'label.new' |trans }}
+    {% if label is defined and label is not null and label is not empty%}
+        {{ label |trans }}
+    {% else %}
+        {{ 'label.new' |trans }}
+    {% endif %}
 </a>
