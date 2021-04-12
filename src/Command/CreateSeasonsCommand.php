@@ -2,7 +2,9 @@
 
 namespace App\Command;
 
+use App\Entity\Archive\Season;
 use App\Entity\General\EventType;
+use App\Service\Archive\SeasonService;
 use App\Service\General\EventTypeService;
 use App\Service\User\UserService;
 use Exception;
@@ -24,12 +26,15 @@ class CreateSeasonsCommand extends Command
      */
     protected static $defaultName = 'app:season:create';
 
+    /**
+     * @var SeasonService
+     */
+    private $seasonService;
 
-
-    public function __construct()
+    public function __construct(SeasonService $seasonService)
     {
         parent::__construct();
-
+        $this->seasonService = $seasonService;
     }
 
     /**
@@ -54,6 +59,36 @@ class CreateSeasonsCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $arg1 = $input->getArgument('arg1');
+
+        $year = 1950;
+        $seasons[] = $year;
+        for ($year = 1950; $year <= 2020; $year++) {
+            $nextYear = $year + 1;
+            if($nextYear != 2000){
+                $shortNextYear = substr($nextYear, -2);
+            }
+            else{
+                $shortNextYear = $nextYear;
+            }
+
+            $label = $year."/".$shortNextYear.".";
+            $seasons[] = $label;
+        }
+
+        foreach ($seasons as $key => $label) {
+            $existingSeason = $this->seasonService->getByLabel($label);
+            if($existingSeason instanceof Season){
+                $output->writeln($key + 1 ." - $label - exists");
+            }
+            else{
+                $output->writeln($key + 1 ." - $label");
+                $season = new Season();
+                $season->setNumber($key + 1);
+                $season->setLabel($label);
+                $this->seasonService->save($season);
+            }
+
+        }
 
 
         $io->success('DONE');

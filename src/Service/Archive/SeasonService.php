@@ -22,5 +22,13 @@ class SeasonService extends AbstractEntityService
         return Season::class;
     }
 
+    /**
+     * @param string $label
+     * @return Season|null
+     */
+    public function getByLabel($label = "")
+    {
+        return $this->repository->findOneBy(['label' => $label]);
+    }
 
 }
