@@ -56,3 +56,6 @@ div.form-group label{
 table.table-events tr:hover td, table.table-events tr:hover td a{
     color: #fff;
 }
+.card-subcard {
+    background-color: #23414a !important;
+}

@@ -1,10 +1,38 @@
 {% extends 'archive/base.html.twig' %}
 
 {% block leftColumn %}
-    {{ parent() }}
-    <p>archive/index left</p>
+    {#{{ parent() }}#}
+    <div class="card">
+        <div class="card-body">
+            <h1>
+                <span class="align-middle"><i class="far fa-2x fa-folder-open"></i></span>
+                <span class="align-middle">{{ 'label.archive'|trans }}</span>
+            </h1>
+        </div>
+    </div>
 {% endblock %}
 {% block rightColumn %}
-    {{ parent() }}
-    <p>archive/index right</p>
+    {#{{ parent() }}#}
+
+    <h3>
+        <a href="{{ path('archive_performance_index') }}">
+        <span class="align-middle"><i class="fas fa-theater-masks"></i></span>
+        <span class="align-middle">{{ 'label.performance'|trans }}</span>
+        </a>
+    </h3>
+    <hr>
+    <h3>
+        <a href="#">
+            <span class="align-middle"><i class="fas fa-layer-group"></i></span>
+            <span class="align-middle">{{ 'label.season'|trans }}</span>
+        </a>
+    </h3>
+    <hr>
+    <h3>
+        <a href="#">
+            <span class="align-middle"><i class="fas fa-expand"></i></span>
+            <span class="align-middle">{{ 'label.stage'|trans }}</span>
+        </a>
+    </h3>
+
 {% endblock %}

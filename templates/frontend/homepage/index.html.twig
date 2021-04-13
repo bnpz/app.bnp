@@ -32,9 +32,8 @@
                 </div>
             </a>
         </div>
-        {% if is_granted("ROLE_ADMIN") %}
         <div class="col-md-6">
-            <a href="{{ path('archive_performance_index') }}">
+            <a href="{{ path('archive_index') }}">
                 <div class="card">
                     <div class="card-body">
                         <h1>
@@ -45,7 +44,6 @@
                 </div>
             </a>
         </div>
-        {% endif %}
     </div>
 
 
