@@ -15,6 +15,7 @@ use Swagger\Annotations as SWG;
  *
  * @ORM\Table(name="performances")
  * @ORM\Entity(repositoryClass="App\Repository\Archive\PerformanceRepository")
+ * @ORM\EntityListeners({"App\EventListener\BaseEntityListener"})
  */
 class Performance implements EntityInterface
 {

@@ -60,6 +60,7 @@ label:
   title: 'Title'
   premiere: 'Premiere'
   activePerformance: 'Active performance'
+  error: 'Error'
 entityField:
   company: 'Company'
   firstName: 'First Name'

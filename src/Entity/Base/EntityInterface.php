@@ -8,7 +8,7 @@ namespace App\Entity\Base;
  */
 interface EntityInterface
 {
-    const PAGE_LIMIT = 10;
+    const PAGE_LIMIT = 20;
 
     public function getId();
 

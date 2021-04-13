@@ -94,11 +94,13 @@ abstract class AbstractEntityRepository extends ServiceEntityRepository
         if(is_array($filters) and !empty($filters)){
             $metadata = $this->_em->getClassMetadata($this->_entityName);
             $fieldNames = $metadata->getFieldNames();
+            $assocFieldNames = $metadata->getAssociationNames();
+            $allFieldNames = array_merge($fieldNames, $assocFieldNames);
 
             $criteria = Criteria::create();
 
             foreach ($filters as $filterName => $filterValue) {
-                if(in_array($filterName, $fieldNames)){
+                if(in_array($filterName, $allFieldNames)){
                     if($metadata->getTypeOfField($filterName) == "datetime"){
                         $fromDate = new DateTime($filterValue);
                         $fromDate->setTime(0,0);

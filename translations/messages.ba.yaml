@@ -60,6 +60,7 @@ label:
   title: 'Naslov'
   premiere: 'Premijera'
   activePerformance: 'Aktivna predstava'
+  error: 'Greška'
 entityField:
   company: 'Ustanova/Firma'
   firstName: 'Ime'

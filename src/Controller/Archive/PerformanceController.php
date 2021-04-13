@@ -6,6 +6,7 @@ use App\Entity\Archive\Performance;
 use App\Entity\Base\EntityInterface;
 use App\Form\Archive\PerformanceType;
 use App\Service\Archive\PerformanceService;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\QueryException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,15 +32,30 @@ class PerformanceController extends AbstractController
      */
     public function index(Request $request, PerformanceService $performanceService, int $page): Response
     {
+        $query = "";
+        $searchForm = $request->request->all('form');
+        if(isset($searchForm['query'])) {
+            $query = $searchForm['query'];
 
+        }
+        if(trim($query)){
+            $paginator = $performanceService->search(
+                $query,
+                1,
+                100,
+                $request->query->get('orderBy', 'title'),
+                $request->query->get('orderDirection', 'ASC')
+            );
+        }
+        else{
+            $paginator = $performanceService->getAllPaginator(
+                $page,
+                EntityInterface::PAGE_LIMIT,
+                $request->query->get('orderBy', 'premiereDate'),
+                $request->query->get('orderDirection', 'DESC')
 
-        $paginator = $performanceService->getAllPaginator(
-            $page,
-            EntityInterface::PAGE_LIMIT,
-            $request->query->get('orderBy', 'premiereDate'),
-            $request->query->get('orderDirection', 'DESC')
-
-        );
+            );
+        }
 
         $paginator->setRouteName('archive_performance_index_paginated');
 
@@ -64,7 +80,7 @@ class PerformanceController extends AbstractController
             $entityManager->persist($performance);
             $entityManager->flush();
 
-            return $this->redirectToRoute('general_event_index');
+            return $this->redirectToRoute('archive_performance_index');
         }
 
         return $this->render("archive/performance/new.html.twig", [
@@ -72,4 +88,40 @@ class PerformanceController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/{id<[1-9]\d*>}", name="archive_performance_show", methods={"GET"})
+     * @param Performance $performance
+     * @return Response
+     */
+    public function show(Performance $performance): Response
+    {
+        return $this->render('archive/performance/show.html.twig', [
+            'performance' => $performance
+        ]);
+
+    }
+    /**
+     * @Route("/{id}/edit", name="archive_performance_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Performance $performance
+     * @return Response
+     */
+    public function edit(Request $request, Performance $performance): Response
+    {
+        $form = $this->createForm(PerformanceType::class, $performance);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('archive_performance_show', ['id' => $performance->getId()]);
+        }
+
+        return $this->render('archive/performance/edit.html.twig', [
+            'performance' => $performance,
+            'form' => $form->createView(),
+        ]);
+    }
+
 }

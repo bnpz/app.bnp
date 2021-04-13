@@ -1,0 +1,33 @@
+{% extends "archive/base.html.twig" %}
+{% block title %}
+    {{ performance.title }}
+{% endblock %}
+{% block leftColumn %}
+    {#{{ parent() }}#}
+    <p class="text-right">{{ performance.season }}</p>
+    <p class="text-right">{{ performance.stage}}</p>
+    <h3 class="pageTitle text-right">{{ performance.title }}</h3>
+    <hr>
+
+    <ul class="list-inline float-right">
+        <li class="list-inline-item">
+            {{ include('inc/button.index.html.twig',{'route': 'archive_performance_index', 'label': 'label.performance' |trans}) }}
+        </li>
+        {% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
+            <li class="list-inline-item">
+                {{ include('inc/button.edit.html.twig', {'route': 'archive_performance_edit', 'id': performance.id}) }}
+            </li>
+            {#<li class="list-inline-item">
+                {{ include('inc/button.delete.html.twig', {'route': 'general_contact_delete', 'id': contact.id}) }}
+            </li>#}
+        {% endif %}
+    </ul>
+{% endblock %}
+{% block rightColumn %}
+
+    <p>Data here</p>
+    <hr>
+    {{ include('inc/entity.item.info.html.twig', {'entity': performance}) }}
+{% endblock %}
+
+

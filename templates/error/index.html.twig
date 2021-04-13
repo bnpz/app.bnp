@@ -1,0 +1,11 @@
+{% extends 'frontend/leftLayout.html.twig' %}
+
+{% block title %}{{ 'label.error'|trans }}{% endblock %}
+{% block leftColumn %}
+    <h3 class="pageTitle float-right">{{ 'label.error'|trans }}</h3>
+
+{% endblock %}
+{% block rightColumn %}
+    <p>{{ error.code }}</p>
+    <p>{{ error.message }}</p>
+{% endblock %}

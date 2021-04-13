@@ -1,21 +1,43 @@
-{% extends "frontend/fullPageLayout.html.twig" %}
+{% extends "archive/base.html.twig" %}
 {% block title %}
     {{ 'label.performance'|trans }}
 {% endblock %}
-{% block full_page %}
-
+{% block leftColumn %}
+    {#{{ parent() }}#}
+    {#<p>archive/index left</p>#}
+{% endblock %}
+{% block rightColumn %}
     <h1 class="pageTitle float-left">{{ 'label.performance'|trans }}</h1>
     <h3 class="float-right">
         {{ include('inc/button.new.html.twig', {'route': 'archive_performance_new', 'label': 'label.newFemale'}) }}
     </h3>
     <div class="clearfix"></div>
-    {#<div class="row">
+    <div class="row">
         <div class="col-sm-12">
-            {{ render(controller('App\\Controller\\General\\ContactController::searchBar')) }}
+            {{ render(controller('App\\Controller\\Archive\\PerformanceController::searchBar')) }}
         </div>
-    </div>#}
+    </div>
 
-    <p>Predstave index</p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>{{ 'label.title' |trans }}</th>
+                <th>{{ 'label.stage' |trans }}</th>
+                <th>{{ 'label.premiere' |trans }}</th>
+                <th>{{ 'label.season' |trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for performance in performances %}
+                <tr>
+                    <td><a href="{{ path('archive_performance_show', {'id': performance.id}) }}">{{ performance.title }}</a></td>
+                    <td>{{ performance.stage }}</td>
+                    <td>{{ performance.premiereDate|date('d. m. Y.') }}</td>
+                    <td>{{ performance.season }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
     {% if paginator.hasToPaginate %}
         {{ include('inc/paginator.html.twig') }}

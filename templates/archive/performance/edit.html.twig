@@ -1,0 +1,12 @@
+{% extends 'frontend/leftLayout.html.twig' %}
+{% block title %}{{ 'label.performance'|trans }}{% endblock %}
+{% block leftColumn %}
+    {{ parent() }}
+    <h1 class="color-edit text-right">{{ 'label.edit'|trans }}</h1>
+{% endblock %}
+{% block rightColumn %}
+    {{ parent() }}
+    {{ include('inc/entity.form.html.twig') }}
+{% endblock %}
+
+
