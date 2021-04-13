@@ -8,12 +8,23 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Swagger\Annotations as SWG;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Class Performance
  * @package App\Entity\Archive
  *
- * @ORM\Table(name="performances")
+ * @ORM\Table(
+ *     name="performances",
+ *     uniqueConstraints={
+ *        @ORM\UniqueConstraint(name="performance_unique", columns={"title", "premiereDate"})
+ *    }
+ * )
+ * @UniqueEntity(
+ *     fields={"title", "premiereDate"},
+ *     errorPath="title",
+ *     message="performance.exists"
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\Archive\PerformanceRepository")
  * @ORM\EntityListeners({"App\EventListener\BaseEntityListener"})
  */

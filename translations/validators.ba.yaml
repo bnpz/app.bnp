@@ -1,2 +1,4 @@
 contact:
   reservationExists: 'Kontakt već ima rezervaciju'
+performance:
+  exists: 'Predstava već postoji'
