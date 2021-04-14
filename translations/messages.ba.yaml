@@ -55,12 +55,15 @@ label:
   notifications: 'Notifikacije'
   archive: 'Arhiva'
   performance: 'Predstava'
+  performances: 'Predstave'
   season: 'Sezona'
   stage: 'Scena'
   title: 'Naslov'
   premiere: 'Premijera'
   activePerformance: 'Aktivna predstava'
   error: 'Greška'
+  authorship: Autorstvo
+  author: Autor
 entityField:
   company: 'Ustanova/Firma'
   firstName: 'Ime'

@@ -11,7 +11,7 @@
 
     <ul class="list-inline float-right">
         <li class="list-inline-item">
-            {{ include('inc/button.index.html.twig',{'route': 'archive_performance_index', 'label': 'label.performance' |trans}) }}
+            {{ include('inc/button.index.html.twig',{'route': 'archive_performance_index', 'label': 'label.performances' |trans}) }}
         </li>
         {% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
             <li class="list-inline-item">

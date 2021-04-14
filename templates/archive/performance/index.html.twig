@@ -1,13 +1,13 @@
 {% extends "archive/base.html.twig" %}
 {% block title %}
-    {{ 'label.performance'|trans }}
+    {{ 'label.performances'|trans }}
 {% endblock %}
 {% block leftColumn %}
     {#{{ parent() }}#}
     {#<p>archive/index left</p>#}
 {% endblock %}
 {% block rightColumn %}
-    <h1 class="pageTitle float-left">{{ 'label.performance'|trans }}</h1>
+    <h1 class="pageTitle float-left">{{ 'label.performances'|trans }}</h1>
     <h3 class="float-right">
         {{ include('inc/button.new.html.twig', {'route': 'archive_performance_new', 'label': 'label.newFemale'}) }}
     </h3>

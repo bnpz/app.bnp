@@ -100,7 +100,7 @@ class Performance implements EntityInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Archive\Authorship", mappedBy="performance", orphanRemoval=true)
      * @ORM\OrderBy({"index" = "ASC"})
      */
-    private ArrayCollection $authorships;
+    private $authorships;
 
     /**
      * Performance constructor.
@@ -248,5 +248,12 @@ class Performance implements EntityInterface
             }
         }
         return $this;
+    }
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->title;
     }
 }

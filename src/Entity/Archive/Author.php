@@ -59,7 +59,7 @@ class Author implements EntityInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Archive\Authorship", mappedBy="author", orphanRemoval=true)
      * @ORM\OrderBy({"index" = "ASC"})
      */
-    private ArrayCollection $authorships;
+    private $authorships;
 
     /**
      * Author constructor.
@@ -128,6 +128,13 @@ class Author implements EntityInterface
     public function getAuthorships(): ArrayCollection
     {
         return $this->authorships;
+    }
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->firstName." ".$this->lastName;
     }
 
 }

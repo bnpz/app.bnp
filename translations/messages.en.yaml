@@ -55,12 +55,15 @@ label:
   notifications: 'Notifications'
   archive: 'Archive'
   performance: 'Performance'
+  performances: 'Performances'
   season: 'Season'
   stage: 'Stage'
   title: 'Title'
   premiere: 'Premiere'
   activePerformance: 'Active performance'
   error: 'Error'
+  authorship: Authorship
+  author: Author
 entityField:
   company: 'Company'
   firstName: 'First Name'
