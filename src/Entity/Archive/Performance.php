@@ -3,6 +3,7 @@ namespace App\Entity\Archive;
 
 use App\Entity\Base\EntityInterface;
 use App\Entity\Base\Mixin\BaseEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -94,6 +95,20 @@ class Performance implements EntityInterface
      * @SWG\Property(property="active", type="boolean")
      */
     private $active;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Archive\Authorship", mappedBy="performance", orphanRemoval=true)
+     * @ORM\OrderBy({"index" = "ASC"})
+     */
+    private ArrayCollection $authorships;
+
+    /**
+     * Performance constructor.
+     */
+    public function __construct()
+    {
+        $this->authorships = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -203,5 +218,35 @@ class Performance implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getAuthorships(): ArrayCollection
+    {
+        return $this->authorships;
+    }
 
+    /**
+     * @param Authorship $authorship
+     * @return $this
+     */
+    public function addAuthorship(Authorship $authorship)
+    {
+        if(!$this->authorships->contains($authorship)){
+            $this->authorships->add($authorship);
+            $authorship->setPerformance($this);
+        }
+        return $this;
+    }
+
+    public function removeAuthorship(Authorship $authorship)
+    {
+        if($this->authorships->contains($authorship)){
+            $this->authorships->removeElement($authorship);
+            if($authorship->getPerformance() === $this){
+                $authorship->setPerformance(null);
+            }
+        }
+        return $this;
+    }
 }

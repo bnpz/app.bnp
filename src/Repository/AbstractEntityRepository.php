@@ -25,6 +25,9 @@ abstract class AbstractEntityRepository extends ServiceEntityRepository
           parent::__construct($registry, $this->getEntityClassName());
       }
 
+    /**
+     * @return string
+     */
     abstract protected function getEntityClassName();
 
 

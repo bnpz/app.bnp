@@ -2,3 +2,5 @@ contact:
   reservationExists: 'Contact already has reservation'
 performance:
   exists: 'Performance exists'
+authorship:
+  typeExists: 'Authorship Type exists'

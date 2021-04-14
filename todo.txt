@@ -18,6 +18,21 @@ git push to dev
 
 *******************************
 *******************************
+ULOGE
+- predstava_id (Hamlet)
+- autor_id (John Smith)
+- autor_label
+- naziv_uloge (Ofelija)
+- promjena_u_podjeli (Da / Ne)
+*******************************
+ANSAMBL
+- autor_id
+- startdate
+- endDate
+- ansambl_type_id
+*******************************
+ANSAMBL TYPE
+- name (glumac, dramaturg...)
 TODO
 - deactivate user
 - change user role
