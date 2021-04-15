@@ -48,7 +48,7 @@ class PerformanceType extends AbstractType
             ])
             ->add('stageLabel', null, [
                 'label' => "entityField.stageLabel",
-                'help' => "Koristi se kod starijih predstava u slučaju kad je produkcijski segment imao drugi naziv. Npr: Dječija, omladinska i lutkarska scena je nekad bila Omladinska scena. Samo u takvom slučaju treba unositi podatak, inače ostaviti prazno."
+                'help' => "entityField.stageLabelHelp"
             ])
             ->add('title', null, ['label' => "label.title", 'required' => true])
             ->add('premiereDate', DateType::class,[
