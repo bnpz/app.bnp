@@ -103,7 +103,13 @@ entityField:
   forAdults: 'For adults'
   forChildren: 'For children'
   eventType: 'Event Type'
-  stageLabel: 'Former stage title'
+  stageLabel: Former stage title
+  stageLabelHelp: It is used in older performances in the case when the production segment had a different name. Eg. The Children's, youth and puppet scene used to be the Youth scene. Only in such a case should the data be entered, otherwise it should be left blank.
+  authorshipTypeLabel: Full authorship title
+  authorshipTypeLabelHelp: Enter data only if the authorship name differs from the main title (eg Scenography and decor)
+  authorLabel: Other name and surname of the author
+  authorLabelHelp: Enter data only if the author's name differs from the selected name (eg Name Surname -> Name Surname-Another)
+  index: Position on list
 message:
   reservation:
     success: 'Reservation saved'

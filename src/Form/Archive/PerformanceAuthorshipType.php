@@ -29,6 +29,10 @@ class PerformanceAuthorshipType extends AbstractType
                         ->orderBy('authorshipType.name', 'ASC');
                 }
             ])
+            ->add('authorshipTypeLabel', null, [
+                'label' => "entityField.authorshipTypeLabel",
+                'help' => "entityField.authorshipTypeLabelHelp"
+            ])
             ->add('author', null, [
                 'label' => "label.author",
                 'placeholder' => 'label.choose',
@@ -38,14 +42,12 @@ class PerformanceAuthorshipType extends AbstractType
                         ->orderBy('author.firstName', 'ASC');
                 }
             ])
-            ->add('reserved', null, [
-                'label' => "entityField.reserved"
+            ->add('authorLabel', null, [
+                'label' => "entityField.authorLabel",
+                'help' => "entityField.authorLabelHelp"
             ])
-            ->add('confirmed', null, [
-                'label' => "entityField.confirmed"
-            ])
-            ->add('note', null, [
-                'label' => "entityField.note"
+            ->add('index', null, [
+                'label' => "entityField.index"
             ])
         ;
     }
