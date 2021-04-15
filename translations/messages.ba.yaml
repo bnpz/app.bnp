@@ -109,8 +109,8 @@ entityField:
   authorshipTypeLabel: Puni naziv autorstva
   authorshipTypeLabelHelp: Unijeti podatak samo u slučaju ako se naziv autorstva razlikuje od glavnog naziva (npr. Scenografija i dekor)
   authorLabel: Drugo ime i prezime autora
-  authorLabelHelp: Unijeti podatak samo u slučaju ako se ime autora razlikuje od izabranog imena (npr. Ime Prezime -> Ime Prezime-Još jedno)
-  index: Pozicija na listi
+  authorLabelHelp: Unijeti podatak ako treba kreirati novog autora ili ako se ime autora razlikuje od izabranog imena (npr. Ime Prezime -> Ime Prezime-Još jedno)
+  positionInList: Pozicija na listi
 message:
   success: Uspješno
   reservation:

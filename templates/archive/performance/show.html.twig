@@ -31,7 +31,14 @@
 {% endblock %}
 {% block rightColumn %}
 
-    <p>Data here</p>
+    <p>
+        {% for authorship in performance.authorships %}
+            <span>{{ authorship.authorshipTypeLabel ? authorship.authorshipTypeLabel : authorship.authorshipType.name }}:</span>
+
+            <span>{{ authorship.authorLabel ? authorship.authorLabel : authorship.author.fullName }} </span>
+            <br>
+        {% endfor %}
+     </p>
     <hr>
     {{ include('inc/entity.item.info.html.twig', {'entity': performance}) }}
 {% endblock %}

@@ -48,9 +48,9 @@ class PerformanceAuthorshipType extends AbstractType
                 'label' => "entityField.authorLabel",
                 'help' => "entityField.authorLabelHelp"
             ])
-            ->add('index', null, [
+            ->add('positionInList', null, [
                 'required' => true,
-                'label' => "entityField.index"
+                'label' => "entityField.positionInList"
             ])
         ;
     }

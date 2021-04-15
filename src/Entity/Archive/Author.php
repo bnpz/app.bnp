@@ -46,18 +46,18 @@ class Author implements EntityInterface
     private $lastName;
 
     /**
-     * @ORM\Column(name="collective_member", type="boolean", nullable=false, options={"default":false})
+     * @ORM\Column(name="collective_member", type="boolean", nullable=true, options={"default":false})
      * @Groups({
      *     "archive_author_listing",
      *     "archive_author_full"
      * })
-     * @SWG\Property(property="collectiveMember", type="boolean")
+     * @SWG\Property(property="collectiveMember", type="boolean",)
      */
     private $collectiveMember;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Archive\Authorship", mappedBy="author", orphanRemoval=true)
-     * @ORM\OrderBy({"index" = "ASC"})
+     * @ORM\OrderBy({"positionInList" = "ASC"})
      */
     private $authorships;
 
@@ -137,4 +137,11 @@ class Author implements EntityInterface
         return $this->firstName." ".$this->lastName;
     }
 
+    /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->firstName." ".$this->lastName;
+    }
 }

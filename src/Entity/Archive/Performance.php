@@ -4,6 +4,7 @@ namespace App\Entity\Archive;
 use App\Entity\Base\EntityInterface;
 use App\Entity\Base\Mixin\BaseEntity;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -98,7 +99,7 @@ class Performance implements EntityInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Archive\Authorship", mappedBy="performance", orphanRemoval=true)
-     * @ORM\OrderBy({"index" = "ASC"})
+     * @ORM\OrderBy({"positionInList" = "ASC"})
      */
     private $authorships;
 
@@ -221,7 +222,7 @@ class Performance implements EntityInterface
     /**
      * @return ArrayCollection
      */
-    public function getAuthorships(): ArrayCollection
+    public function getAuthorships()
     {
         return $this->authorships;
     }

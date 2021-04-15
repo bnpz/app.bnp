@@ -110,7 +110,7 @@ entityField:
   authorshipTypeLabelHelp: Enter data only if the authorship name differs from the main title (eg Scenography and decor)
   authorLabel: Other name and surname of the author
   authorLabelHelp: Enter data only if the authors name differs from the selected name (eg Name Surname -> Name Surname-Another)
-  index: Position on list
+  positionInList: Position on list
 message:
   success: Success
   reservation:

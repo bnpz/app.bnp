@@ -81,13 +81,13 @@ class Authorship implements EntityInterface
     private $authorLabel;
 
     /**
-     * @ORM\Column(name="index", type="integer", nullable=true, options={"default":1})
+     * @ORM\Column(name="position_in_list", type="integer", nullable=true, options={"default":1})
      * @Groups({
      *     "archive_authorship_listing"
      * })
-     * @SWG\Property(property="index", type="integer")
+     * @SWG\Property(property="positionInList", type="integer")
      */
-    private $index;
+    private $positionInList;
 
     /**
      * @return mixed
@@ -108,7 +108,7 @@ class Authorship implements EntityInterface
     }
 
     /**
-     * @return mixed
+     * @return AuthorshipType|null
      */
     public function getAuthorshipType()
     {
@@ -182,18 +182,18 @@ class Authorship implements EntityInterface
     /**
      * @return mixed
      */
-    public function getIndex()
+    public function getPositionInList()
     {
-        return $this->index;
+        return $this->positionInList;
     }
 
     /**
-     * @param mixed $index
+     * @param mixed $positionInList
      * @return Authorship
      */
-    public function setIndex($index)
+    public function setPositionInList($positionInList)
     {
-        $this->index = $index;
+        $this->positionInList = $positionInList;
         return $this;
     }
 
