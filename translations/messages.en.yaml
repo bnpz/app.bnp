@@ -3,123 +3,125 @@ paginator:
   next: next
   current: current
 label:
-  myAccount: 'My Account'
-  documentation: 'Documentation'
-  homePage: 'Home'
-  new: 'New'
-  newFemale: 'New'
-  edit: 'Edit'
-  delete: 'Delete'
-  save: 'Save'
-  logout: 'Logout'
-  contacts: 'Contacts'
-  addressBook: 'Address Book'
-  events: 'Events'
-  allEvents: 'All Events'
-  newEvents: 'New Events'
-  oldEvents: 'Old Events'
-  actions: '#'
-  deleteQuestion: 'Are you sure you want to delete this item?'
-  allData: 'All Data'
-  noRecords: 'No Records found'
-  yes: 'Yes'
-  no: 'No'
-  reservations: 'Reservations'
-  allReservations: 'All Reservations'
-  reservationDate: 'Reservation Date'
-  choose: "choose"
-  search: "Search"
-  searchPlaceholder: "search for... (min. 4 char)"
-  submit: "submit"
-  resetFilters: 'Reset Filters'
-  users: 'Users'
-  roleAdmin: 'Administrator'
-  roleUser: 'User'
-  changePassword: 'Change Password'
-  newPassword: 'New Password'
-  login: 'Login'
-  rememberMe: 'Remember me'
-  from: 'From'
-  to: 'To'
-  filters: 'Filters'
-  applyFilters: 'Apply Filters'
-  cancel: 'Cancel'
-  dataChanged: 'Data changed'
-  oldValue: 'Old value'
-  newValue: 'New Value'
-  deleted: 'Deleted'
-  eventDeleted: 'Event Deleted'
-  user: 'User'
-  age: 'Age'
-  type: 'Type'
-  notifications: 'Notifications'
-  archive: 'Archive'
-  performance: 'Performance'
-  performances: 'Performances'
-  season: 'Season'
-  stage: 'Stage'
-  title: 'Title'
-  premiere: 'Premiere'
-  activePerformance: 'Active performance'
-  error: 'Error'
+  placeholder: --
+  myAccount: My Account
+  documentation: Documentation
+  homePage: Home
+  new: New
+  newFemale: New
+  edit: Edit
+  delete: Delete
+  save: Save
+  logout: Logout
+  contacts: Contacts
+  addressBook: Address Book
+  events: Events
+  allEvents: All Events
+  newEvents: New Events
+  oldEvents: Old Events
+  actions: #
+  deleteQuestion: Are you sure you want to delete this item?
+  allData: All Data
+  noRecords: No Records found
+  yes: Yes
+  no: No
+  reservations: Reservations
+  allReservations: All Reservations
+  reservationDate: Reservation Date
+  choose: choose
+  search: Search
+  searchPlaceholder: search for... (min. 4 char)
+  submit: submit
+  resetFilters: Reset Filters
+  users: Users
+  roleAdmin: Administrator
+  roleUser: User
+  changePassword: Change Password
+  newPassword: New Password
+  login: Login
+  rememberMe: Remember me
+  from: From
+  to: To
+  filters: Filters
+  applyFilters: Apply Filters
+  cancel: Cancel
+  dataChanged: Data changed
+  oldValue: Old value
+  newValue: New Value
+  deleted: Deleted
+  eventDeleted: Event Deleted
+  user: User
+  age: Age
+  type: Type
+  notifications: Notifications
+  archive: Archive
+  performance: Performance
+  performances: Performances
+  season: Season
+  stage: Stage
+  title: Title
+  premiere: Premiere
+  activePerformance: Active performance
+  error: Error
   authorship: Authorship
   author: Author
 entityField:
-  company: 'Company'
-  firstName: 'First Name'
-  lastName: 'Last Name'
-  email: 'Email'
-  phone: 'Phone'
-  mobile: 'Mobile'
-  address: 'Address'
-  postNumber: 'Post Number'
-  city: 'City'
-  country: 'Country'
-  createdAt: 'Created at'
-  updatedAt: 'Updated at'
-  createdBy: 'Created by'
-  updatedBy: 'Updated by'
-  eventName: 'Title'
-  production: 'Production'
-  description: 'Description'
-  time: 'Time'
-  premiere: 'Premiere'
-  externalProduction: 'External Production'
-  homeProduction: 'Home Production'
-  event: 'Event'
-  contact: 'Contact'
-  reserved: 'Reserved'
-  confirmed: 'Confirmed'
-  note: 'Note'
-  name: 'Name'
-  roles: 'Roles'
-  password: 'Password'
-  canceled: 'Canceled'
-  guesting: 'Guesting'
-  guestingTitle: 'Guesting Title'
-  festival: 'Festival'
-  festivalTitle: 'Festival Title'
-  emailNotifications: 'Email notifications'
-  forAdults: 'For adults'
-  forChildren: 'For children'
-  eventType: 'Event Type'
+  company: Company
+  firstName: First Name
+  lastName: Last Name
+  email: Email
+  phone: Phone
+  mobile: Mobile
+  address: Address
+  postNumber: Post Number
+  city: City
+  country: Country
+  createdAt: Created at
+  updatedAt: Updated at
+  createdBy: Created by
+  updatedBy: Updated by
+  eventName: Title
+  production: Production
+  description: Description
+  time: Time
+  premiere: Premiere
+  externalProduction: External Production
+  homeProduction: Home Production
+  event: Event
+  contact: Contact
+  reserved: Reserved
+  confirmed: Confirmed
+  note: Note
+  name: Name
+  roles: Roles
+  password: Password
+  canceled: Canceled
+  guesting: Guesting
+  guestingTitle: Guesting Title
+  festival: Festival
+  festivalTitle: Festival Title
+  emailNotifications: Email notifications
+  forAdults: For adults
+  forChildren: For children
+  eventType: Event Type
   stageLabel: Former stage title
-  stageLabelHelp: It is used in older performances in the case when the production segment had a different name. Eg. The Children's, youth and puppet scene used to be the Youth scene. Only in such a case should the data be entered, otherwise it should be left blank.
+  stageLabelHelp: It is used in older performances in the case when the production segment had a different name. Eg. The Childrens, youth and puppet scene used to be the Youth scene. Only in such a case should the data be entered, otherwise it should be left blank.
   authorshipTypeLabel: Full authorship title
   authorshipTypeLabelHelp: Enter data only if the authorship name differs from the main title (eg Scenography and decor)
   authorLabel: Other name and surname of the author
-  authorLabelHelp: Enter data only if the author's name differs from the selected name (eg Name Surname -> Name Surname-Another)
+  authorLabelHelp: Enter data only if the authors name differs from the selected name (eg Name Surname -> Name Surname-Another)
   index: Position on list
 message:
+  success: Success
   reservation:
-    success: 'Reservation saved'
-    deleted: 'Reservation deleted'
+    success: Reservation saved
+    deleted: Reservation deleted
   password:
-    changed: 'Success. Please logout and login again with new password.'
-    changedByAdmin: 'Password changed.'
+    changed: Success. Please logout and login again with new password.
+    changedByAdmin: Password changed.
 error:
   user:
-    delete: 'User can not be deleted. Try Deactivate User.'
+    delete: User can not be deleted. Try Deactivate User.
 Mon: Mon
 Tue: Tue
 Wed: Wed

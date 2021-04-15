@@ -126,7 +126,7 @@ class Authorship implements EntityInterface
     }
 
     /**
-     * @return mixed
+     * @return Author|null
      */
     public function getAuthor()
     {

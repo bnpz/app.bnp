@@ -18,11 +18,13 @@ class PerformanceAuthorshipType extends AbstractType
         $builder
             ->add('performance', null, [
                 'label' => "label.performance",
-                'disabled' => true
+                'disabled' => true,
+                'required' => true
             ])
             ->add('authorshipType', null, [
+                'required' => true,
                 'label' => "label.authorship",
-                'placeholder' => 'label.choose',
+                'placeholder' => "label.placeholder",
                 'empty_data'  => null,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('authorshipType')
@@ -35,7 +37,7 @@ class PerformanceAuthorshipType extends AbstractType
             ])
             ->add('author', null, [
                 'label' => "label.author",
-                'placeholder' => 'label.choose',
+                'placeholder' => "label.placeholder",
                 'empty_data'  => null,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('author')
@@ -47,6 +49,7 @@ class PerformanceAuthorshipType extends AbstractType
                 'help' => "entityField.authorLabelHelp"
             ])
             ->add('index', null, [
+                'required' => true,
                 'label' => "entityField.index"
             ])
         ;

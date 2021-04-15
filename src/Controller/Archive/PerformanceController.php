@@ -2,16 +2,20 @@
 namespace App\Controller\Archive;
 
 use App\Controller\AbstractController;
+use App\Entity\Archive\Authorship;
 use App\Entity\Archive\Performance;
 use App\Entity\Base\EntityInterface;
+use App\Form\Archive\PerformanceAuthorshipType;
 use App\Form\Archive\PerformanceType;
+use App\Service\Archive\AuthorshipService;
 use App\Service\Archive\PerformanceService;
-use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Query\QueryException;
+use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Exception;
 
 /**
  * Class PerformanceController
@@ -120,6 +124,40 @@ class PerformanceController extends AbstractController
 
         return $this->render('archive/performance/edit.html.twig', [
             'performance' => $performance,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/authorships", name="archive_performance_authorship_add", methods={"GET","POST"})
+     * @param Request $request
+     * @param Performance $performance
+     * @param AuthorshipService $authorshipService
+     * @return Response
+     */
+    public function authorshipAdd(Request $request, Performance $performance, AuthorshipService $authorshipService): Response
+    {
+        $authorship = new Authorship();
+        $authorship->setPerformance($performance);
+
+        $form = $this->createForm(PerformanceAuthorshipType::class, $authorship);
+        $form->handleRequest($request);
+
+        try {
+            if ($form->isSubmitted() && $form->isValid()) {
+                $authorship = $form->getData();
+
+                $authorshipService->create($authorship);
+                $this->addFlashSuccess('message.success');
+
+                return $this->redirectToRoute('archive_performance_show', ['id' => $performance->getId()]);
+            }
+        }
+        catch (Exception $e) {
+            $this->addFlashError($e->getMessage());
+        }
+        return $this->render('archive/authorship/new.html.twig', [
+            'authorship' => $authorship,
             'form' => $form->createView(),
         ]);
     }

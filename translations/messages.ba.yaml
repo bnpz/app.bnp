@@ -3,106 +3,107 @@ paginator:
   next: slijedeća
   current: trenutna
 label:
-  myAccount: 'Moj račun'
-  documentation: 'Documentacija'
-  homePage: 'Početna'
-  new: 'Novi'
-  newFemale: 'Nova'
-  edit: 'Uredi'
-  delete: 'Izbriši'
-  save: 'Sačuvaj'
-  logout: 'Odjava'
-  contacts: 'Kontakti'
-  addressBook: 'Adresar'
-  events: 'Programi'
-  allEvents: 'Svi programi'
-  newEvents: 'Predstojeći programi'
-  oldEvents: 'Stari programi'
-  actions: '#'
-  deleteQuestion: 'Jeste li sigurni da želite brisati?'
-  allData: 'Svi podaci'
-  noRecords: 'Nema rezultata'
-  yes: 'Da'
-  no: 'Ne'
-  reservations: 'Rezervacije'
-  allReservations: 'Sve rezervacije'
-  reservationDate: 'Datum rezervacije'
-  choose: "izaberi"
-  search: "Pretraga"
-  searchPlaceholder: "traži... (min. 4 karaktera)"
-  submit: "pošalji"
-  resetFilters: 'Ukloni filtere'
-  users: 'Korisnici'
-  roleAdmin: 'Administrator'
-  roleUser: 'Korisnik'
-  changePassword: 'Promijeni lozinku'
-  newPassword: 'Nova lozinka'
-  login: 'Prijava'
-  rememberMe: 'Zapamti me'
-  from: 'Od'
-  to: 'Do'
-  filters: 'Filteri'
-  applyFilters: 'Primjeni filtere'
-  cancel: 'Otkaži'
-  dataChanged: 'Promjena podataka'
-  oldValue: 'Stari podatak'
-  newValue: 'Novi podatak'
-  deleted: 'Izbrisano'
-  eventDeleted: 'Program je izbrisan.'
-  user: 'Korisnik'
-  age: 'Dob'
-  type: 'Vrsta'
-  notifications: 'Notifikacije'
-  archive: 'Arhiva'
-  performance: 'Predstava'
-  performances: 'Predstave'
-  season: 'Sezona'
-  stage: 'Scena'
-  title: 'Naslov'
-  premiere: 'Premijera'
-  activePerformance: 'Aktivna predstava'
-  error: 'Greška'
+  placeholder: --
+  myAccount: Moj račun
+  documentation: Documentacija
+  homePage: Početna
+  new: Novi
+  newFemale: Nova
+  edit: Uredi
+  delete: Izbriši
+  save: Sačuvaj
+  logout: Odjava
+  contacts: Kontakti
+  addressBook: Adresar
+  events: Programi
+  allEvents: Svi programi
+  newEvents: Predstojeći programi
+  oldEvents: Stari programi
+  actions: #
+  deleteQuestion: Jeste li sigurni da želite brisati?
+  allData: Svi podaci
+  noRecords: Nema rezultata
+  yes: Da
+  no: Ne
+  reservations: Rezervacije
+  allReservations: Sve rezervacije
+  reservationDate: Datum rezervacije
+  choose: izaberi
+  search: Pretraga
+  searchPlaceholder: traži... (min. 4 karaktera)
+  submit: pošalji
+  resetFilters: Ukloni filtere
+  users: Korisnici
+  roleAdmin: Administrator
+  roleUser: Korisnik
+  changePassword: Promijeni lozinku
+  newPassword: Nova lozinka
+  login: Prijava
+  rememberMe: Zapamti me
+  from: Od
+  to: Do
+  filters: Filteri
+  applyFilters: Primjeni filtere
+  cancel: Otkaži
+  dataChanged: Promjena podataka
+  oldValue: Stari podatak
+  newValue: Novi podatak
+  deleted: Izbrisano
+  eventDeleted: Program je izbrisan.
+  user: Korisnik
+  age: Dob
+  type: Vrsta
+  notifications: Notifikacije
+  archive: Arhiva
+  performance: Predstava
+  performances: Predstave
+  season: Sezona
+  stage: Scena
+  title: Naslov
+  premiere: Premijera
+  activePerformance: Aktivna predstava
+  error: Greška
   authorship: Autorstvo
   author: Autor
 entityField:
-  company: 'Ustanova/Firma'
-  firstName: 'Ime'
-  lastName: 'Prezime'
-  email: 'Email'
-  phone: 'Telefon'
-  mobile: 'Mobitel'
-  address: 'Adresa'
-  postNumber: 'Poštanski broj'
-  city: 'Grad'
-  country: 'Država'
-  createdAt: 'Kreirano'
-  updatedAt: 'Uređeno'
-  createdBy: 'Kreirao'
-  updatedBy: 'Uredio'
-  eventName: 'Naslov'
-  production: 'Produkcija'
-  description: 'Opis'
-  time: 'Vrijeme'
-  premiere: 'Premijera'
-  externalProduction: 'Vanjska produkcija'
-  homeProduction: 'BNP produkcija'
-  event: 'Program'
-  contact: 'Kontakt'
-  reserved: 'Rezervisano'
-  confirmed: 'Potvrđeno'
-  note: 'Napomena'
-  name: 'Ime'
-  roles: 'Nivo pristupa'
-  password: 'Lozinka'
-  canceled: 'Otkazano'
-  guesting: 'Gostovanje'
-  guestingTitle: 'Opis gostovanja'
-  festival: 'Festival'
-  festivalTitle: 'Naziv festivala'
-  emailNotifications: 'Email notifikacije'
-  forAdults: 'Za odrasle'
-  forChildren: 'Za djecu'
-  eventType: 'Vrsta programa'
+  company: Ustanova/Firma
+  firstName: Ime
+  lastName: Prezime
+  email: Email
+  phone: Telefon
+  mobile: Mobitel
+  address: Adresa
+  postNumber: Poštanski broj
+  city: Grad
+  country: Država
+  createdAt: Kreirano
+  updatedAt: Uređeno
+  createdBy: Kreirao
+  updatedBy: Uredio
+  eventName: Naslov
+  production: Produkcija
+  description: Opis
+  time: Vrijeme
+  premiere: Premijera
+  externalProduction: Vanjska produkcija
+  homeProduction: BNP produkcija
+  event: Program
+  contact: Kontakt
+  reserved: Rezervisano
+  confirmed: Potvrđeno
+  note: Napomena
+  name: Ime
+  roles: Nivo pristupa
+  password: Lozinka
+  canceled: Otkazano
+  guesting: Gostovanje
+  guestingTitle: Opis gostovanja
+  festival: Festival
+  festivalTitle: Naziv festivala
+  emailNotifications: Email notifikacije
+  forAdults: Za odrasle
+  forChildren: Za djecu
+  eventType: Vrsta programa
   stageLabel: Nekadašnji naziv scene
   stageLabelHelp: Koristi se kod starijih predstava u slučaju kad je produkcijski segment imao drugi naziv. Npr. Dječija, omladinska i lutkarska scena je nekad bila Omladinska scena. Samo u takvom slučaju treba unositi podatak, inače ostaviti prazno.
   authorshipTypeLabel: Puni naziv autorstva
@@ -111,15 +112,19 @@ entityField:
   authorLabelHelp: Unijeti podatak samo u slučaju ako se ime autora razlikuje od izabranog imena (npr. Ime Prezime -> Ime Prezime-Još jedno)
   index: Pozicija na listi
 message:
+  success: Uspješno
   reservation:
-    success: 'Reservacija je sačuvana'
-    deleted: 'Reservacija je izbrisana'
+    success: Reservacija je sačuvana
+    deleted: Reservacija je izbrisana
   password:
-    changed: 'Uspješno ste promijenili lozinku. Molimo Vas da se odjavite i ponovo prijavite sa novom lozinkom.'
-    changedByAdmin: 'Lozinka je promijenjena.'
+    changed: Uspješno ste promijenili lozinku. Molimo Vas da se odjavite i ponovo prijavite sa novom lozinkom.
+    changedByAdmin: Lozinka je promijenjena.
 error:
   user:
-    delete: 'Korisnika je nemoguće izbrisati. Probajte ga deaktivirati.'
+    delete: Korisnika je nemoguće izbrisati. Probajte ga deaktivirati.
+  authorship:
+    author: Autor je obavezan
+
 Mon: Pon
 Tue: Uto
 Wed: Sri

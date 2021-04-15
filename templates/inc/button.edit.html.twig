@@ -1,3 +1,7 @@
 <a class="btn btn-lg btn-bnp btn-outline-info" href="{{ path(route, {'id': id}) }}">
-    {{ 'label.edit' |trans }}
+    {% if label is defined and label is not null and label is not empty%}
+        {{ label |trans }}
+    {% else %}
+        {{ 'label.edit' |trans }}
+    {% endif %}
 </a>

@@ -17,6 +17,12 @@
             <li class="list-inline-item">
                 {{ include('inc/button.edit.html.twig', {'route': 'archive_performance_edit', 'id': performance.id}) }}
             </li>
+            <li class="list-inline-item">
+                {{
+                    include('inc/button.edit.html.twig',
+                        {'route': 'archive_performance_authorship_add', 'id': performance.id, 'label': 'label.authorship' |trans})
+                }}
+            </li>
             {#<li class="list-inline-item">
                 {{ include('inc/button.delete.html.twig', {'route': 'general_contact_delete', 'id': contact.id}) }}
             </li>#}
