@@ -6,6 +6,7 @@ namespace App\Entity\User;
 use App\Entity\Base\EntityInterface;
 use App\Entity\Base\Mixin\BaseEntity;
 use App\Mixin\CanInitialise;
+use App\Security\UserRoles;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -116,6 +117,10 @@ class User implements EntityInterface, UserInterface
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
+        if(in_array(UserRoles::ROLE_ADMIN, $roles)){
+            $roles = UserRoles::allRoles();
+        }
+
         return array_unique($roles);
     }
 
@@ -126,6 +131,11 @@ class User implements EntityInterface, UserInterface
         return $this;
     }
 
+    public function getRolesAsString()
+    {
+        $atring = implode(", ", $this->getRoles());
+        return strtolower(str_replace("ROLE_", "", $atring));
+    }
     /**
      * @see UserInterface
      */

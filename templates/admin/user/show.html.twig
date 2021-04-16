@@ -32,6 +32,10 @@
                 <th>{{ 'entityField.emailNotifications' |trans }}</th>
                 <td>{{ user.emailNotifications ? 'label.yes'|trans : 'label.no'|trans }}</td>
             </tr>
+            <tr>
+                <th>{{ 'label.authorship' |trans }}</th>
+                <td>{{ user.rolesAsString }}</td>
+            </tr>
         </tbody>
     </table>
 

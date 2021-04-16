@@ -9,13 +9,12 @@ use App\Form\Archive\PerformanceAuthorshipType;
 use App\Form\Archive\PerformanceType;
 use App\Service\Archive\AuthorshipService;
 use App\Service\Archive\PerformanceService;
-use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Query\QueryException;
 use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * Class PerformanceController
@@ -134,6 +133,7 @@ class PerformanceController extends AbstractController
      * @param Performance $performance
      * @param AuthorshipService $authorshipService
      * @return Response
+     *
      */
     public function authorshipAdd(Request $request, Performance $performance, AuthorshipService $authorshipService): Response
     {

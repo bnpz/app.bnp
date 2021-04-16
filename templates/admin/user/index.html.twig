@@ -22,6 +22,7 @@
             <th>{{ 'entityField.phone'|trans }}</th>
             <th>{{ 'entityField.roles'|trans }} </th>
             <th>{{ 'entityField.emailNotifications'|trans }} </th>
+            <th>{{ 'label.authorship'|trans }} </th>
         </tr>
         </thead>
         <tbody>
@@ -32,6 +33,7 @@
                 <td>{{ user.phone }}</td>
                 <td>{{ user.isAdmin ? 'label.roleAdmin'|trans : 'label.roleUser'|trans }}</td>
                 <td>{{ user.emailNotifications ? 'label.yes'|trans : 'label.no'|trans }}</td>
+                <td>{{ user.rolesAsString }}</td>
             </tr>
         {% else %}
             <tr>

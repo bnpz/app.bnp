@@ -13,7 +13,7 @@
         <li class="list-inline-item">
             {{ include('inc/button.index.html.twig',{'route': 'archive_performance_index', 'label': 'label.performances' |trans}) }}
         </li>
-        {% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
+        {% if is_granted("ROLE_EDITOR") %}
             <li class="list-inline-item">
                 {{ include('inc/button.edit.html.twig', {'route': 'archive_performance_edit', 'id': performance.id}) }}
             </li>

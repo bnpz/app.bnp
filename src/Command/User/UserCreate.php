@@ -69,7 +69,7 @@ class UserCreate extends Command
         $questionFullName   = new Question('Full name: ', '');
         $questionEmail      = new Question('Email: ', '');
         $questionPassword   = new Question('Password: ', '');
-        $questionRole       = new Question('User role (1 = ROLE_USER; 2 = ROLE_ADMIN): ', '');
+        $questionRole       = new Question('User role (1 = ROLE_USER; 2 = ROLE_ADMIN; 3 = ROLE_EDITOR): ', '');
 
 
         $fullName = $helper->ask($input, $output, $questionFullName);
@@ -89,7 +89,7 @@ class UserCreate extends Command
         }
 
         $role = $helper->ask($input, $output, $questionRole);
-        if($role != 1 and $role != 2 ){
+        if($role != 1 and $role != 2 and $role != 3 ){
             $output->writeln(['Wrong role value.','Nothing is saved.']);
             return;
         }
@@ -108,7 +108,10 @@ class UserCreate extends Command
                 $roles = ['ROLE_USER'];
             }
             elseif ($role == 2){
-                $roles = ['ROLE_ADMIN'];
+                $roles = ['ROLE_ADMIN', 'ROLE_EDITOR'];
+            }
+            elseif ($role == 3){
+                $roles = ['ROLE_EDITOR'];
             }
             $user->setRoles($roles);
 
