@@ -62,6 +62,7 @@ class CreateAuthorshipTypesCommand extends Command
             ['skr' => 'dm.', 'naziv' => 'Dramatizacija'],
             ['skr' => 'dr.', 'naziv' => 'Dramaturgija'],
             ['skr' => 'ism.', 'naziv' => 'Izbor muzike'],
+            ['skr' => 'ins.', 'naziv' => 'Inspicijent'],
             ['skr' => 'izr.l.', 'naziv' => 'Izrada lutaka'],
             ['skr' => 'izr.ms.', 'naziv' => 'Izrada maski'],
             ['skr' => 'izv.', 'naziv' => 'Izvođač'],

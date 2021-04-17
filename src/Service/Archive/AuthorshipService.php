@@ -88,7 +88,7 @@ class AuthorshipService extends AbstractEntityService
             if(!$author instanceof Author){
                 $user = $this->userService->getCurrentUser();
                 $author = new Author();
-                $author->setFirstName(ucwords($firstName))->setLastName(ucwords($lastName));
+                $author->setFirstName(ucwords(strtolower($firstName)))->setLastName(ucwords(strtolower($lastName)));
                 $author->setCreatedBy($user)->setUpdatedBy($user);
                 $author->setCollectiveMember(false);
                 $author = $this->authorService->save($author);
