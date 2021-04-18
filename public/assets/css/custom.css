@@ -20,6 +20,10 @@ div.content{
 .btn-bnp{
     min-width: 120px !important;
 }
+.btn-bnp-icon{
+    min-width: 12px !important;
+    border: none !important;
+}
 ul.pagination{
     margin-top: 30px !important;
 }

@@ -1,0 +1,7 @@
+<form method="post" action="{{ path('archive_performance_authorship_delete', {'id': performance.id, 'authorshipId': authorship.id}) }}" onsubmit="return confirm('{{ 'label.deleteQuestion' |trans }}');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ authorship.id) }}">
+    <button class="btn btn-sm btn-bnp-icon btn-outline-danger">
+        <i class="far fa-trash-alt"></i>
+    </button>
+</form>

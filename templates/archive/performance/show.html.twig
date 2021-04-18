@@ -6,7 +6,7 @@
     {#{{ parent() }}#}
     <p class="text-right">{{ performance.season }}</p>
     <p class="text-right">{{ performance.stage}}</p>
-    <h3 class="pageTitle text-right">{{ performance.title }}</h3>
+    <h1 class="pageTitle text-right">{{ performance.title }}</h1>
     <hr>
 
     <ul class="list-inline float-right">
@@ -17,28 +17,62 @@
             <li class="list-inline-item">
                 {{ include('inc/button.edit.html.twig', {'route': 'archive_performance_edit', 'id': performance.id}) }}
             </li>
-            <li class="list-inline-item">
-                {{
-                    include('inc/button.edit.html.twig',
-                        {'route': 'archive_performance_authorship_add', 'id': performance.id, 'label': 'label.authorship' |trans})
-                }}
-            </li>
-            {#<li class="list-inline-item">
-                {{ include('inc/button.delete.html.twig', {'route': 'general_contact_delete', 'id': contact.id}) }}
-            </li>#}
         {% endif %}
     </ul>
 {% endblock %}
 {% block rightColumn %}
 
-    <p>
-        {% for authorship in performance.authorships %}
-            <span>{{ authorship.authorshipTypeLabel ? authorship.authorshipTypeLabel : authorship.authorshipType.name }}:</span>
+    <div class="container-fluid">
+        <div class="row">
+            {# AUTORSTVA #}
+            <div class="col-lg-6">
 
-            <span>{{ authorship.authorLabel ? authorship.authorLabel : authorship.author.fullName }} </span>
-            <br>
-        {% endfor %}
-     </p>
+                <div class="card">
+                    <div class="card-body">
+                        <h3>
+                            <span>Autori</span>
+                            {% if is_granted("ROLE_EDITOR") %}
+                            <span>
+                                <a href="{{ path('archive_performance_authorship_add', {"id": performance.id}) }}" class="btn btn-sm btn-bnp-icon btn-outline-success float-right">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                            </span>
+                            {% endif %}
+                        </h3>
+                        <table class="table table-striped">
+                            <tbody>
+                            {% for authorship in performance.authorships %}
+                                <tr>
+                                    <td>{{ authorship.authorshipTypeLabel ? authorship.authorshipTypeLabel : authorship.authorshipType.name }}</td>
+                                    <td>{{ authorship.authorLabel ? authorship.authorLabel : authorship.author.fullName }}</td>
+                                    {% if is_granted("ROLE_EDITOR") %}
+                                        <td>
+                                            <span>
+                                                <a href="{{ path('archive_performance_authorship_edit', {"id": performance.id, "authorshipId": authorship.id}) }}">
+                                                    <i class="far fa-edit"></i>
+                                                </a>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            {{ include('archive/authorship/_delete_form.html.twig') }}
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+            {# IZVOĐAČI #}
+            <div class="col-lg-6">
+                <h3>Izvođači</h3>
+            </div>
+        </div>
+    </div>
+
     <hr>
     {{ include('inc/entity.item.info.html.twig', {'entity': performance}) }}
 {% endblock %}

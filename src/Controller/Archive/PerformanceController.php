@@ -72,6 +72,7 @@ class PerformanceController extends AbstractController
      * @Route("/new", name="archive_performance_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
+     * @IsGranted("ROLE_EDITOR", message="Access denied.")
      */
     public function new(Request $request): Response
     {
@@ -109,6 +110,7 @@ class PerformanceController extends AbstractController
      * @param Request $request
      * @param Performance $performance
      * @return Response
+     * @IsGranted("ROLE_EDITOR", message="Access denied.")
      */
     public function edit(Request $request, Performance $performance): Response
     {
@@ -133,6 +135,7 @@ class PerformanceController extends AbstractController
      * @param Performance $performance
      * @param AuthorshipService $authorshipService
      * @return Response
+     * @IsGranted("ROLE_EDITOR", message="Access denied.")
      *
      */
     public function authorshipAdd(Request $request, Performance $performance, AuthorshipService $authorshipService): Response
@@ -162,4 +165,64 @@ class PerformanceController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/{id}/authorships/{authorshipId}", name="archive_performance_authorship_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Performance $performance
+     * @param $authorshipId
+     * @param AuthorshipService $authorshipService
+     * @return Response
+     * @IsGranted("ROLE_EDITOR", message="Access denied.")
+     */
+    public function authorshipEdit(Request $request, Performance $performance, $authorshipId, AuthorshipService $authorshipService): Response
+    {
+
+        try {
+            $authorship = $authorshipService->get($authorshipId);
+            $form = $this->createForm(PerformanceAuthorshipType::class, $authorship);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $authorship = $form->getData();
+
+                $authorshipService->save($authorship);
+                //$this->addFlashSuccess('message.success');
+
+                return $this->redirectToRoute('archive_performance_show', ['id' => $performance->getId()]);
+
+            }
+
+            return $this->render('archive/authorship/edit.html.twig', [
+                'authorship' => $authorship,
+                'form' => $form->createView(),
+            ]);
+
+        }
+        catch (Exception $e) {
+            $this->addFlashError($e->getMessage());
+        }
+    }
+
+    /**
+     * @Route("/{id}/authorships/{authorshipId}", name="archive_performance_authorship_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Performance $performance
+     * @param $authorshipId
+     * @param AuthorshipService $authorshipService
+     * @return Response
+     * @IsGranted("ROLE_EDITOR", message="Access denied.")
+     */
+    public function authorshipDelete(Request $request, Performance $performance, $authorshipId, AuthorshipService $authorshipService): Response
+    {
+        try {
+            $authorship = $authorshipService->get($authorshipId);
+            if ($this->isCsrfTokenValid('delete'.$authorship->getId(), $request->request->get('_token'))) {
+                $authorshipService->delete($authorship);
+                //$this->addFlashSuccess('message.success);
+            }
+        } catch (Exception $e) {
+            $this->addFlashError($e->getMessage());
+        }
+        return $this->redirectToRoute('archive_performance_show', ['id' => $performance->getId()]);
+    }
 }
