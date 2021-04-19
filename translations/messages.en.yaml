@@ -65,6 +65,7 @@ label:
   error: Error
   authorship: Authorship
   author: Author
+  role: Role
 entityField:
   company: Company
   firstName: First Name
@@ -111,6 +112,9 @@ entityField:
   authorLabel: Other name and surname of the author
   authorLabelHelp: Enter data only if the authors name differs from the selected name (eg Name Surname -> Name Surname-Another)
   positionInList: Position on list
+  roleName: Role name
+  roleNameHelp: Leave blank if role name is not specified
+  changeInCasting: Change in casting
 message:
   success: Success
   reservation:

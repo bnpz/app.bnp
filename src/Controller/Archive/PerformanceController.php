@@ -4,11 +4,14 @@ namespace App\Controller\Archive;
 use App\Controller\AbstractController;
 use App\Entity\Archive\Authorship;
 use App\Entity\Archive\Performance;
+use App\Entity\Archive\Role;
 use App\Entity\Base\EntityInterface;
 use App\Form\Archive\PerformanceAuthorshipType;
+use App\Form\Archive\PerformanceRoleType;
 use App\Form\Archive\PerformanceType;
 use App\Service\Archive\AuthorshipService;
 use App\Service\Archive\PerformanceService;
+use App\Service\Archive\RoleService;
 use Doctrine\ORM\Query\QueryException;
 use Exception;
 use Symfony\Component\HttpFoundation\Request;
@@ -224,5 +227,40 @@ class PerformanceController extends AbstractController
             $this->addFlashError($e->getMessage());
         }
         return $this->redirectToRoute('archive_performance_show', ['id' => $performance->getId()]);
+    }
+
+    /**
+     * @Route("/{id}/roles", name="archive_performance_role_add", methods={"GET","POST"})
+     * @param Request $request
+     * @param Performance $performance
+     * @param RoleService $roleService
+     * @return Response
+     * @IsGranted("ROLE_EDITOR", message="Access denied.")
+     */
+    public function roleAdd(Request $request, Performance $performance, RoleService $roleService): Response
+    {
+        $role = new Role();
+        $role->setPerformance($performance);
+
+        $form = $this->createForm(PerformanceRoleType::class, $role);
+        $form->handleRequest($request);
+
+        try {
+            if ($form->isSubmitted() && $form->isValid()) {
+                $role = $form->getData();
+
+                $roleService->create($role);
+                # $this->addFlashSuccess('message.success');
+
+                return $this->redirectToRoute('archive_performance_show', ['id' => $performance->getId()]);
+            }
+        }
+        catch (Exception $e) {
+            $this->addFlashError($e->getMessage());
+        }
+        return $this->render('archive/role/new.html.twig', [
+            'role' => $role,
+            'form' => $form->createView(),
+        ]);
     }
 }

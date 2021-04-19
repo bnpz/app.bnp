@@ -65,6 +65,7 @@ label:
   error: Greška
   authorship: Autorstvo
   author: Autor
+  role: Uloga
 entityField:
   company: Ustanova/Firma
   firstName: Ime
@@ -108,9 +109,12 @@ entityField:
   stageLabelHelp: Koristi se kod starijih predstava u slučaju kad je produkcijski segment imao drugi naziv. Npr. Dječija, omladinska i lutkarska scena je nekad bila Omladinska scena. Samo u takvom slučaju treba unositi podatak, inače ostaviti prazno.
   authorshipTypeLabel: Puni naziv autorstva
   authorshipTypeLabelHelp: Unijeti podatak samo u slučaju ako se naziv autorstva razlikuje od glavnog naziva (npr. Scenografija i dekor)
-  authorLabel: Drugo ime i prezime autora
+  authorLabel: Novi autor ili drugo ime i prezime autora
   authorLabelHelp: Unijeti podatak ako treba kreirati novog autora ili ako se ime autora razlikuje od izabranog imena (npr. Ime Prezime -> Ime Prezime-Još jedno)
   positionInList: Pozicija na listi
+  roleName: Naziv uloge
+  roleNameHelp: Ostaviti prazno ako nije naznačen naziv uloge
+  changeInCasting: Promjena u podjeli uloga
 message:
   success: Uspješno
   reservation:

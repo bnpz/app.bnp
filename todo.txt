@@ -17,13 +17,7 @@ commit changes to dev branch
 git push to dev
 
 *******************************
-*******************************
-ULOGE
-- predstava_id (Hamlet)
-- autor_id (John Smith)
-- autor_label
-- naziv_uloge (Ofelija)
-- promjena_u_podjeli (Da / Ne)
+
 *******************************
 ANSAMBL
 - autor_id
