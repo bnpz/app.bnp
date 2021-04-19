@@ -4,7 +4,6 @@ namespace App\Entity\Archive;
 use App\Entity\Base\EntityInterface;
 use App\Entity\Base\Mixin\BaseEntity;
 use Doctrine\Common\Collections\ArrayCollection;
-use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -113,11 +112,18 @@ class Performance implements EntityInterface
     private $authorships;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Archive\Role", mappedBy="performance", orphanRemoval=true)
+     * @ORM\OrderBy({"positionInList" = "ASC"})
+     */
+    private $roles;
+
+    /**
      * Performance constructor.
      */
     public function __construct()
     {
         $this->authorships = new ArrayCollection();
+        $this->roles = new ArrayCollection();
     }
 
     /**
@@ -267,12 +273,52 @@ class Performance implements EntityInterface
         return $this;
     }
 
+    /**
+     * @param Authorship $authorship
+     * @return $this
+     */
     public function removeAuthorship(Authorship $authorship)
     {
         if($this->authorships->contains($authorship)){
             $this->authorships->removeElement($authorship);
             if($authorship->getPerformance() === $this){
                 $authorship->setPerformance(null);
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    /**
+     * @param Role $role
+     * @return $this
+     */
+    public function addRole(Role $role)
+    {
+        if(!$this->roles->contains($role)){
+            $this->roles->add($role);
+            $role->setPerformance($this);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Role $role
+     * @return $this
+     */
+    public function removeRole(Role $role)
+    {
+        if($this->roles->contains($role)){
+            $this->roles->removeElement($role);
+            if($role->getPerformance() === $this){
+                $role->setPerformance(null);
             }
         }
         return $this;
