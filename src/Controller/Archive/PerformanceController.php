@@ -151,7 +151,7 @@ class PerformanceController extends AbstractController
                 $authorship = $form->getData();
 
                 $authorshipService->create($authorship);
-                $this->addFlashSuccess('message.success');
+                # $this->addFlashSuccess('message.success');
 
                 return $this->redirectToRoute('archive_performance_show', ['id' => $performance->getId()]);
             }
