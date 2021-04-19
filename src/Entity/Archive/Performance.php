@@ -65,6 +65,15 @@ class Performance implements EntityInterface
     private $stageLabel;
 
     /**
+     * @ORM\Column(name="author_label", type="string", nullable=true, options={"default":null})
+     * @Groups({
+     *     "archive_performance_full"
+     * })
+     * @SWG\Property(property="authorLabel", type="string")
+     */
+    private $authorLabel;
+
+    /**
      * @ORM\Column(name="title", type="string")
      * @Assert\NotNull(groups={"create"})
      * @Assert\NotBlank(groups={"create"})
@@ -162,6 +171,24 @@ class Performance implements EntityInterface
     public function setStageLabel($stageLabel)
     {
         $this->stageLabel = $stageLabel;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAuthorLabel()
+    {
+        return $this->authorLabel;
+    }
+
+    /**
+     * @param mixed $authorLabel
+     * @return Performance
+     */
+    public function setAuthorLabel($authorLabel)
+    {
+        $this->authorLabel = $authorLabel;
         return $this;
     }
 

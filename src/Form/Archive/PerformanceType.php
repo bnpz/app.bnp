@@ -50,6 +50,10 @@ class PerformanceType extends AbstractType
                 'label' => "entityField.stageLabel",
                 'help' => "entityField.stageLabelHelp"
             ])
+            ->add('authorLabel', null, [
+                'label' => "Autor(i)",
+                'help' => "Opisni tekst autorstva"
+            ])
             ->add('title', null, ['label' => "label.title", 'required' => true])
             ->add('premiereDate', DateType::class,[
                 'required' => true,

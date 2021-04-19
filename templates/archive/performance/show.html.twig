@@ -6,6 +6,7 @@
     {#{{ parent() }}#}
     <p class="text-right">{{ performance.season }}</p>
     <p class="text-right">{{ performance.stage}}</p>
+    <p class="text-right">{{ performance.authorLabel}}</p>
     <h1 class="pageTitle text-right">{{ performance.title }}</h1>
     <hr>
 
@@ -27,6 +28,7 @@
             {# AUTORSTVA #}
             <div class="col-lg-6">
 
+                {# OSTALI AUTORI #}
                 <div class="card">
                     <div class="card-body">
                         <h3>
@@ -44,7 +46,7 @@
                             {% for authorship in performance.authorships %}
                                 <tr>
                                     <td>{{ authorship.authorshipTypeLabel ? authorship.authorshipTypeLabel : authorship.authorshipType.name }}</td>
-                                    <td>{{ authorship.authorLabel ? authorship.authorLabel : authorship.author.fullName }}</td>
+                                    <td>{{ authorship.getAuthorName() }}</td>
                                     {% if is_granted("ROLE_EDITOR") %}
                                         <td>
                                             <span>
