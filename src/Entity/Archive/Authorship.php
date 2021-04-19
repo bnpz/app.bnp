@@ -197,5 +197,17 @@ class Authorship implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getAuthorName()
+    {
+        if($this->authorLabel){
+            return $this->authorLabel;
+        }
+        else{
+            return $this->getAuthor()->getFullName();
+        }
+    }
 
 }
