@@ -58,6 +58,7 @@ class CreateAuthorshipTypesCommand extends Command
             ['skr' => 'an.', 'naziv' => 'Animacija'],
             ['skr' => 'a.r.', 'naziv' => 'Asistent reditelja'],
             ['skr' => 'a.sc.', 'naziv' => 'Asistent scenografa'],
+            ['skr' => 'aut.', 'naziv' => 'Autor'],
             ['skr' => 'd.', 'naziv' => 'Dirigent'],
             ['skr' => 'dm.', 'naziv' => 'Dramatizacija'],
             ['skr' => 'dr.', 'naziv' => 'Dramaturgija'],
