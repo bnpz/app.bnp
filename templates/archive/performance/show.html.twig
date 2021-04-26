@@ -70,7 +70,42 @@
             </div>
             {# IZVOĐAČI #}
             <div class="col-lg-6">
-                <h3>Izvođači</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <h3>
+                            <span>Izvođači</span>
+                            {% if is_granted("ROLE_EDITOR") %}
+                                <span>
+                                <a href="{{ path('archive_performance_role_add', {"id": performance.id}) }}" class="btn btn-sm btn-bnp-icon btn-outline-success float-right">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                            </span>
+                            {% endif %}
+                        </h3>
+                        <table class="table table-striped">
+                            <tbody>
+                            {% for role in performance.roles %}
+                                <tr>
+                                    <td>{{ role.name ? role.name : "" }}</td>
+                                    <td>{{ role.authorLabel ? role.authorLabel : role.author.getFullName() }}</td>
+                                    {% if is_granted("ROLE_EDITOR") %}
+                                        <td>
+                                            <span>
+                                                <a href="{{ path('archive_performance_role_edit', {"id": performance.id, "roleId": role.id}) }}">
+                                                    <i class="far fa-edit"></i>
+                                                </a>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            {{ include('archive/role/_delete_form.html.twig') }}
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -263,4 +263,65 @@ class PerformanceController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/{id}/roles/{roleId}", name="archive_performance_role_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Performance $performance
+     * @param $roleId
+     * @param RoleService $roleService
+     * @return Response
+     * @IsGranted("ROLE_EDITOR", message="Access denied.")
+     */
+    public function roleEdit(Request $request, Performance $performance, $roleId, RoleService $roleService): Response
+    {
+
+        try {
+            $role = $roleService->get($roleId);
+            $form = $this->createForm(PerformanceRoleType::class, $role);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $role = $form->getData();
+
+                $roleService->save($role);
+                //$this->addFlashSuccess('message.success');
+
+                return $this->redirectToRoute('archive_performance_show', ['id' => $performance->getId()]);
+
+            }
+
+            return $this->render('archive/role/edit.html.twig', [
+                'role' => $role,
+                'form' => $form->createView(),
+            ]);
+
+        }
+        catch (Exception $e) {
+            $this->addFlashError($e->getMessage());
+        }
+    }
+
+    /**
+     * @Route("/{id}/roles/{roleId}", name="archive_performance_role_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Performance $performance
+     * @param $roleId
+     * @param RoleService $roleService
+     * @return Response
+     * @IsGranted("ROLE_EDITOR", message="Access denied.")
+     */
+    public function roleDelete(Request $request, Performance $performance, $roleId, RoleService $roleService): Response
+    {
+        try {
+            $role = $roleService->get($roleId);
+            if ($this->isCsrfTokenValid('delete'.$role->getId(), $request->request->get('_token'))) {
+                $roleService->delete($role);
+                //$this->addFlashSuccess('message.success);
+            }
+        } catch (Exception $e) {
+            $this->addFlashError($e->getMessage());
+        }
+        return $this->redirectToRoute('archive_performance_show', ['id' => $performance->getId()]);
+    }
 }
