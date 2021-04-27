@@ -4,13 +4,13 @@
 {% endblock %}
 {% block leftColumn %}
     {#{{ parent() }}#}
-    <p class="text-right">{{ performance.season }}</p>
-    <p class="text-right">{{ performance.stage}}</p>
-    <p class="text-right">{{ performance.authorLabel}}</p>
-    <h1 class="pageTitle text-right">{{ performance.title }}</h1>
+    <p>{{ performance.season }}</p>
+    <p>{{ performance.stage}}</p>
+    <p>{{ performance.authorLabel}}</p>
+    <h1 class="pageTitle">{{ performance.title }}</h1>
     <hr>
 
-    <ul class="list-inline float-right">
+    <ul class="list-inline">
         <li class="list-inline-item">
             {{ include('inc/button.index.html.twig',{'route': 'archive_performance_index', 'label': 'label.performances' |trans}) }}
         </li>
@@ -20,6 +20,14 @@
             </li>
         {% endif %}
     </ul>
+    <div class="clearfix"></div>
+    <hr>
+
+    <p>{{ 'label.note'|trans }}</p>
+    <p>{{ performance.note }}</p>
+    <p>{{ 'label.editorNote'|trans }}</p>
+    <p>{{ performance.editorNote }}</p>
+
 {% endblock %}
 {% block rightColumn %}
 

@@ -62,6 +62,8 @@ class PerformanceType extends AbstractType
                 'years' => range($currentYear, $startYear)
             ])
             ->add('active', null, ['label' => "label.activePerformance"])
+            ->add('note', null, ['label' => "label.note"])
+            ->add('editorNote', null, ['label' => "label.editorNote"])
         ;
     }
 

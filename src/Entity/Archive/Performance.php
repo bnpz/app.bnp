@@ -106,6 +106,24 @@ class Performance implements EntityInterface
     private $active;
 
     /**
+     * @ORM\Column(name="note", type="text", nullable=true, options={"default":null})
+     * @Groups({
+     *     "archive_performance_full"
+     * })
+     * @SWG\Property(property="note", type="text")
+     */
+    private $note;
+
+    /**
+     * @ORM\Column(name="editor_note", type="text", nullable=true, options={"default":null})
+     * @Groups({
+     *     "archive_performance_full"
+     * })
+     * @SWG\Property(property="editorNote", type="text")
+     */
+    private $editorNote;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Archive\Authorship", mappedBy="performance", orphanRemoval=true)
      * @ORM\OrderBy({"positionInList" = "ASC"})
      */
@@ -251,6 +269,43 @@ class Performance implements EntityInterface
         $this->active = $active;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param mixed $note
+     * @return Performance
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEditorNote()
+    {
+        return $this->editorNote;
+    }
+
+    /**
+     * @param mixed $editorNote
+     * @return Performance
+     */
+    public function setEditorNote($editorNote)
+    {
+        $this->editorNote = $editorNote;
+        return $this;
+    }
+
 
     /**
      * @return ArrayCollection

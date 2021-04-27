@@ -66,6 +66,8 @@ label:
   authorship: Autorstvo
   author: Autor
   role: Uloga
+  note: Napomena
+  editorNote: Napomena urednika
 entityField:
   company: Ustanova/Firma
   firstName: Ime

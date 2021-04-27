@@ -66,6 +66,8 @@ label:
   authorship: Authorship
   author: Author
   role: Role
+  note: Note
+  editorNote: Editor's note
 entityField:
   company: Company
   firstName: First Name
