@@ -2,6 +2,7 @@
 namespace App\Repository\Archive;
 
 use App\Entity\Archive\Author;
+use App\Entity\Archive\Performance;
 use App\Repository\AbstractEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 
@@ -37,5 +38,24 @@ class AuthorRepository extends AbstractEntityRepository
             ->setParameter('lastName', trim($lastName));
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * @param Author $author
+     * @return Performance[]|mixed
+     */
+    public function getPerformances(Author $author)
+    {
+        $queryBuilder = $this->_em->createQueryBuilder();
+        $queryBuilder->select('performance')
+            ->from(Performance::class, 'performance')
+            ->leftJoin('performance.authorships', 'authorships')
+            ->leftJoin('performance.roles', 'roles')
+            ->where('authorships.author = :authorId')
+            ->orWhere('roles.author = :authorId')
+            ->setParameter('authorId', $author->getId())
+            ->orderBy('performance.premiereDate', 'DESC')
+        ;
+        return $queryBuilder->getQuery()->getResult();
     }
 }

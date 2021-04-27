@@ -8,6 +8,10 @@
     <p>{{ performance.stage}}</p>
     <p>{{ performance.authorLabel}}</p>
     <h1 class="pageTitle">{{ performance.title }}</h1>
+    <p>
+        <span>{{ 'label.premiere' | trans }}: </span>
+        <span>{{ performance.premiereDate|date('d. m. Y.') }}</span>
+    </p>
     <hr>
 
     <ul class="list-inline">
@@ -23,10 +27,14 @@
     <div class="clearfix"></div>
     <hr>
 
-    <p>{{ 'label.note'|trans }}</p>
-    <p>{{ performance.note }}</p>
-    <p>{{ 'label.editorNote'|trans }}</p>
-    <p>{{ performance.editorNote }}</p>
+    {% if performance.note %}
+        <p>{{ 'label.note'|trans }}</p>
+        <p>{{ performance.note }}</p>
+    {% endif %}
+    {% if performance.editorNote %}
+        <p>{{ 'label.editorNote'|trans }}</p>
+        <p>{{ performance.editorNote }}</p>
+    {% endif %}
 
 {% endblock %}
 {% block rightColumn %}
@@ -54,7 +62,7 @@
                             {% for authorship in performance.authorships %}
                                 <tr>
                                     <td>{{ authorship.authorshipTypeLabel ? authorship.authorshipTypeLabel : authorship.authorshipType.name }}</td>
-                                    <td>{{ authorship.getAuthorName() }}</td>
+                                    <td><a href="{{ path('archive_author_show', {'id': authorship.author.id}) }}">{{ authorship.getAuthorName() }}</a></td>
                                     {% if is_granted("ROLE_EDITOR") %}
                                         <td>
                                             <span>
@@ -95,7 +103,7 @@
                             {% for role in performance.roles %}
                                 <tr>
                                     <td>{{ role.name ? role.name : "" }}</td>
-                                    <td>{{ role.authorLabel ? role.authorLabel : role.author.getFullName() }}</td>
+                                    <td><a href="{{ path('archive_author_show', {'id': role.author.id}) }}">{{ role.authorLabel ? role.authorLabel : role.author.getFullName() }}</a></td>
                                     {% if is_granted("ROLE_EDITOR") %}
                                         <td>
                                             <span>

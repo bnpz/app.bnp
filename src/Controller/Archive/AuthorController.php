@@ -3,23 +3,11 @@ namespace App\Controller\Archive;
 
 use App\Controller\AbstractController;
 use App\Entity\Archive\Author;
-use App\Entity\Archive\Authorship;
-use App\Entity\Archive\Performance;
-use App\Entity\Archive\Role;
-use App\Entity\Base\EntityInterface;
-use App\Form\Archive\PerformanceAuthorshipType;
-use App\Form\Archive\PerformanceRoleType;
-use App\Form\Archive\PerformanceType;
 use App\Service\Archive\AuthorService;
-use App\Service\Archive\AuthorshipService;
-use App\Service\Archive\PerformanceService;
-use App\Service\Archive\RoleService;
 use Doctrine\ORM\Query\QueryException;
-use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * Class AuthorController
@@ -76,12 +64,16 @@ class AuthorController extends AbstractController
     /**
      * @Route("/{id<[1-9]\d*>}", name="archive_author_show", methods={"GET"})
      * @param Author $author
+     * @param AuthorService $authorService
      * @return Response
      */
-    public function show(Author $author): Response
+    public function show(Author $author, AuthorService $authorService): Response
     {
+        # todo
         return $this->render('archive/author/show.html.twig', [
-            'author' => $author
+            'author' => $author,
+            'performances' => $authorService->getPerformances($author)
         ]);
     }
+
 }

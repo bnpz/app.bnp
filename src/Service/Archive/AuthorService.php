@@ -2,6 +2,7 @@
 namespace App\Service\Archive;
 
 use App\Entity\Archive\Author;
+use App\Entity\Archive\Performance;
 use App\Repository\Archive\AuthorRepository;
 use App\Service\AbstractEntityService;
 use App\Service\User\UserService;
@@ -80,5 +81,14 @@ class AuthorService extends AbstractEntityService
             $author = $this->save($author);
         }
         return $author;
+    }
+
+    /**
+     * @param Author $author
+     * @return Performance[]|mixed
+     */
+    public function getPerformances(Author $author)
+    {
+        return $this->repository->getPerformances($author);
     }
 }

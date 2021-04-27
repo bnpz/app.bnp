@@ -66,9 +66,11 @@ label:
   activePerformance: Active performance
   error: Error
   authorship: Authorship
+  authorships: Authorships
   author: Author
   authors: Authors
   role: Role
+  roles: Roles
   note: Note
   editorNote: Editor's note
 entityField:

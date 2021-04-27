@@ -9,6 +9,36 @@
 {% endblock %}
 {% block rightColumn %}
 
+    {# ULOGE #}
+    <h3 class="pageTitle">{{ 'label.roles' | trans }}</h3>
+    <hr>
+    {% for performance in performances %}
+        <h4>{{ performance.title }}</h4>
+        {% for role in author.roles %}
+            {% if role.performance == performance %}
+                <p>
+                    <span>{{ role.name }}: </span><span>{{ role.authorLabel }}</span>
+                </p>
+            {% endif %}
+
+        {% endfor %}
+    {% endfor %}
+    <hr>
+    {# AUTORSTVA #}
+    <h3 class="pageTitle">{{ 'label.authorships' | trans }}</h3>
+    <hr>
+    {% for performance in performances %}
+        <h4>{{ performance.title }}</h4>
+        {% for authorship in author.authorships %}
+            {% if authorship.performance == performance %}
+                <p>
+                    <span>{{ authorship.authorshipTypeLabel ? authorship.authorshipTypeLabel : authorship.authorshipType.name }}: </span>
+                    <span>{{ authorship.getAuthorName() }}</span>
+                </p>
+            {% endif %}
+
+        {% endfor %}
+    {% endfor %}
 
 
 

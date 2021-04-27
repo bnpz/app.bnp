@@ -66,9 +66,11 @@ label:
   activePerformance: Aktivna predstava
   error: Greška
   authorship: Autorstvo
+  authorships: Autorstva
   author: Autor
   authors: Autori
   role: Uloga
+  roles: Uloge
   note: Napomena
   editorNote: Napomena urednika
 entityField:
