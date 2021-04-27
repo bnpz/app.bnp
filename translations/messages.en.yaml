@@ -58,13 +58,16 @@ label:
   performance: Performance
   performances: Performances
   season: Season
+  seasons: Seasons
   stage: Stage
+  stages: Stages
   title: Title
   premiere: Premiere
   activePerformance: Active performance
   error: Error
   authorship: Authorship
   author: Author
+  authors: Authors
   role: Role
   note: Note
   editorNote: Editor's note

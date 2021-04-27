@@ -58,13 +58,16 @@ label:
   performance: Predstava
   performances: Predstave
   season: Sezona
+  seasons: Sezone
   stage: Scena
+  stages: Scene
   title: Naslov
   premiere: Premijera
   activePerformance: Aktivna predstava
   error: Greška
   authorship: Autorstvo
   author: Autor
+  authors: Autori
   role: Uloga
   note: Napomena
   editorNote: Napomena urednika

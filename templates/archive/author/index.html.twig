@@ -1,0 +1,33 @@
+{% extends "archive/base.html.twig" %}
+{% block title %}
+    {{ 'label.authors'|trans }}
+{% endblock %}
+{% block leftColumn %}
+    {#{{ parent() }}#}
+    {#<p>archive/index left</p>#}
+{% endblock %}
+{% block rightColumn %}
+    <h1 class="pageTitle float-left">{{ 'label.authors'|trans }}</h1>
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-sm-12">
+            {{ render(controller('App\\Controller\\Archive\\AuthorController::searchBar')) }}
+        </div>
+    </div>
+
+    {% for author in authors %}
+        <p>
+            <a href="{{ path('archive_author_show', {'id': author.id}) }}">
+                {{ author.lastName | upper }}, {{ author.firstName }}
+            </a>
+        </p>
+    {% endfor %}
+
+
+    {% if paginator.hasToPaginate %}
+        {{ include('inc/paginator.html.twig') }}
+    {% endif %}
+{% endblock %}
+
+
